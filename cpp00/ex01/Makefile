@@ -1,9 +1,9 @@
-NAME = megaphone
+NAME = phonebook
 
 CC = g++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = megaphone.cpp
+SRC = phonebook.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -21,3 +21,4 @@ fclean: clean
 re: fclean $(NAME)
 
 .PHONY: all clean fclean re
+
