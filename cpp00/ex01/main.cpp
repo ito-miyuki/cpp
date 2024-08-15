@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:21:01 by mito              #+#    #+#             */
-/*   Updated: 2024/08/15 10:25:23 by mito             ###   ########.fr       */
+/*   Updated: 2024/08/15 14:57:38 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ int main(void)
 			continue ; // or shoud I stop program by using break?
 		if (user_input == "ADD")
 		{
-			std::cout << "you entered ADD" << std::endl; // excute actual comand
-			phonebook.add_contact(); // might need error handlings
+			if (phonebook.add_contact() == false)
+				break;
+			else
+				std::cout << "Contact added successfully!" << std::endl;
 		}
 		else if (user_input == "SEARCH")
 			std::cout << "you entered SEARCH" << std::endl; // excute actual comand

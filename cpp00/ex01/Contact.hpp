@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:16:07 by mito              #+#    #+#             */
-/*   Updated: 2024/08/15 11:22:06 by mito             ###   ########.fr       */
+/*   Updated: 2024/08/15 13:36:33 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@
 class	Contact
 {
 	public:
-		bool	set_first_name(std::string name);
-
+		bool	set_first_name(void);
+		bool	set_last_name(void);
+		bool	set_nickname(void);
+		bool	set_phone_number(void);
+		bool	set_darkest_secret(void);
 	private:
 		std::string first_name;
 		std::string last_name;
