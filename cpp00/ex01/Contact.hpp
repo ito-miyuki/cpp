@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*    Contact.hpp                                       :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:16:07 by mito              #+#    #+#             */
-/*   Updated: 2024/08/14 15:17:42 by mito             ###   ########.fr       */
+/*   Updated: 2024/08/15 11:22:06 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 # define CONTACT_HPP
 
 #include <string>
+#include <iostream>
 
-class	PhoneBook
+class	Contact
 {
 	public:
+		bool	set_first_name(std::string name);
 
 	private:
 		std::string first_name;
@@ -25,7 +27,6 @@ class	PhoneBook
 		std::string nickname;
 		std::string phone_number;
 		std::string darkest_secret;
-
 };
 
 #endif

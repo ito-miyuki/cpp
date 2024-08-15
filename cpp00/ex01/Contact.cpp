@@ -6,16 +6,20 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:12:09 by mito              #+#    #+#             */
-/*   Updated: 2024/08/14 15:41:14 by mito             ###   ########.fr       */
+/*   Updated: 2024/08/15 11:22:20 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
+#include "Contact.hpp"
 
-// class	PhoneBook
-// {
-// 	public:
+bool Contact::set_first_name(void)
+{
+	std::cout << "Enter first name: ";
+	std::string name;
+	getline(std::cin, name);
 
-// 	private:
-
-// };
+	if (name.empty())
+		return (false);
+	this->first_name = name;
+	return (true);
+}

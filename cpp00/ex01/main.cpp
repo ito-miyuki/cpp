@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:21:01 by mito              #+#    #+#             */
-/*   Updated: 2024/08/14 16:09:52 by mito             ###   ########.fr       */
+/*   Updated: 2024/08/15 10:25:23 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int main(void)
 {
+	PhoneBook	phonebook;
 	std::string user_input;
 
 	while (1)
@@ -23,7 +24,10 @@ int main(void)
 		if (user_input.empty())
 			continue ; // or shoud I stop program by using break?
 		if (user_input == "ADD")
+		{
 			std::cout << "you entered ADD" << std::endl; // excute actual comand
+			phonebook.add_contact(); // might need error handlings
+		}
 		else if (user_input == "SEARCH")
 			std::cout << "you entered SEARCH" << std::endl; // excute actual comand
 		else if (user_input == "EXIT")
