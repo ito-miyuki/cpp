@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:21:01 by mito              #+#    #+#             */
-/*   Updated: 2024/08/15 14:57:38 by mito             ###   ########.fr       */
+/*   Updated: 2024/08/15 15:39:08 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,17 @@ int main(void)
 			if (phonebook.add_contact() == false)
 				break;
 			else
-				std::cout << "Contact added successfully!" << std::endl;
+				std::cout << "Contact added successfully!" << std::endl; // delete it!
 		}
 		else if (user_input == "SEARCH")
-			std::cout << "you entered SEARCH" << std::endl; // excute actual comand
+		{
+			if (phonebook.search_contact() == false)
+				break;
+		}
 		else if (user_input == "EXIT")
 			break;
 		else
 			std::cout << "Available commands are: ADD, SEARCH or EXIT" << std::endl;
 	}
+	return (0);
 }
