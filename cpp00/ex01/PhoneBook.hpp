@@ -18,7 +18,7 @@
 
 # include "Contact.hpp"
 
-//# define CONTACT_MAX 8;
+# define CONTACT_MAX 8
 
 class	PhoneBook
 {
@@ -28,7 +28,7 @@ class	PhoneBook
 		bool	search_contact();
 	private:
 		int		current_index;
-		Contact contacts[8]; //Contact contacts[CONTACT_MAX];
+		Contact contacts[CONTACT_MAX];
 };
 
 #endif

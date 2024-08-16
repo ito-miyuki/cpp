@@ -14,14 +14,61 @@
 
 PhoneBook::PhoneBook() : current_index(0) {}
 
+void	list_all_contacts(Contact contact[])
+{
+	for (int i = 0; i < CONTACT_MAX; i++)
+	{
+		if (contact[i].get_first_name().empty())
+			break;
+		std::cout << i + 1;
+		std::cout << '|';
+		std::cout << contact[i].get_first_name();
+		std::cout << '|';
+		std::cout << contact[i].get_last_name();
+		std::cout << '|';
+		std::cout << contact[i].get_nickname() << std::endl;
+	}	
+}
+
+void print_contact_detail(Contact contact)
+{
+	std::cout << contact.get_first_name() << std::endl;
+	std::cout << contact.get_last_name() << std::endl;
+	std::cout << contact.get_nickname() << std::endl;
+	std::cout << contact.get_phone_number() << std::endl;
+	std::cout << contact.get_darkest_secret() << std::endl;
+}
+
 bool PhoneBook::search_contact()
 {
-	PhoneBook phonebook;
+	std::string str_index;
+	int index;
 
-	if (phonebook.current_index == 0)
-		std::cout << "There is no contact yet" << std::endl;
-	else
-		std::cout << "in development..." << std::endl;
+	if (this->current_index == 0)
+	{
+		if (this->contacts[1].get_first_name().empty())
+		{
+			std::cout << "There is no contact yet" << std::endl;
+			return (true); // corrent return value? think about it again!
+		}
+	}
+	list_all_contacts(this->contacts);
+
+	while (1)
+	{
+		std::cout << "Enter the index: ";
+		std::getline(std::cin, str_index);
+		if (str_index.empty())
+			return (false);
+		index = stoi(str_index) - 1;
+		if (index < 0 || index > CONTACT_MAX) // index >= contact max?
+			std::cout << "Index is available between 1 - 8" << std::endl;
+		else if (this->contacts[index].get_last_name().empty())
+			std::cout << "There is no contact at this index" << std::endl;
+		else
+			break;
+	}
+	print_contact_detail(this->contacts[index]);
 	return (true);
 }
 
@@ -41,7 +88,7 @@ bool PhoneBook::add_contact(void)
 		return (false);
 	this->contacts[this->current_index] = new_contact;
 	this->current_index++;
-	if (this->current_index >= 8) // replace it with CONTACT_MAX
+	if (this->current_index >= CONTACT_MAX)
 		this->current_index = 0;
 	return (true);
 }
