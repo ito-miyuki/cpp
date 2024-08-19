@@ -6,37 +6,50 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:00:22 by mito              #+#    #+#             */
-/*   Updated: 2024/08/15 15:51:10 by mito             ###   ########.fr       */
+/*   Updated: 2024/08/19 12:59:44 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
+void print_in_format(std::string data)
+{
+	if (data.length() < 10)
+		std::cout << std::setw(15) << data;
+	else
+		std::cout << std::setw(15) << data.substr(0, 9) + '.';
+
+}
 PhoneBook::PhoneBook() : current_index(0) {}
 
 void	list_all_contacts(Contact contact[])
 {
+	std::cout << std::setw(15) << "Index" << "|"
+			<< std::setw(15) << "First name" << "|"
+			<< std::setw(15) << "Last name" << "|"
+			<< std::setw(15) << "nickname" << std::endl;
 	for (int i = 0; i < CONTACT_MAX; i++)
 	{
 		if (contact[i].get_first_name().empty())
 			break;
-		std::cout << i + 1;
+		std::cout << std::setw(15) << i + 1;
 		std::cout << '|';
-		std::cout << contact[i].get_first_name();
+		print_in_format(contact[i].get_first_name());
 		std::cout << '|';
-		std::cout << contact[i].get_last_name();
+		print_in_format(contact[i].get_last_name());
 		std::cout << '|';
-		std::cout << contact[i].get_nickname() << std::endl;
-	}	
+		print_in_format(contact[i].get_nickname());
+		std::cout << std::endl;
+	}
 }
 
 void print_contact_detail(Contact contact)
 {
-	std::cout << contact.get_first_name() << std::endl;
-	std::cout << contact.get_last_name() << std::endl;
-	std::cout << contact.get_nickname() << std::endl;
-	std::cout << contact.get_phone_number() << std::endl;
-	std::cout << contact.get_darkest_secret() << std::endl;
+	std::cout << "First name: " << contact.get_first_name() << std::endl;
+	std::cout << "last name: " << contact.get_last_name() << std::endl;
+	std::cout << "nickname: " << contact.get_nickname() << std::endl;
+	std::cout << "phone number: " << contact.get_phone_number() << std::endl;
+	std::cout << "darkest secret: " << contact.get_darkest_secret() << std::endl;
 }
 
 bool PhoneBook::search_contact()
@@ -49,7 +62,7 @@ bool PhoneBook::search_contact()
 		if (this->contacts[1].get_first_name().empty())
 		{
 			std::cout << "There is no contact yet" << std::endl;
-			return (true); // corrent return value? think about it again!
+			return (true);
 		}
 	}
 	list_all_contacts(this->contacts);
@@ -60,15 +73,23 @@ bool PhoneBook::search_contact()
 		std::getline(std::cin, str_index);
 		if (str_index.empty())
 			return (false);
-		index = stoi(str_index) - 1;
-		if (index < 0 || index > CONTACT_MAX) // index >= contact max?
+		if (str_index.length() != 1)
+		{
 			std::cout << "Index is available between 1 - 8" << std::endl;
-		else if (this->contacts[index].get_last_name().empty())
+			continue;
+		}
+		index = atoi(str_index.c_str());
+		if (index > CONTACT_MAX || index < 1)
+		{
+			std::cout << "Index is available between 1 - 8" << std::endl;
+			continue;
+		}
+		if (this->contacts[index - 1].get_first_name().empty())
 			std::cout << "There is no contact at this index" << std::endl;
 		else
 			break;
 	}
-	print_contact_detail(this->contacts[index]);
+	print_contact_detail(this->contacts[index - 1]);
 	return (true);
 }
 

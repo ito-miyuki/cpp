@@ -6,15 +6,17 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:16:07 by mito              #+#    #+#             */
-/*   Updated: 2024/08/15 13:36:33 by mito             ###   ########.fr       */
+/*   Updated: 2024/08/19 13:56:38 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-#include <string>
-#include <iostream>
+# include <string>
+# include <iostream>
+# include <stdlib.h>
+# include <cctype>
 
 class	Contact
 {
