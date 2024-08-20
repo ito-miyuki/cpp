@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "Account.hpp"
+#include <iostream>
 
 static int	_nbAccounts = 0;
 static int	_totalAmount = 0;
@@ -19,6 +20,21 @@ static int	_totalNbWithdrawals = 0;
 
 Account::Account( int initial_deposit )
 {
-	this->_accountIndex = _nbAccounts;
+	_accountIndex = _nbAccounts;
 	_nbAccounts++;
+	_amount = initial_deposit;
+	_totalAmount += _amount;
+	_nbDeposits = 0;
+	_nbWithdrawals = 0;
+
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";" 
+				<< "amount:" << _amount <<  ";"
+				<< "created" << std::endl;
+}
+
+void	Account::_displayTimestamp( void )
+{
+	time_t	current_time;
+	
 }
