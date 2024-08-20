@@ -23,7 +23,7 @@ int main(void)
 		if (std::getline(std::cin, user_input).eof())
 			exit(1);
 		if (user_input.empty())
-			continue ; // or shoud I stop program by using break?
+			continue ;
 		if (user_input == "ADD")
 		{
 			if (phonebook.add_contact() == false)

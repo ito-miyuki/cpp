@@ -15,24 +15,24 @@
 void print_in_format(std::string data)
 {
 	if (data.length() < 10)
-		std::cout << std::setw(15) << data;
+		std::cout << std::setw(10) << data;
 	else
-		std::cout << std::setw(15) << data.substr(0, 9) + '.';
+		std::cout << std::setw(10) << data.substr(0, 9) + '.';
 
 }
 PhoneBook::PhoneBook() : current_index(0) {}
 
 void	list_all_contacts(Contact contact[])
 {
-	std::cout << std::setw(15) << "Index" << "|"
-			<< std::setw(15) << "First name" << "|"
-			<< std::setw(15) << "Last name" << "|"
-			<< std::setw(15) << "nickname" << std::endl;
+	std::cout << std::setw(10) << "Index" << "|"
+			<< std::setw(10) << "First name" << "|"
+			<< std::setw(10) << "Last name" << "|"
+			<< std::setw(10) << "nickname" << std::endl;
 	for (int i = 0; i < CONTACT_MAX; i++)
 	{
 		if (contact[i].get_first_name().empty())
 			break;
-		std::cout << std::setw(15) << i + 1;
+		std::cout << std::setw(10) << i + 1;
 		std::cout << '|';
 		print_in_format(contact[i].get_first_name());
 		std::cout << '|';
@@ -70,9 +70,13 @@ bool PhoneBook::search_contact()
 	while (1)
 	{
 		std::cout << "Enter the index: ";
-		std::getline(std::cin, str_index);
+		if (std::getline(std::cin, str_index).eof())
+			exit(1);
 		if (str_index.empty())
-			return (false);
+		{
+			std::cout << "Index is available between 1 - 8" << std::endl;
+			continue;
+		}
 		if (str_index.length() != 1)
 		{
 			std::cout << "Index is available between 1 - 8" << std::endl;
