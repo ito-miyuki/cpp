@@ -1,7 +1,7 @@
 NAME = zombieHorde
 
 CC = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++11
 
 SRC = main.cpp Zombie.cpp zombieHorde.cpp
 

@@ -1,5 +1,5 @@
-#ifndef ZONBIE_HPP
-# define ZONBIE_HPP
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
 #include <iostream>
 #include <string.h>
