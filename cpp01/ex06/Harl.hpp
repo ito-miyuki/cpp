@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/27 10:20:18 by mito              #+#    #+#             */
-/*   Updated: 2024/08/27 10:46:44 by mito             ###   ########.fr       */
+/*   Created: 2024/08/27 10:20:46 by mito              #+#    #+#             */
+/*   Updated: 2024/08/27 10:21:13 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#ifndef HARL_HPP
+# define HARL_HPP
 
-int main(void)
+# include <iostream>
+# include <string>
+
+class Harl
 {
-	Harl harl;
+    private:
+        void debug( void );
+        void info( void );
+        void warning( void );
+        void error( void );
 
-	harl.complain("DEBUG");
-	harl.complain("INFO");
-	harl.complain("WARNING");
-	harl.complain("ERROR");
+    public:
+        void complain( std::string level );
+};
 
-	//test for invalid cases
-	harl.complain("UNKNOWN");
-	harl.complain("INFOO");
-	harl.complain("./*g{j}");
-	harl.complain("error");
-}
+#endif
