@@ -1,39 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Harl.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/27 10:20:28 by mito              #+#    #+#             */
+/*   Updated: 2024/08/27 10:22:14 by mito             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Harl.hpp"
 
 void Harl::complain( std::string level )
 {
-    void(level);
-    debug();
-    info();
-    warning();
-    error();
-}
-
-
-
-void Harl::complain(std::string level) {
-    // メンバー関数ポインタを定義
-    void (Harl::*func_ptrs[])(void) = {
-        &Harl::debug,
-        &Harl::info,
-        &Harl::warning,
-        &Harl::error
+    void (Harl::*func_ptrs[])(void) =
+	{
+        &Harl::debug, &Harl::info, &Harl::warning, &Harl::error
     };
-    
-    // 各レベルと対応する関数ポインタをマッピング
+
     std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    
-    for (int i = 0; i < 4; i++) {
-        if (levels[i] == level) {
-            // ポインタを使って関数を呼び出す
+
+    for (int i = 0; i < 4; i++)
+    {
+        if (levels[i] == level)
+        {
             (this->*func_ptrs[i])();
-            return;
+            return ;
         }
     }
     std::cout << "Unknown level: " << level << std::endl;
 }
-
-
 
 void Harl::debug()
 {
