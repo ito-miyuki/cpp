@@ -6,22 +6,30 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:11:31 by mito              #+#    #+#             */
-/*   Updated: 2024/10/14 12:25:45 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/14 15:11:16 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-// constructor
+// Default constructor
 Fixed::Fixed() : fixedPointNum(0)
 {
 	std::cout << "Default constructor called\n";
 }
-// destructor
-Fixed::~Fixed(){
-	std::cout << "Destructor called\n";
-}
 
+// Int constructor
+Fixed::Fixed(const int num)
+{
+	std::cout << "Int constructor called\n";
+	this->fixedPointNum = num << fractionalBits;
+}
+ // Float constructor
+Fixed::Fixed(const float num)
+{
+	std::cout << "Float constructor called\n";
+	this->fixedPointNum = static_cast<int>(roundf(num * (1 << fractionalBits)));
+}
 // copy constructor
 Fixed::Fixed(const Fixed& other)
 {
@@ -40,6 +48,12 @@ Fixed& Fixed::operator=(const Fixed& other)
 	return (*this);
 }
 
+// destructor
+Fixed::~Fixed()
+{
+	std::cout << "Destructor called\n";
+}
+
 int Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called\n";
@@ -50,3 +64,20 @@ void Fixed::setRawBits(int const raw )
 {
 	this->fixedPointNum = raw;
 }
+
+float Fixed::toFloat(void) const
+{
+	return static_cast<float>(fixedPointNum) / (1 << fractionalBits);
+}
+
+int Fixed::toInt(void) const
+{
+	return fixedPointNum >> fractionalBits;
+}
+
+std::ostream&	operator <<(std::ostream& output, const Fixed& num)
+{
+	output << num.toFloat();
+	return output;
+}
+
