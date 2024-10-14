@@ -1,7 +1,7 @@
 NAME = a.out
 
 CC = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++11
+CPPFLAGS = -Wall -Wextra -Werror
 
 SRC = main.cpp Fixed.cpp
 
