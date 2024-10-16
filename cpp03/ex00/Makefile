@@ -1,21 +1,23 @@
-NAME := clapTrap
+NAME = ClapTrap
 
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror
 
-SRC = main.cpp clapTrap.cpp
+SRC = main.cpp ClapTrap.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CPPFLAGS) (OBJ) -o $(NAME)
+	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 clean:
-	rm -f $(NAME)
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
+
+re: fclean $(NAME)
 
 .PHONY: all clean fclean re
