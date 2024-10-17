@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:11:31 by mito              #+#    #+#             */
-/*   Updated: 2024/10/14 12:25:45 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/17 15:06:49 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ Fixed::Fixed() : fixedPointNum(0)
 	std::cout << "Default constructor called\n";
 }
 // destructor
-Fixed::~Fixed(){
+Fixed::~Fixed()
+{
 	std::cout << "Destructor called\n";
 }
 
@@ -26,7 +27,7 @@ Fixed::~Fixed(){
 Fixed::Fixed(const Fixed& other)
 {
 	std::cout << "Copy constructor called\n";
-	*this = other; // this calls copy assignment operator
+	*this = other;
 }
 
 // copy assignment operator

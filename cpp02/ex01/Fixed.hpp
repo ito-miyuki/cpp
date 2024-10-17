@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:54:19 by mito              #+#    #+#             */
-/*   Updated: 2024/10/14 15:08:16 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/17 14:50:59 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Fixed
 {
 	private:
 		int fixedPointNum;
-		int fractionalBits = 8;
+		static const int fractionalBits = 8;
 
 	public:
 		Fixed(); // Default constructor

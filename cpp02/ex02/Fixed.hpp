@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:54:19 by mito              #+#    #+#             */
-/*   Updated: 2024/10/15 13:26:24 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/17 14:51:11 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ class Fixed
 {
 	private:
 		int fixedPointNum;
-		int fractionalBits = 8;
+		static const int fractionalBits = 8;
 
 	public:
-		Fixed(); // Default constructor
+		Fixed();
 		Fixed(const int num);
 		Fixed(const float num);
 		Fixed(const Fixed& other); // Copy constructor
-		~Fixed(); // Destructor
+		~Fixed();
 
-		Fixed& operator=(const Fixed& other); // Copy assignment operator
+		Fixed& operator=(const Fixed& other);
 
 		Fixed operator+(const Fixed& other);
 		Fixed operator-(const Fixed& other);
@@ -46,7 +46,7 @@ class Fixed
 
 		Fixed& operator++();
 		Fixed& operator--();
-		
+
 		Fixed operator++(int);
 		Fixed operator--(int);
 

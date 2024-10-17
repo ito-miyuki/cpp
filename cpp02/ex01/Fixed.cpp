@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:11:31 by mito              #+#    #+#             */
-/*   Updated: 2024/10/14 15:11:16 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/17 11:48:16 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Fixed::Fixed(const int num)
 	std::cout << "Int constructor called\n";
 	this->fixedPointNum = num << fractionalBits;
 }
- // Float constructor
+ // Float constructor: Float num => Fixed point num
 Fixed::Fixed(const float num)
 {
 	std::cout << "Float constructor called\n";
@@ -34,7 +34,7 @@ Fixed::Fixed(const float num)
 Fixed::Fixed(const Fixed& other)
 {
 	std::cout << "Copy constructor called\n";
-	*this = other; // this calls copy assignment operator
+	*this = other;
 }
 
 // copy assignment operator
@@ -75,7 +75,7 @@ int Fixed::toInt(void) const
 	return fixedPointNum >> fractionalBits;
 }
 
-std::ostream&	operator <<(std::ostream& output, const Fixed& num)
+std::ostream&	operator<<(std::ostream& output, const Fixed& num)
 {
 	output << num.toFloat();
 	return output;
