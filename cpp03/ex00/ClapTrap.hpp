@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:52:54 by mito              #+#    #+#             */
-/*   Updated: 2024/10/17 14:11:50 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/17 15:22:08 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ class ClapTrap
 {
 	private:
 		std::string name;
-		int hitPoints;
-		int	energyPoints;
-		int	attackDamage;
+		unsigned int hitPoints;
+		unsigned int energyPoints;
+		unsigned int attackDamage;
 
 	public:
 		ClapTrap(); // constructor

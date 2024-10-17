@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:52:49 by mito              #+#    #+#             */
-/*   Updated: 2024/10/17 14:36:44 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/17 16:49:17 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,43 @@ void ClapTrap::attack(const std::string& target)
 	if (this->energyPoints == 0)
 		std::cout << this->name << " can't attack because it doesn't have any energy points!\n";
 	else if (this->hitPoints == 0)
-		std::cout << this->name << " is dead.\n";
+		std::cout << this->name << " is dead so can't attack\n";
 	else
+	{
 		std::cout << "ClapTrap " << this->name << " attacks " << target << " causing " << this->attackDamage << " points of damage!\n";
+		this->energyPoints--;
+	}
 }
 
-void takeDamage(unsigned int amount)
+void ClapTrap::takeDamage(unsigned int amount)
 {
-	
-
+	if (this->hitPoints == 0)
+	{
+		std::cout << this->name << " is dead\n";
+		return ;
+	}
+	if (amount >= this->hitPoints)
+	{
+		this->hitPoints = 0;
+		std::cout << this->name << " took " << amount << " points of damage and dead\n";
+	}
+	else
+	{
+		this->hitPoints -= amount;
+		std::cout << this->name << " took " << amount << " points of damage\n";
+	}
 }
 
-// void beRepaired(unsigned int amount)
-// {
-
-// }
+void ClapTrap::beRepaired(unsigned int amount)
+{
+	if (this->energyPoints == 0)
+		std::cout << this->name << " can't repair because it doesn't have any energy points!\n";
+	else if (this->hitPoints == 0)
+		std::cout << this->name << " is dead. Can't repair\n";
+	else
+	{
+		this->energyPoints--;
+		this->hitPoints += amount;
+		std::cout << this->name << " is repaired, " << amount << " point back\n";
+	}
+}
