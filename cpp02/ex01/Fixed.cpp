@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:11:31 by mito              #+#    #+#             */
-/*   Updated: 2024/10/17 11:48:16 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/17 17:30:13 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ Fixed::Fixed(const float num)
 {
 	std::cout << "Float constructor called\n";
 	this->fixedPointNum = static_cast<int>(roundf(num * (1 << fractionalBits)));
+	std::cout << "float=" << num << ", fixedPointNum=" << this->fixedPointNum << std::endl;
 }
 // copy constructor
 Fixed::Fixed(const Fixed& other)

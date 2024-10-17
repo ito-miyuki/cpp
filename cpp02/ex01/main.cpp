@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:11:40 by mito              #+#    #+#             */
-/*   Updated: 2024/10/17 13:39:47 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/17 17:27:25 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(void)
 	Fixed a;
 	Fixed const b(10);
 	Fixed const c(42.42f);
-	Fixed const d( b );
+	Fixed const d(b);
 
 	a = Fixed(1234.4321f);
 

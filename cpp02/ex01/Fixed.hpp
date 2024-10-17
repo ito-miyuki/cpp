@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:54:19 by mito              #+#    #+#             */
-/*   Updated: 2024/10/17 14:50:59 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/17 17:36:20 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ class Fixed
 		int toInt(void) const;
 };
 
-std::ostream&	operator <<(std::ostream& output, const Fixed& num);
+std::ostream& operator<<(std::ostream& output, const Fixed& num);
 
 #endif

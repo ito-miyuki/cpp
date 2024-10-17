@@ -6,31 +6,34 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:52:49 by mito              #+#    #+#             */
-/*   Updated: 2024/10/17 16:49:17 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/17 18:24:07 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : name("Player X"), hitPoints(10), energyPoints(10), attackDamage(0)
+ClapTrap::ClapTrap() : name("undefined"), hitPoints(10), energyPoints(10), attackDamage(0)
 {
-	std::cout << "Default constructor called\n";
+	std::cout << "ClapTrap default constructor called\n";
 }
 
 ClapTrap::ClapTrap(std::string name) : name(name), hitPoints(10), energyPoints(10), attackDamage(0)
 {
-	std::cout << "constructor called: " << name << std::endl;
+	std::cout << "ClapTrap constructor called: " << name << std::endl;
 }
 
 // copy constructor
 ClapTrap::ClapTrap(const ClapTrap& other)
-{
-	*this = other;
+	: name(other.name)
+	, hitPoints(other.hitPoints)
+	, energyPoints(other.energyPoints)
+	, attackDamage(other.attackDamage) {
+	std::cout << "ClapTrap copy constructor called: " << name << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Destructor called: " << this->name << std::endl;
+	std::cout << "ClapTrap destructor called: " << this->name << std::endl;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
@@ -53,8 +56,8 @@ void ClapTrap::attack(const std::string& target)
 		std::cout << this->name << " is dead so can't attack\n";
 	else
 	{
-		std::cout << "ClapTrap " << this->name << " attacks " << target << " causing " << this->attackDamage << " points of damage!\n";
 		this->energyPoints--;
+		std::cout << "ClapTrap " << this->name << " attacks " << target << " causing " << this->attackDamage << " points of damage!\n";
 	}
 }
 
