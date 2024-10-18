@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:52:54 by mito              #+#    #+#             */
-/*   Updated: 2024/10/18 13:59:21 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/18 13:56:16 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 class ClapTrap
 {
-	private:
+	protected:
 		std::string name;
 		unsigned int hitPoints;
 		unsigned int energyPoints;
@@ -25,9 +25,9 @@ class ClapTrap
 
 	public:
 		ClapTrap(); // constructor
-		ClapTrap(const std::string name); // constructor
+		ClapTrap(std::string name); // constructor
 		ClapTrap(const ClapTrap& other); // copy constructor
-		~ClapTrap(); //destructor
+		virtual ~ClapTrap(); //destructor
 
 		ClapTrap& operator=(const ClapTrap& other); // Copy assignment operator
 
