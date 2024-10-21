@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:48:52 by mito              #+#    #+#             */
-/*   Updated: 2024/10/18 14:26:03 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/21 14:39:44 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ class ScavTrap : public ClapTrap
 		ScavTrap(const ScavTrap& other);
 		~ScavTrap() override; // destructor
 
-		ScavTrap& operator=(const ScavTrap& other);
+		ScavTrap& operator=(const ScavTrap& other); // Copy assignment operator
+
+		void guardGate();
+		void attack(const std::string& target);
 };
 
 #endif

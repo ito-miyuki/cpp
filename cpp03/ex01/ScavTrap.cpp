@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:48:38 by mito              #+#    #+#             */
-/*   Updated: 2024/10/18 14:28:43 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/21 14:54:54 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 // constructor
 ScavTrap::ScavTrap() : ClapTrap() {
-	//name = "undifined"; // why we don'y init name too?
 	hitPoints = 100;
 	energyPoints = 50;
 	attackDamage = 20;
@@ -23,23 +22,49 @@ ScavTrap::ScavTrap() : ClapTrap() {
 
 // constructor with param
 ScavTrap::ScavTrap(const std::string name) : ClapTrap(name) {
-	//name = name;
 	hitPoints = 100;
 	energyPoints = 50;
 	attackDamage = 20;
 	std::cout << "ScavTrap default constructor called\n";
 }
-
 // copy constructor
-ScavTrap::ScavTrap(const ScavTrap& other) {
-	hitPoints = other.hitPoints;
-	energyPoints = other.energyPoints;
-	attackDamage = other.attackDamage;
-	std::cout << "ScavTrap default constructor called\n";
+ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
+	std::cout << "ScavTrap copy constructor called\n";
+}
+
+// Copy assignment operator
+ScavTrap& ScavTrap::operator=(const ScavTrap& other)
+{
+	if (this != &other)
+	{
+		this->name = other.name;
+		this->hitPoints = other.hitPoints;
+		this->energyPoints = other.energyPoints;
+		this->attackDamage = other.attackDamage;
+	}
+	return (*this);
 }
 
 // destructor
 ScavTrap::~ScavTrap()
 {
 	std::cout << "ScavTrap destructor called: " << this->name << std::endl;
+}
+
+void ScavTrap::guardGate()
+{
+	std::cout << "ScavTrap " << name << " is now in Gate keeper mode" << std::endl;
+}
+
+void ScavTrap::attack(const std::string& target)
+{
+	if (this->energyPoints == 0)
+		std::cout << "ScavTrap " << this->name << " can't attack because it doesn't have any energy points!\n";
+	else if (this->hitPoints == 0)
+		std::cout << "ScavTrap " << this->name << " is dead so can't attack\n";
+	else
+	{
+		this->energyPoints--;
+		std::cout << "ScavTrap " << this->name << " attacks " << target << " causing " << this->attackDamage << " points of damage!\n";
+	}
 }
