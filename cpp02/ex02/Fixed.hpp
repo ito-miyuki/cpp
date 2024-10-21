@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 17:54:19 by mito              #+#    #+#             */
-/*   Updated: 2024/10/17 18:04:15 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/18 11:43:10 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Fixed
 		Fixed();
 		explicit Fixed(const int num);
 		Fixed(const float num);
-		Fixed(const Fixed& other); // Copy constructor
+		Fixed(const Fixed& other);
 		~Fixed();
 
 		Fixed& operator=(const Fixed& other);
