@@ -4,9 +4,11 @@ int main()
 {
     Animal animal;
     animal.makeSound();
+	std::cout << animal.getType() << " " << std::endl;
 
     Animal yaya("yaya");
     yaya.makeSound();
+	std::cout << yaya.getType() << " " << std::endl;
     // const Animal* meta = new Animal();
     // const Animal* j = new Dog();
     // const Animal* i = new Cat();
@@ -17,3 +19,4 @@ int main()
     // meta->makeSound();
     return 0;
 }
+
