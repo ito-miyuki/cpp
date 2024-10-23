@@ -6,10 +6,11 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:51:58 by mito              #+#    #+#             */
-/*   Updated: 2024/10/21 17:50:53 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/23 16:56:53 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "DiamondTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
@@ -39,10 +40,21 @@ void testFragTrap()
 	alliFrag.highFivesGuys();
 }
 
+void testDiamondTrap()
+{
+	DiamondTrap mitoDiamond("mitoDiamond");
+	DiamondTrap alliDiamond("alliDiamond");
+
+	mitoDiamond.attack("alliDiamond");
+	mitoDiamond.whoAmI();
+	alliDiamond.whoAmI();
+
+}
+
 int main(void)
 {
-	// ScavTrap* a = new ScavTrap("Copy");
-	// delete a;  // without virtual keyword in destrucctor, it won't work
+	ScavTrap* a = new ScavTrap("Copy");
+	delete a;  // without virtual keyword in destrucctor, it won't work
 
 	std::cout << "**Test for ClapTrap class**" << std::endl;
 	testClapTrap();
@@ -56,6 +68,11 @@ int main(void)
 
 	std::cout << "**Test for FragTrap class**" << std::endl;
 	testFragTrap();
+
+	std::cout << std::endl;
+
+	std::cout << "**Test for DiamondTrap class**" << std::endl;
+	testDiamondTrap();
 
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:48:38 by mito              #+#    #+#             */
-/*   Updated: 2024/10/21 17:37:39 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/23 16:39:28 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 {
 	if (this != &other)
 	{
-		this->name = other.name;
-		this->hitPoints = other.hitPoints;
-		this->energyPoints = other.energyPoints;
-		this->attackDamage = other.attackDamage;
+		ClapTrap::operator=(other);
 	}
 	return (*this);
 }

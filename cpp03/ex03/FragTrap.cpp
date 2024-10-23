@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:02:34 by mito              #+#    #+#             */
-/*   Updated: 2024/10/21 17:45:43 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/23 16:38:42 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ FragTrap::~FragTrap() {
 FragTrap& FragTrap::operator=(const FragTrap& other) {
 	if (this != &other)
 	{
-		name = other.name;
-		hitPoints = other.hitPoints;
-		energyPoints = other.energyPoints;
-		attackDamage = other.attackDamage;
+		ClapTrap::operator=(other);
 	}
 	return (*this);
 }
