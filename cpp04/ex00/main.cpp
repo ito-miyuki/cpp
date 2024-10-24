@@ -1,22 +1,43 @@
-#include "Animal.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
+#include "WrongCat.hpp"
+#include <iostream>
 
 int main()
 {
-    Animal animal;
-    animal.makeSound();
-	std::cout << animal.getType() << " " << std::endl;
+	std::cout << "**Wrong animal test**\n";
+    const Animal* animal = new Animal();
+    const Animal* dog = new Dog();
+    const Animal* cat = new Cat();
 
-    Animal yaya("yaya");
-    yaya.makeSound();
-	std::cout << yaya.getType() << " " << std::endl;
-    // const Animal* meta = new Animal();
-    // const Animal* j = new Dog();
-    // const Animal* i = new Cat();
-    // std::cout << j->getType() << " " << std::endl;
-    // std::cout << i->getType() << " " << std::endl;
-    // i->makeSound(); //will output the cat sound!
-    // j->makeSound();
-    // meta->makeSound();
+	std::cout << "\n---getType()---\n";
+    std::cout << dog->getType() << " " << std::endl;
+    std::cout << cat->getType() << " " << std::endl;
+
+	std::cout << "\n---makeSound()---\n";
+    cat->makeSound(); // will output the cat sound!
+    dog->makeSound();
+    animal->makeSound();
+
+	std::cout << std::endl;
+
+	delete animal;
+	delete dog;
+	delete cat;
+	std::cout << std::endl;
+
+	std::cout << "**Wrong animal test**\n";
+	const WrongAnimal*	wrongCat = new WrongCat();
+
+	std::cout << "\n---getType()---\n";
+	std::cout << wrongCat->getType() << " " << std::endl;
+
+	std::cout << "\n---makeSound()---\n";
+	wrongCat->makeSound(); // will output wrong animal sound!
+
+	std::cout << std::endl;
+	delete wrongCat;
+
     return 0;
 }
 

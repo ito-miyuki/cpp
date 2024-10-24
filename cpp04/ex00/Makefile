@@ -3,7 +3,7 @@ NAME = Animal
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++11
 
-SRC = main.cpp Animal.cpp
+SRC = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongCat.cpp WrongAnimal.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
