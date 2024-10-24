@@ -6,14 +6,14 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:52:54 by mito              #+#    #+#             */
-/*   Updated: 2024/10/18 13:59:21 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/24 11:23:38 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
 
-# include <iostream>
+# include <string>
 
 class ClapTrap
 {

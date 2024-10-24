@@ -6,11 +6,12 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:48:38 by mito              #+#    #+#             */
-/*   Updated: 2024/10/23 16:39:28 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/24 11:21:47 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+#include <iostream>
 
 // constructor
 ScavTrap::ScavTrap() : ClapTrap() {

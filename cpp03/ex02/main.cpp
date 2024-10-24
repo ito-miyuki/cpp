@@ -6,12 +6,13 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:51:58 by mito              #+#    #+#             */
-/*   Updated: 2024/10/21 17:50:53 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/24 11:31:41 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include <iostream>
 
 void testClapTrap()
 {
@@ -39,11 +40,12 @@ void testFragTrap()
 	alliFrag.highFivesGuys();
 }
 
+/*
+ScavTrap* a = new ScavTrap("Copy");
+delete a;  // without virtual keyword in destrucctor, it won't work
+*/
 int main(void)
 {
-	// ScavTrap* a = new ScavTrap("Copy");
-	// delete a;  // without virtual keyword in destrucctor, it won't work
-
 	std::cout << "**Test for ClapTrap class**" << std::endl;
 	testClapTrap();
 

@@ -6,12 +6,11 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:51:58 by mito              #+#    #+#             */
-/*   Updated: 2024/10/21 13:00:07 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/24 11:41:41 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
-
 
 int main(void)
 {
@@ -21,13 +20,7 @@ int main(void)
 	mitoScav.attack("alliScav");
 	alliScav.takeDamage(2);
 
-	alliScav.attack("mitoScav");
-	mitoScav.takeDamage(8);
-
 	mitoScav.guardGate();
-
-	alliScav.attack("mitoScav");
-	mitoScav.takeDamage(9);
 
 	mitoScav.beRepaired(6);
 

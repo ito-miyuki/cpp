@@ -6,11 +6,12 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:52:49 by mito              #+#    #+#             */
-/*   Updated: 2024/10/18 12:45:23 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/24 11:23:08 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include <iostream>
 
 ClapTrap::ClapTrap() : name("undefined"), hitPoints(10), energyPoints(10), attackDamage(0)
 {

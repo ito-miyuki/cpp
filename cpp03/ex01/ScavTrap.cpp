@@ -6,11 +6,12 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:48:38 by mito              #+#    #+#             */
-/*   Updated: 2024/10/21 14:54:54 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/24 11:22:16 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+#include <iostream>
 
 // constructor
 ScavTrap::ScavTrap() : ClapTrap() {
@@ -25,7 +26,7 @@ ScavTrap::ScavTrap(const std::string name) : ClapTrap(name) {
 	hitPoints = 100;
 	energyPoints = 50;
 	attackDamage = 20;
-	std::cout << "ScavTrap default constructor called\n";
+	std::cout << "ScavTrap default constructor called: " << name << std::endl;
 }
 // copy constructor
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
@@ -46,18 +47,15 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 }
 
 // destructor
-ScavTrap::~ScavTrap()
-{
+ScavTrap::~ScavTrap() {
 	std::cout << "ScavTrap destructor called: " << this->name << std::endl;
 }
 
-void ScavTrap::guardGate()
-{
+void ScavTrap::guardGate() {
 	std::cout << "ScavTrap " << name << " is now in Gate keeper mode" << std::endl;
 }
 
-void ScavTrap::attack(const std::string& target)
-{
+void ScavTrap::attack(const std::string& target) {
 	if (this->energyPoints == 0)
 		std::cout << "ScavTrap " << this->name << " can't attack because it doesn't have any energy points!\n";
 	else if (this->hitPoints == 0)

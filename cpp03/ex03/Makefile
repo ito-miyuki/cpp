@@ -1,4 +1,4 @@
-NAME = diamond
+NAME = diamondTrap
 
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++11

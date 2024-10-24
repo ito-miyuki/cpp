@@ -1,7 +1,7 @@
-NAME = ClapTrap
+NAME = clapTrap
 
 CC = c++
-CPPFLAGS = -Wall -Wextra -Werror
+CPPFLAGS = -Wall -Wextra -Werror -std=c++11
 
 SRC = main.cpp ClapTrap.cpp
 

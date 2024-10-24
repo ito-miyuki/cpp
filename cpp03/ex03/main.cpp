@@ -6,13 +6,14 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:51:58 by mito              #+#    #+#             */
-/*   Updated: 2024/10/23 16:56:53 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/24 11:32:18 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include <iostream>
 
 void testClapTrap()
 {
@@ -53,9 +54,6 @@ void testDiamondTrap()
 
 int main(void)
 {
-	ScavTrap* a = new ScavTrap("Copy");
-	delete a;  // without virtual keyword in destrucctor, it won't work
-
 	std::cout << "**Test for ClapTrap class**" << std::endl;
 	testClapTrap();
 

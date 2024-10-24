@@ -6,24 +6,24 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:19:45 by mito              #+#    #+#             */
-/*   Updated: 2024/10/23 16:58:44 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/24 11:20:57 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
+#include <iostream>
 
 DiamondTrap::DiamondTrap() : ClapTrap(), ScavTrap(), FragTrap(), name("Undefined") {
     std::cout << "DiamonTrap constructor called: " << name << std::endl;
 }
 
-// DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name), name(name) {
+/*
+Because I called Frag's constructor at the last, Diamond inherited Frag's.
+*/
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name), name(name) {
     this->energyPoints = 50; // Frag already overrode scav's values so it has to declare by number
     std::cout << "DiamonTrap constructor called: " << name << std::endl;
 }
-/*
-Because I called Frag's constructor at the last, Diamond inherited Frag's.
-*/
 
 DiamondTrap::DiamondTrap(const DiamondTrap& other) : ClapTrap(other), ScavTrap(other), FragTrap(other), name(other.name) {
     std::cout << "DiamondTrap copy constructor called: " << name << std::endl;
@@ -44,7 +44,9 @@ DiamondTrap::~DiamondTrap() {
 }
 
 
-//attack() (Scavtrap) Do I have to declare?
+void DiamondTrap::attack(const std::string& target) {
+	ScavTrap::attack(target);
+}
 
 
 void DiamondTrap::whoAmI() {

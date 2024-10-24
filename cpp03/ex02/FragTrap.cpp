@@ -6,11 +6,12 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:02:34 by mito              #+#    #+#             */
-/*   Updated: 2024/10/21 17:45:43 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/24 11:38:04 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
+#include <iostream>
 
 FragTrap::FragTrap() : ClapTrap() {
 	hitPoints = 100;
@@ -59,6 +60,6 @@ void FragTrap::attack(const std::string& target) {
 }
 
 void FragTrap::highFivesGuys(void) {
-	std::cout << "Hive five guys!! ( ^o^)/\\(^-^) \n";
+	std::cout << "High five guys!! ( ^o^)/\\(^-^) \n";
 
 }

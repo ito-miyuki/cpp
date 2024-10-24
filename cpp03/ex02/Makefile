@@ -1,4 +1,4 @@
-NAME = FragTrap
+NAME = fragTrap
 
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++11

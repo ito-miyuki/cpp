@@ -6,11 +6,12 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:48:38 by mito              #+#    #+#             */
-/*   Updated: 2024/10/21 17:37:39 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/24 11:37:44 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+#include <iostream>
 
 // constructor
 ScavTrap::ScavTrap() : ClapTrap() {
@@ -29,7 +30,7 @@ ScavTrap::ScavTrap(const std::string name) : ClapTrap(name) {
 }
 // copy constructor
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
-	std::cout << "ScavTrap copy constructor called: " << name << std::endl;
+	std::cout << "ScavTrap copy constructor called\n";
 }
 
 // Copy assignment operator
