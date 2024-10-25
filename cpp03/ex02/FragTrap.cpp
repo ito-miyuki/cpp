@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:02:34 by mito              #+#    #+#             */
-/*   Updated: 2024/10/24 11:38:04 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/25 15:08:11 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ FragTrap::~FragTrap() {
 }
 
 FragTrap& FragTrap::operator=(const FragTrap& other) {
+	std::cout << "FragTrap copy assignment operator called\n";
 	if (this != &other)
 	{
 		name = other.name;
@@ -60,6 +61,5 @@ void FragTrap::attack(const std::string& target) {
 }
 
 void FragTrap::highFivesGuys(void) {
-	std::cout << "High five guys!! ( ^o^)/\\(^-^) \n";
-
+	std::cout << "FragTrap " << this->name << ": High five guys!! ( ^o^)/\\(^-^) \n";
 }

@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:19:45 by mito              #+#    #+#             */
-/*   Updated: 2024/10/24 11:20:57 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/25 15:24:09 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap& other) : ClapTrap(other), ScavTrap(o
 }
 
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) {
+	std::cout << "DiamondTrap copy assignment operator called\n";
 	if (this != &other)
 	{
 		ScavTrap::operator=(other);
@@ -50,6 +51,6 @@ void DiamondTrap::attack(const std::string& target) {
 
 
 void DiamondTrap::whoAmI() {
-	std::cout << "I am " << this->name << ", my grand parent is " << ClapTrap::name << std::endl;
+	std::cout << "I am " << this->name << ", my ClapTrap name is " << ClapTrap::name << std::endl;
 
 }

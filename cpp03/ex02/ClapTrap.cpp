@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 15:52:49 by mito              #+#    #+#             */
-/*   Updated: 2024/10/24 11:24:07 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/25 14:41:20 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ ClapTrap::~ClapTrap()
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
+	std::cout << "ClapTrap copy assignment operator called\n";
 	if (this != &other)
 	{
 		this->name = other.name;

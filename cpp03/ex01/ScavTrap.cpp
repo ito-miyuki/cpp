@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:48:38 by mito              #+#    #+#             */
-/*   Updated: 2024/10/24 11:22:16 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/25 15:03:04 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
 // Copy assignment operator
 ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 {
+	std::cout << "ScavTrap copy assignment operator called\n";
 	if (this != &other)
 	{
 		this->name = other.name;
