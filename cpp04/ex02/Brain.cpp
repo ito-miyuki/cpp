@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 17:56:12 by mito              #+#    #+#             */
-/*   Updated: 2024/10/28 12:50:47 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/28 15:50:22 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Brain::Brain() {
 }
 
 Brain::Brain(const Brain& other) {
-	std::cout << "Default Brain constructor called\n";
+	std::cout << "Brain copy constructor called\n";
 	for(int i = 0; i < 100; i++)
 		this->_ideas[i] = other._ideas[i];
 }
