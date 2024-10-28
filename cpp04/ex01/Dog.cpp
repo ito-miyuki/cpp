@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:42:18 by mito              #+#    #+#             */
-/*   Updated: 2024/10/24 17:29:16 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/28 13:27:20 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,16 @@ Dog::Dog(std::string type) : Animal(type) {
 
 Dog::Dog(const Dog& other) : Animal(other) {
     std::cout << "Dog copy constructor called\n";
-    //this->_type = other._type; // I don't need this because Animal(other) already copied.
 	brain = new Brain(*other.brain);
 }
+
+/*
+Shallow copy in Cat class for testing(THIS IS WRONG)
+Cat::Cat(const Cat& other) : Animal(other) {
+    std::cout << "Shallow Copy Constructor for Cat called\n";
+    this->brain = other.brain; // this way, it is sharing the same Brain pointer
+}
+*/
 
 Dog::~Dog() {
     std::cout << "Dog destructor called\n";
@@ -48,5 +55,9 @@ Dog& Dog::operator=(const Dog& other) {
 
 void Dog::makeSound() const {
         std::cout << this->_type << ": woof woof!\n";
+}
+
+Brain* Dog::getBrain() {
+	return (brain);
 }
 

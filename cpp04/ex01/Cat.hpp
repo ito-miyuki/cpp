@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:02:00 by mito              #+#    #+#             */
-/*   Updated: 2024/10/24 16:46:59 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/28 11:33:52 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ class Cat : public Animal {
 		~Cat() override;
 
 		Cat& operator=(const Cat& other);
+
         void makeSound() const override;
+		Brain* getBrain();
 
 	private:
 		Brain* brain;

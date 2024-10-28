@@ -1,46 +1,100 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/28 10:00:48 by mito              #+#    #+#             */
+/*   Updated: 2024/10/28 12:57:10 by mito             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "WrongCat.hpp"
 #include <iostream>
 
-// int main()
-// {
-// 	const Animal* j = new Dog();
-// 	const Animal* i = new Cat();
 
-// 	delete j; //should not create a leak
-// 	delete i;
+void arrTest() {
+	const int size = 7;
+	Animal* animalArr[size];
 
-// 	return 0;
-// }
+	std::cout << "\n***arrTest***\n";
+	for (int i = 0; i < (size / 2); i++) {
+		animalArr[i] = new Cat();
+	}
 
-// just for testing . don't submit it as it is
+	for (int i = (size / 2); i < size; i++) {
+		animalArr[i] = new Dog();
+	}
+
+	for (int i = 0; i < size; i++) {
+		animalArr[i]->makeSound();
+	}
+	std::cout << std::endl;
+
+	for (int i = 0; i < size; i++) {
+		delete animalArr[i];
+	}
+	std::cout << "--------------------" << std::endl;
+	std::cout << std::endl;
+}
+
+void deepCopyCat() {
+	std::cout << "\n***deepCopyCat***\n";
+	Cat catOriginal;
+
+	catOriginal.getBrain()->setIdea(0, "Sleep on the counch");
+	catOriginal.getBrain()->setIdea(1, "Walk around a yard");
+
+	std::cout << "idea: " << catOriginal.getBrain()->getIdea(0) << std::endl;
+	std::cout << "idea: " << catOriginal.getBrain()->getIdea(1) << std::endl;
+
+	Cat copyCat = catOriginal;
+
+	std::cout << "copied idea: " << copyCat.getBrain()->getIdea(0) << std::endl;
+	std::cout << "copied idea: " << copyCat.getBrain()->getIdea(1) << std::endl;
+
+	std::cout << "--------------------" << std::endl;
+	std::cout << std::endl;
+}
+
+void deepCopyDog() {
+	std::cout << "\n***deepCopyDog***\n";
+	Dog dogOriginal;
+
+	dogOriginal.getBrain()->setIdea(0, "Play with owner");
+	dogOriginal.getBrain()->setIdea(1, "Eat ham");
+	dogOriginal.getBrain()->setIdea(1, "sleep in a bed");
+	// test for index that is out of range
+	dogOriginal.getBrain()->setIdea(99, "bark at neighbors");
+
+	std::cout << "idea: " << dogOriginal.getBrain()->getIdea(0) << std::endl;
+	std::cout << "idea: " << dogOriginal.getBrain()->getIdea(1) << std::endl;
+	std::cout << "idea: " << dogOriginal.getBrain()->getIdea(2) << std::endl;
+
+	Dog copyDog = dogOriginal;
+
+	std::cout << "copied idea: " << copyDog.getBrain()->getIdea(0) << std::endl;
+	std::cout << "copied idea: " << copyDog.getBrain()->getIdea(1) << std::endl;
+	std::cout << "copied idea: " << copyDog.getBrain()->getIdea(2) << std::endl;
+
+	std::cout << "--------------------" << std::endl;
+	std::cout << std::endl;
+}
+
 int main() {
-    // 配列のサイズ
-    const int arraySize = 4;
 
-    // Animal型ポインタの配列を作成（half Dog, half Cat）
-    Animal* animalArray[arraySize];
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
 
-    // 配列にCatオブジェクトを2つ配置
-    for (int i = 0; i < arraySize / 2; i++) {
-        animalArray[i] = new Cat();
-    }
+	delete j; //should not create a leak
+	delete i;
 
-    // 配列の後半にもCatオブジェクトを配置
-    for (int i = arraySize / 2; i < arraySize; i++) {
-        animalArray[i] = new Dog();
-    }
+	arrTest();
+	deepCopyCat();
+	deepCopyDog();
 
-    // 配列の各要素のmakeSoundを呼び出す
-    for (int i = 0; i < arraySize; i++) {
-        animalArray[i]->makeSound();
-    }
-
-    // メモリの解放
-    for (int i = 0; i < arraySize; i++) {
-        delete animalArray[i];  // Animal*型としてdeleteする
-    }
-
-    return 0;
+	return (0);
 }
