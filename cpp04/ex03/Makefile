@@ -3,7 +3,7 @@ NAME = materia
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++11
 
-SRC = main.cpp
+SRC = main.cpp AMateria.cpp Character.cpp Ice.cpp Cure.cpp MateriaSource.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -15,7 +15,7 @@ $(NAME): $(OBJ)
 clean:
 	rm -f $(OBJ)
 
-clean:
+fclean: clean
 	rm -f $(NAME)
 
 re: fclean $(NAME)
