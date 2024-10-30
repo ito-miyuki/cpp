@@ -27,8 +27,3 @@ class Ice : public AMateria {
 };
 
 #endif
-
-/*
-clone() 関数：新しい Ice インスタンスを返す関数を定義します。
-use() 関数：引数で渡される ICharacter オブジェクトの getName() を使用して、ターゲットの名前を取得し、出力メッセージ * shoots an ice bolt at <name> * を表示します。
-*/

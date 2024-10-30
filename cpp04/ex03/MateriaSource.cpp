@@ -13,18 +13,6 @@
 #include "MateriaSource.hpp"
 #include <iostream>
 
-// class MateriaSource : public IMateriaSource {
-// 	private:
-// 		AMateria* _inventory[4];
-// 	public:
-// 		MateriaSource();
-// 		MateriaSource(const MateriaSource& other);
-// 		~MateriaSource() override;
-// 		MateriaSource& operator=(const MateriaSource& other);
-// 		void learnMateria(AMateria*) override;
-// 		AMateria* createMateria(std::string const & type);
-// }
-
 // it doesn't have to call IMateria's constructor because IMateria is an interface
 MateriaSource::MateriaSource() {
 	std::cout << "MateriaSource constructor called\n";
@@ -43,7 +31,6 @@ MateriaSource::MateriaSource(const MateriaSource& other) {
 	}
 }
 
-// modify this one
 MateriaSource::~MateriaSource() {
 	std::cout << "MateriaSource destructor called\n";
 	for (int i = 0; i < 4; i++)
@@ -72,23 +59,21 @@ void MateriaSource::learnMateria(AMateria* m) {
 
 	for (int i = 0; i < 4; i++)
 	{
+		// すでに同じポインタがある場合は、挿入しない
+        if (_inventory[i] == m)
+            return;
 		if (_inventory[i] == nullptr)
 		{
 			_inventory[i] = m;
 			return ;
 		}
 	}
-	// for (int i = 0; i < 4; i++)
-	// {
-	// 	if (_inventory[i] == m)
-	// 		return ;
-	// }
 }
 
 AMateria* MateriaSource::createMateria(std::string const& type) {
 	for (int i = 0; i < 4; i++)
 	{
-		if (_inventory[i] != 0 && _inventory[i]->getType() == type)
+		if (_inventory[i] != nullptr && _inventory[i]->getType() == type)
 			return (_inventory[i]->clone());
 	}
 	return (0);

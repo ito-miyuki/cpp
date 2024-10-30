@@ -13,12 +13,6 @@
 #include "Character.hpp"
 #include <iostream>
 
-/*
-	void equip(AMateria* m) override;
-	void unequip(int idx) override;
-	void use(int idx, ICharacter& target) override;
-*/
-
 Character::Character() : _name("default") {
 	std::cout << "Character constructor called\n";
 	for (int i = 0; i < 4; i++)
@@ -69,6 +63,11 @@ std::string const& Character::getName() const {
 	return (this->_name);
 }
 
+/* 
+	eqip materia object to inventory.
+	if m is null then that is a invalid item.
+	Then find an available slot to equip
+*/
 void Character::equip(AMateria* m) {
 	if (m == nullptr)
 		return ;
@@ -82,6 +81,10 @@ void Character::equip(AMateria* m) {
 	}
 }
 
+/*
+	if that idx slot is already empty, then don't do anything.
+	otherwise, set it to null
+*/
 void Character::unequip(int idx) {
 	if (idx < 0 || idx > 3)
 		return ;
@@ -91,7 +94,9 @@ void Character::unequip(int idx) {
 		_inventory[idx] = nullptr;
 }
 
-
+/*
+	this use method is to use object's use method
+*/
 void Character::use(int idx, ICharacter& target) {
 	if (idx < 0 || idx > 3)
 		return ;
