@@ -79,6 +79,7 @@ void Character::equip(AMateria* m) {
 			return ;
 		}
 	}
+	delete m;
 }
 
 /*
@@ -90,8 +91,9 @@ void Character::unequip(int idx) {
 		return ;
 	if (_inventory[idx] == nullptr)
 		return ;
-	else
+	else {
 		_inventory[idx] = nullptr;
+	}
 }
 
 /*
@@ -102,4 +104,11 @@ void Character::use(int idx, ICharacter& target) {
 		return ;
 	if (_inventory[idx] != nullptr)
 		_inventory[idx]->use(target);
+}
+
+
+AMateria* Character::getAmateria(int idx) {
+	if (idx < 0 || idx > 3)
+		return nullptr;
+	return (_inventory[idx]);
 }

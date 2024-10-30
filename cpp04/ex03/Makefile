@@ -1,7 +1,7 @@
 NAME = materia
 
 CC = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++11
+CPPFLAGS = -g -fsanitize=address -Wall -Wextra -Werror -std=c++11
 
 SRC = main.cpp AMateria.cpp Character.cpp Ice.cpp Cure.cpp MateriaSource.cpp
 

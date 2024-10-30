@@ -58,16 +58,14 @@ void MateriaSource::learnMateria(AMateria* m) {
 		return ;
 
 	for (int i = 0; i < 4; i++)
-	{
-		// すでに同じポインタがある場合は、挿入しない
-        if (_inventory[i] == m)
-            return;
+	{		
 		if (_inventory[i] == nullptr)
 		{
 			_inventory[i] = m;
 			return ;
 		}
 	}
+	delete m;
 }
 
 AMateria* MateriaSource::createMateria(std::string const& type) {

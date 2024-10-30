@@ -31,6 +31,8 @@ class Character : public ICharacter {
 		void equip(AMateria* m) override;
 		void unequip(int idx) override;
 		void use(int idx, ICharacter& target) override;
+
+		AMateria* getAmateria(int idx);
 };
 
 #endif

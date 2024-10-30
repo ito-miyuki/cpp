@@ -21,15 +21,15 @@ class ICharacter; // Forward Declaration
 class AMateria
 {
 	protected:
-		//std::string _type;
-		std::string const _type;
+		std::string _type;
+	
 	public:
 		AMateria(); //constructor
 		AMateria(std::string const & type);
 		virtual ~AMateria(); //destructor
 		AMateria(const AMateria& other); //copy constructor
 
-		AMateria& operator=(const AMateria&); // copy assignment operator
+		AMateria& operator=(const AMateria& other); // copy assignment operator
 
 		std::string const &getType() const; //Returns the materia type
 		virtual AMateria* clone() const = 0;

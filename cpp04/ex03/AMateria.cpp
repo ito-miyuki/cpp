@@ -29,13 +29,9 @@ AMateria::AMateria(const AMateria& other) : _type(other._type) {
 	std::cout << "Copy constructor called\n";
 }
 
-// should not copy???: copy constructer
-// AMateria::AMateria(const AMateria& other) {
-// 	std::cout << "Copy constructor called\n";
-// }
-
-AMateria& AMateria::operator=(const AMateria&) {
+AMateria& AMateria::operator=(const AMateria& other) {
 	std::cout << "AMateria copy assignment operator called\n";
+	this->_type = other._type;
 	return (*this);
 }
 
