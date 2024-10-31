@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 10:01:44 by mito              #+#    #+#             */
-/*   Updated: 2024/10/28 10:01:47 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/31 10:46:21 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int main()
 	std::cout << wrongCat->getType() << " " << std::endl;
 
 	std::cout << "\n---makeSound()---\n";
-	wrongCat->makeSound(); // will output wrong animal sound!
+	wrongCat->makeSound(); // will output wrong animal sound! -> because it is not virtual
 
 	std::cout << std::endl;
 	delete wrongCat;

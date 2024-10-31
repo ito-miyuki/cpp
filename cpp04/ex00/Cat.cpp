@@ -6,13 +6,12 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:02:06 by mito              #+#    #+#             */
-/*   Updated: 2024/10/23 13:42:12 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/31 10:07:13 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 #include <iostream>
-
 
 Cat::Cat() : Animal() {
 	_type = "Cat";

@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:58:20 by mito              #+#    #+#             */
-/*   Updated: 2024/10/29 16:34:16 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/31 10:30:41 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class MateriaSource : public IMateriaSource {
 		~MateriaSource() override;
 		MateriaSource& operator=(const MateriaSource& other);
 		void learnMateria(AMateria*) override;
-		AMateria* createMateria(std::string const & type);
+		AMateria* createMateria(std::string const & type) override;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 13:33:29 by mito              #+#    #+#             */
-/*   Updated: 2024/10/29 15:49:34 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/31 11:53:13 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,16 @@
 #include <iostream>
 
 Character::Character() : _name("default") {
-	std::cout << "Character constructor called\n";
 	for (int i = 0; i < 4; i++)
 		_inventory[i] = nullptr;
 }
 
 Character::Character(const std::string& name) : _name(name) {
-	std::cout << "Character constructor called: " << name << std::endl;
 	for (int i = 0; i < 4; i++)
 		_inventory[i] = nullptr;
 }
 
 Character::Character(const Character& other) : _name(other._name) {
-	std::cout << "Character copy constructor called\n";
 	for (int i = 0; i < 4; i++)
 	{
 		if (other._inventory[i] != nullptr)
@@ -37,13 +34,11 @@ Character::Character(const Character& other) : _name(other._name) {
 }
 
 Character::~Character() {
-	std::cout << "Character destructor called\n";
 	for (int i = 0; i < 4; i++)
 		delete _inventory[i];
 }
 
 Character& Character::operator=(const Character& other) {
-	std::cout << "Character copy assignment operator called\n";
 	if (this != &other)
 	{
 		_name = other._name;
@@ -63,7 +58,7 @@ std::string const& Character::getName() const {
 	return (this->_name);
 }
 
-/* 
+/*
 	eqip materia object to inventory.
 	if m is null then that is a invalid item.
 	Then find an available slot to equip

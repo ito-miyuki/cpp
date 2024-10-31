@@ -6,12 +6,12 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:27:27 by mito              #+#    #+#             */
-/*   Updated: 2024/10/24 16:16:28 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/31 10:48:10 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WRONGCAT_HPP
-# define WEONGCAT_HPP
+# define WRONGCAT_HPP
 
 #include "WrongAnimal.hpp"
 

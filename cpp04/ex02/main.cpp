@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 10:00:48 by mito              #+#    #+#             */
-/*   Updated: 2024/10/28 13:56:04 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/31 11:24:16 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void arrTest() {
 void deepCopyCat() {
 	std::cout << "\n***deepCopyCat***\n";
 	Cat catOriginal;
+	std::cout << "catOriginal address: " << catOriginal.getBrain() << std::endl;
 
 	catOriginal.getBrain()->setIdea(0, "Sleep on the counch");
 	catOriginal.getBrain()->setIdea(1, "Walk around a yard");
@@ -51,9 +52,16 @@ void deepCopyCat() {
 	std::cout << "idea: " << catOriginal.getBrain()->getIdea(1) << std::endl;
 
 	Cat copyCat = catOriginal;
+	std::cout << "copyCat address: " << copyCat.getBrain() << std::endl;
 
 	std::cout << "copied idea: " << copyCat.getBrain()->getIdea(0) << std::endl;
 	std::cout << "copied idea: " << copyCat.getBrain()->getIdea(1) << std::endl;
+
+	// modified origina data
+	catOriginal.getBrain()->setIdea(0, "Ohhhhhhhhhhhhhhhhh");
+
+    std::cout << "Modified original idea: " << catOriginal.getBrain()->getIdea(0) << std::endl;
+    std::cout << "Copy idea after modifying original: " << copyCat.getBrain()->getIdea(0) << std::endl;
 
 	std::cout << "--------------------" << std::endl;
 	std::cout << std::endl;
@@ -62,29 +70,38 @@ void deepCopyCat() {
 void deepCopyDog() {
 	std::cout << "\n***deepCopyDog***\n";
 	Dog dogOriginal;
+	std::cout << "dogOriginal address: " << dogOriginal.getBrain() << std::endl;
 
 	dogOriginal.getBrain()->setIdea(0, "Play with owner");
 	dogOriginal.getBrain()->setIdea(1, "Eat ham");
-	dogOriginal.getBrain()->setIdea(1, "sleep in a bed");
+	dogOriginal.getBrain()->setIdea(2, "sleep in a bed");
 	// test for index that is out of range
-	dogOriginal.getBrain()->setIdea(99, "bark at neighbors");
+	dogOriginal.getBrain()->setIdea(100, "bark at neighbors");
 
 	std::cout << "idea: " << dogOriginal.getBrain()->getIdea(0) << std::endl;
 	std::cout << "idea: " << dogOriginal.getBrain()->getIdea(1) << std::endl;
 	std::cout << "idea: " << dogOriginal.getBrain()->getIdea(2) << std::endl;
 
+
 	Dog copyDog = dogOriginal;
+	std::cout << "copyDog address: " << copyDog.getBrain() << std::endl;
 
 	std::cout << "copied idea: " << copyDog.getBrain()->getIdea(0) << std::endl;
 	std::cout << "copied idea: " << copyDog.getBrain()->getIdea(1) << std::endl;
 	std::cout << "copied idea: " << copyDog.getBrain()->getIdea(2) << std::endl;
+
+	// modified origina data
+    dogOriginal.getBrain()->setIdea(0, "Aaaaaaaaaaaaaaaaa");
+
+    std::cout << "Modified original idea: " << dogOriginal.getBrain()->getIdea(0) << std::endl;
+    std::cout << "Copy idea after modifying original: " << copyDog.getBrain()->getIdea(0) << std::endl;
 
 	std::cout << "--------------------" << std::endl;
 	std::cout << std::endl;
 }
 
 int main() {
-	/*Uncomment for testing*/
+	// Uncomment for testing
 	// Animal animal;
 	// animal.makeSound();
 

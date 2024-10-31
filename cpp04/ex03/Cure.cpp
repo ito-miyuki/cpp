@@ -6,27 +6,20 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 14:45:48 by mito              #+#    #+#             */
-/*   Updated: 2024/10/29 14:52:34 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/31 11:53:31 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
 #include <iostream>
 
-Cure::Cure() : AMateria("cure") {
-	std::cout << "Ice constructor called\n";
-}
+Cure::Cure() : AMateria("cure") {}
 
-Cure::Cure(const Cure&) : AMateria("cure") {
-	std::cout << "Cure copy constructor called\n";
-}
+Cure::Cure(const Cure&) : AMateria("cure") {}
 
-Cure::~Cure() {
-	std::cout << "Cure destructor called\n";
-}
+Cure::~Cure() {}
 
 Cure& Cure::operator=(const Cure&) {
-	std::cout << "Cure copy assignment operator called\n";
 	return (*this);
 }
 

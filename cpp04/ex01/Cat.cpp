@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:02:06 by mito              #+#    #+#             */
-/*   Updated: 2024/10/28 13:26:53 by mito             ###   ########.fr       */
+/*   Updated: 2024/10/31 10:57:10 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ Cat::Cat(const Cat& other) : Animal(other) {
 	brain = new Brain(*other.brain);
 }
 
-/*
-Shallow copy in Cat class for testing(THIS IS WRONG)
-Cat::Cat(const Cat& other) : Animal(other) {
-    std::cout << "Shallow Copy Constructor for Cat called\n";
-    this->brain = other.brain; // this way, it is sharing the same Brain pointer
-}
-*/
+
+// // Shallow copy in Cat class for testing(THIS IS WRONG)
+// Cat::Cat(const Cat& other) : Animal(other) {
+//     std::cout << "Shallow Copy Constructor for Cat called\n";
+//     this->brain = other.brain; // this way, it is sharing the same Brain pointer
+// }
+
 
 Cat::~Cat() {
     std::cout << "Cat destructor called\n";
