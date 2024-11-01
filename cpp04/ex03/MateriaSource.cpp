@@ -29,119 +29,67 @@ MateriaSource::MateriaSource(const MateriaSource& other) {
 	}
 }
 
-// MateriaSource::~MateriaSource() {
-// 	for (int i = 0; i < 4; i++)
-// 		delete _inventory[i];
-// }
+MateriaSource::~MateriaSource() {
+	void* freedObjs[4] = {nullptr};
+	int uniqueFreedCount = 0;
 
-// // Lingy's solution for testing
-MateriaSource::~MateriaSource(){
-	void*	freeObjects[4] = {nullptr};
-	int		freeCount = 0;
-
-	for (int i = 0; i < 4; i++)
-	{
-		int	checkFree = 0;
-		for (int j = 0; j < freeCount; j++)
-		{
-			if (this->_inventory[i] == freeObjects[j])
-			{
-				checkFree = 1;
+	for (int i = 0; i < 4; i++) {
+		int isFreed = 0;
+		// loop to see if the current _inventory[i] has already been deleted while comparing with CountObjs
+		for (int j = 0; j < uniqueFreedCount; j++) {
+			if (this->_inventory[i] == freedObjs[j]) { // If _inventory[i] matches a previously freed pointer
+				isFreed = 1;
 				break;
 			}
 		}
-		if (!checkFree)
-		{
-			freeObjects[freeCount] = this->_inventory[i];
+		// If isFreed == 0, _inventory[i] has not been deleted yet, first time will come here
+		if (!isFreed) {
+			freedObjs[uniqueFreedCount] = this->_inventory[i]; // Store the pointer in freedObjs to remember
 			delete this->_inventory[i];
-			this->_inventory[i] = nullptr;
-			freeCount++;
+			uniqueFreedCount++;
 		}
 	}
 }
 
-// MateriaSource& MateriaSource::operator=(const MateriaSource& other) {
-// 	if (this != &other)
-// 	{
-// 		for (int i = 0; i < 4; i++)
-// 		{
-// 			delete _inventory[i];
-// 			if (other._inventory[i] != nullptr)
-// 				_inventory[i] = other._inventory[i]->clone();
-// 			else
-// 				_inventory[i] = nullptr;
-// 		}
-// 	}
-// 	return (*this);
-// }
 
-MateriaSource	&MateriaSource::operator = (const MateriaSource &other){
-	if (this == &other)
-		return (*this);
-	for (int i = 0; i < 4; i++){
-		if (this->_inventory[i] != nullptr){
-			delete this->_inventory[i];
-			this->_inventory[i] = nullptr;
+MateriaSource& MateriaSource::operator=(const MateriaSource& other) {
+	if (this != &other)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			delete _inventory[i];
+			if (other._inventory[i] != nullptr)
+				_inventory[i] = other._inventory[i]->clone();
+			else
+				_inventory[i] = nullptr;
 		}
-		if (other._inventory[i] == nullptr)
-			this->_inventory[i] = nullptr;
-		else
-			this->_inventory[i] = other._inventory[i]->clone();
 	}
 	return (*this);
 }
 
-// void MateriaSource::learnMateria(AMateria* m) {
-// 	if (m == nullptr)
-// 		return ;
-
-// 	for (int i = 0; i < 4; i++)
-// 	{
-// 		if (_inventory[i] == nullptr)
-// 		{
-// 			_inventory[i] = m;
-// 			return ;
-// 		}
-// 	}
-// 	delete m;
-// }
-
-// // Lingy's solution for testing
 void	MateriaSource::learnMateria(AMateria *m){
 	if (m == nullptr)
 		return ;
-	for (int i = 0; i < 4; i++){
-		if (this->_inventory[i] == nullptr){
+	for (int i = 0; i < 4; i++) {
+		if (this->_inventory[i] == nullptr) {
 			this->_inventory[i] = m;
 			return ;
 		}
 	}
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++) // when there was no spot available
 	{
-		if (_inventory[i] == m)
+		if (_inventory[i] == m) // if it is alreadt stored previously
 			return ;
 	}
 	delete m;
-	m = nullptr;
 }
 
-// AMateria* MateriaSource::createMateria(std::string const& type) {
-// 	for (int i = 0; i < 4; i++)
-// 	{
-// 		if (_inventory[i] != nullptr && _inventory[i]->getType() == type)
-// 			return (_inventory[i]->clone());
-// 	}
-// 	return (0);
-// }
-
-// Lingyi's solution for testing
-AMateria	*MateriaSource::createMateria(std::string const &type){
-	for (int i = 0; i < 4; i++){
-		if (this->_inventory[i] != nullptr
-			&& this->_inventory[i]->getType() == type){
-				return (this->_inventory[i]->clone());
-			}
+AMateria* MateriaSource::createMateria(std::string const& type) {
+	for (int i = 0; i < 4; i++)
+	{
+		if (_inventory[i] != nullptr && _inventory[i]->getType() == type)
+			return (_inventory[i]->clone());
 	}
-	return (nullptr);
+	return (0);
 }
 

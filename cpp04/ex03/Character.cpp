@@ -33,65 +33,23 @@ Character::Character(const Character& other) : _name(other._name) {
 	}
 }
 
-// Character::~Character() {
-// 	for (int i = 0; i < 4; i++)
-// 		delete _inventory[i];
-// }
-
-Character::~Character(){
-	for(int i = 0; i < 4; i++){
-		if (this->_inventory[i] != nullptr){
-			delete this->_inventory[i];
-			this->_inventory[i] = nullptr;
-		}
-	}
+Character::~Character() {
+	for (int i = 0; i < 4; i++)
+		delete _inventory[i];
 }
 
-// Character& Character::operator=(const Character& other) {
-// 	if (this != &other)
-// 	{
-// 		_name = other._name;
-// 		for (int i = 0; i < 4; i++)
-// 		{
-// 			delete _inventory[i];
-// 			if (other._inventory[i] != nullptr)
-// 				_inventory[i] = other._inventory[i]->clone();
-// 			else
-// 				_inventory[i] = nullptr;
-// 		}
-// 	}
-// 	return (*this);
-// }
-
-// Character	&Character::operator = (const Character &other){
-// 	if (this == &other)
-// 		return (*this);
-// 	this->_name = other._name;
-// 	for (int i = 0; i < 4; i++){
-// 		if (this->_inventory[i] != nullptr){
-// 			delete this->_inventory[i];
-// 			this->_inventory[i] = nullptr;
-// 		}
-// 		if (other._inventory[i] == nullptr)
-// 			this->_inventory[i] = nullptr;
-// 		else
-// 			this->_inventory[i] = other._inventory[i]->clone();
-// 	}
-// 	return (*this);
-// }
-Character	&Character::operator = (const Character &other){
-	if (this == &other)
-		return (*this);
-	this->_name = other._name;
-	for (int i = 0; i < 4; i++){
-		if (this->_inventory[i] != nullptr){
-			delete this->_inventory[i];
-			this->_inventory[i] = nullptr;
+Character& Character::operator=(const Character& other) {
+	if (this != &other)
+	{
+		_name = other._name;
+		for (int i = 0; i < 4; i++)
+		{
+			delete _inventory[i];
+			if (other._inventory[i] != nullptr)
+				_inventory[i] = other._inventory[i]->clone();
+			else
+				_inventory[i] = nullptr;
 		}
-		if (other._inventory[i] == nullptr)
-			this->_inventory[i] = nullptr;
-		else
-			this->_inventory[i] = other._inventory[i]->clone();
 	}
 	return (*this);
 }
@@ -116,7 +74,6 @@ void Character::equip(AMateria* m) {
 			return ;
 		}
 	}
-	//delete m;
 }
 
 /*
@@ -143,7 +100,7 @@ void Character::use(int idx, ICharacter& target) {
 		_inventory[idx]->use(target);
 }
 
-AMateria* Character::getAmateria(int idx) {
+AMateria* Character::getInventory(int idx) {
 	if (idx < 0 || idx > 3)
 		return nullptr;
 	return (_inventory[idx]);
