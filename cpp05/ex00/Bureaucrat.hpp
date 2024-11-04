@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/04 13:55:57 by mito              #+#    #+#             */
+/*   Updated: 2024/11/04 15:59:08 by mito             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
@@ -19,6 +30,14 @@ class Bureaucrat {
 				virtual const char* what() const noexcept override; // what() is from std::exception library
 		};
 
+		class GradeTooLowException : public std::exception {
+			private:
+				std::string _errorMsg;
+			public:
+				GradeTooLowException(const std::string &message); // constructer
+				virtual const char* what() const noexcept override; // what() is from std::exception library
+		};
+
     public:
         Bureaucrat();
         Bureaucrat(std::string const name, int grade); // const?
@@ -28,6 +47,9 @@ class Bureaucrat {
 
         std::string getName() const;
         int getGrade() const ;
+
+		void increaseGrade();
+		void decreaseGrade();
 
 };
 

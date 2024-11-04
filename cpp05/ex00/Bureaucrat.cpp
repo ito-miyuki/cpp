@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/04 13:55:51 by mito              #+#    #+#             */
+/*   Updated: 2024/11/04 17:27:38 by mito             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
@@ -6,13 +17,13 @@ Bureaucrat::Bureaucrat() : _name("default"), _grade(1) {
 	std::cout << "default Bureaucrat constructer called\n";
 }
 
-// add error handling
 Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name) {
 	std::cout << "Bureaucrat constructer called with args\n";
-	// if (grade < 1)
-	// 	// do error handling
-	// else if (grade > 150)
-	// 	// do error handling
+	if (grade < 1)
+		throw GradeTooHighException("Grade is too high");
+	else if (grade > 150)
+		throw GradeTooLowException("Graade is too low");
+	this->_grade = grade;
 	std::cout << "constructed\n";
 }
 
@@ -46,9 +57,31 @@ std::ostream& operator<<(std::ostream& output, const Bureaucrat& bureaucrat) {
 	return output;
 }
 
-
 // exception calss: GradeTooHighException
-
 Bureaucrat::GradeTooHighException::GradeTooHighException(const std::string &message) : _errorMsg(message) {}
+
+const char* Bureaucrat::GradeTooHighException::what() const noexcept {
+	return (_errorMsg.c_str());
+}
+
+// exception calss: GradeTooLowException
+Bureaucrat::GradeTooLowException::GradeTooLowException(const std::string &message) : _errorMsg(message) {}
+
+const char* Bureaucrat::GradeTooLowException::what() const noexcept {
+	return (_errorMsg.c_str());
+}
+
+void Bureaucrat::increaseGrade() {
+	if (this->_grade == 1)
+		throw GradeTooHighException("Grade cannot be increased anymore");
+	_grade--;
+}
+
+void Bureaucrat::decreaseGrade() {
+	if (this->_grade == 150)
+		throw GradeTooLowException("Grade cannot be decreased anymore");
+	this->_grade++;
+}
+
 
 

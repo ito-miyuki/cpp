@@ -1,4 +1,4 @@
-NAME = materia
+NAME = bureaucrat
 
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++11
