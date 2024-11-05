@@ -17,6 +17,10 @@
 # include <iostream>
 # include <exception> // do i need it?
 
+# include "Form.hpp"
+
+class Form;
+
 class Bureaucrat {
     private:
         const std::string _name;
@@ -50,6 +54,8 @@ class Bureaucrat {
 
 		void increaseGrade();
 		void decreaseGrade();
+
+		void signForm(Form& form);
 
 };
 
