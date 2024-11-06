@@ -22,7 +22,7 @@ Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name) {
 	if (grade < 1)
 		throw GradeTooHighException("Grade is too high");
 	else if (grade > 150)
-		throw GradeTooLowException("Graade is too low");
+		throw GradeTooLowException("Grade is too low");
 	this->_grade = grade;
 	std::cout << "constructed\n";
 }

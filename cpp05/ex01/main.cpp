@@ -86,25 +86,41 @@ void testForm() {
 	try {
 		Bureaucrat miyuki("Miyuki", 150);
 		std::cout << miyuki;
-		Form test_form("test_form",150, 3);
+
+		Form test_form("test_form1",15, 3); // miyuki is to low to sign
 		miyuki.signForm(test_form);
+
 		test_form.beSigned(miyuki);
 		std::cout << test_form;
     }
     catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
+
+	try {
+		Form test_form("test_form2",190, 3); // invalid grade
+		std::cout << test_form;
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
 	try {
 		Bureaucrat inka("Inka", 1);
 		std::cout << inka;
-		Form test_form;
+		Form test_form; // default is grade 1
+
+		std::cout << test_form; // before sign
+
+		inka.signForm(test_form); // Inka can sign
+
 		test_form.beSigned(inka);
+		std::cout << test_form; // after sign
     }
     catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 }
-
 
 int main() {
 	testGrade();

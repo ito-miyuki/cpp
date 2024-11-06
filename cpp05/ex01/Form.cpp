@@ -21,7 +21,7 @@ Form::Form(const std::string name, int signGrade, int excuteGrade) : _name(name)
 	if (signGrade < 1 || excuteGrade < 1)
 		throw GradeTooHighException("Grade is too high");
 	else if (signGrade > 150 || excuteGrade > 150)
-		throw GradeTooLowException("Graade is too low");
+		throw GradeTooLowException("Grade is too low");
 	std::cout << "constructed\n";
 }
 

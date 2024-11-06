@@ -12,6 +12,28 @@
 
 #include "Bureaucrat.hpp"
 
+void testCopy() {
+    std::cout << "\033[33m\n***testCopyConstructor()***\n\033[0m";
+
+    try {
+        Bureaucrat original("Alice", 42);
+        Bureaucrat copy(original); // create copy of Alice
+
+        // printout the status
+        std::cout << original;
+        std::cout << copy;
+
+        // modify original
+        copy.increaseGrade(); // copy's grade is increased
+        std::cout << "--after increasing copy's grade--\n";
+        std::cout << original;
+        std::cout << copy;
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+}
+
 void testGrade() {
 
 	std::cout << "\033[33m\n***testGrade()***\n\033[0m";
@@ -80,6 +102,7 @@ void testDecrease() {
 }
 
 int main() {
+    testCopy();
 	testGrade();
 	testIncrease();
 	testDecrease();
