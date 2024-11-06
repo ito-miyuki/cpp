@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 13:33:29 by mito              #+#    #+#             */
-/*   Updated: 2024/10/31 15:37:14 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/04 16:42:00 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ Character::Character(const Character& other) : _name(other._name) {
 	}
 }
 
+// this might have problem
 Character::~Character() {
 	for (int i = 0; i < 4; i++)
 		delete _inventory[i];
