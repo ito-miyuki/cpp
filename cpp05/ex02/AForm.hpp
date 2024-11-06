@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:56:30 by mito              #+#    #+#             */
-/*   Updated: 2024/11/05 15:44:25 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/06 17:07:30 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,21 @@ class AForm {
 		bool _isSigned;
 		const int  _signGrade;
 		const int _excuteGrade;
+		const std::string _target;
 
 	public:
 		AForm();
-		AForm(const std::string name, int signGrade, int excuteGrade);
-		~AForm();
+		AForm(const std::string name, int signGrade, int excuteGrade, const std::string target);
+		virtual ~AForm();
 		AForm(const AForm& other);
 
-		AForm& operator=(const Form& other);
+		AForm& operator=(const AForm& other);
 
 		const std::string& getName() const;
 		bool getIsSigned() const;
 		const int& getSignGrade() const;
 		const int& getExcuteGrade() const;
+		const std::string& getTarget() const;
 
 		void beSigned(Bureaucrat& bureaucrat);
 

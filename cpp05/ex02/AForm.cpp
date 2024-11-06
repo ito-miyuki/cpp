@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:56:22 by mito              #+#    #+#             */
-/*   Updated: 2024/11/05 15:55:23 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/06 16:55:01 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 
-AForm::AForm() : _name("default"), _isSigned(false), _signGrade(1), _excuteGrade(1) {
+AForm::AForm() : _name("default"), _isSigned(false), _signGrade(1), _excuteGrade(1), _target("target") {
 	std::cout << "default Form constructor called\n";
 }
 
-AForm::AForm(const std::string name, int signGrade, int excuteGrade) : _name(name), _isSigned(false), _signGrade(signGrade), _excuteGrade(excuteGrade) {
+// should this be &const std::string name???
+AForm::AForm(const std::string name, int signGrade, int excuteGrade, const std::string target) : _name(name),
+_isSigned(false),
+_signGrade(signGrade),
+_excuteGrade(excuteGrade),
+_target(target)
+{
 	std::cout << "AForm constructor called with args\n";
 	if (signGrade < 1 || excuteGrade < 1)
 		throw GradeTooHighException("Grade is too high");
@@ -29,7 +35,11 @@ AForm::~AForm() {
 	std::cout << "AForm destructer called\n";
 }
 
-AForm::AForm(const AForm& other) : _name(other._name), _isSigned(other._isSigned), _signGrade(other._signGrade), _excuteGrade(other._excuteGrade) {
+AForm::AForm(const AForm& other) : _name(other._name),
+_isSigned(other._isSigned),
+_signGrade(other._signGrade),
+_excuteGrade(other._excuteGrade),
+_target(other._target) {
 	std::cout << "AForm copy constructor called\n";
 }
 
@@ -55,6 +65,10 @@ const int& AForm::getSignGrade() const {
 
 const int& AForm::getExcuteGrade() const {
 	return (this->_excuteGrade);
+}
+
+const std::string& AForm::getTarget() const {
+	return (this->_target);
 }
 
 void AForm::beSigned(Bureaucrat& bureaucrat) {
