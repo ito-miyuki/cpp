@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 15:39:37 by mito              #+#    #+#             */
-/*   Updated: 2024/11/07 11:45:39 by mito             ###   ########.fr       */
+/*   Created: 2024/11/07 11:47:08 by mito              #+#    #+#             */
+/*   Updated: 2024/11/07 11:51:37 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+# define ROBOTOMYREQUESTFORM_HPP
 
 # include "AForm.hpp"
 
-class ShrubberyCreationForm : public AForm {
+class RobotomyRequestForm : public AForm {
 	public:
-		ShrubberyCreationForm();
-		ShrubberyCreationForm(const std::string& target);
-		ShrubberyCreationForm(const ShrubberyCreationForm& other);
-		~ShrubberyCreationForm() override;
-		ShrubberyCreationForm& operator=(const ShrubberyCreationForm &other);
+		RobotomyRequestForm();
+		RobotomyRequestForm(const std::string& target);
+		RobotomyRequestForm(const RobotomyRequestForm& other);
+		~RobotomyRequestForm() override;
+		RobotomyRequestForm& operator=(const RobotomyRequestForm &other);
 
 		void execute(Bureaucrat const & executor) const override;
 };

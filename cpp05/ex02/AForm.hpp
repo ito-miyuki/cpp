@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:56:30 by mito              #+#    #+#             */
-/*   Updated: 2024/11/06 17:07:30 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/07 10:17:47 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define AFORM_HPP
 
 # include "Bureaucrat.hpp"
+# include <fstream>
 
 class Bureaucrat;
 
@@ -59,6 +60,13 @@ class AForm {
 				virtual const char* what() const noexcept override;
 		};
 
+		class FormNotSignedException : public std::exception {
+			private:
+				const std::string _message;
+			public:
+				FormNotSignedException(const std::string& message);
+				virtual const char* what() const noexcept override;
+		};
 	};
 
 std::ostream& operator<<(std::ostream& output, const AForm& form);

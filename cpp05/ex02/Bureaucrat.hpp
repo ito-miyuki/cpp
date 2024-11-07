@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:55:57 by mito              #+#    #+#             */
-/*   Updated: 2024/11/05 15:55:23 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/07 10:29:05 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include <iostream>
 # include <exception> // do i need it?
 
-# include "Form.hpp"
+# include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat {
     private:
@@ -55,7 +55,7 @@ class Bureaucrat {
 		void increaseGrade();
 		void decreaseGrade();
 
-		void signForm(Form& form);
+		void signForm(AForm& form);
 
 };
 

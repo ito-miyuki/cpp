@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:13:28 by mito              #+#    #+#             */
-/*   Updated: 2024/11/06 17:08:18 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/07 11:42:05 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,20 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	return (*this);
 }
 
-
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
-	
+	if (this->getIsSigned() != true)
+		throw FormNotSignedException("Form is not signed");
+	if (executor.getGrade() > this->getExcuteGrade())
+		throw GradeTooLowException("Grade it too low to execute");
+	std::ofstream outfile(this->getTarget() + "_Shrubbery");
+	if (!outfile)
+		throw std::runtime_error("Error in ShrubberyCreationForm::execute()"); // ios_base?
+	outfile << "       /\\ " << std::endl;
+	outfile << "      /\\/\\" << std::endl;
+	outfile << "     /\\/\\/\\ " << std::endl;
+	outfile << "    /*\\/\\*/\\" << std::endl;
+	outfile << "   /\\/\\/\\/\\/\\" << std::endl;
+	outfile << "       ||      " << std::endl;
+	outfile << "       ||      " << std::endl;
+	outfile.close();
 }

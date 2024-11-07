@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:56:22 by mito              #+#    #+#             */
-/*   Updated: 2024/11/06 16:55:01 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/07 11:04:26 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,13 @@ AForm::GradeTooLowException::GradeTooLowException(const std::string& message) : 
 
 const char* AForm::GradeTooLowException::what() const noexcept {
 	return (_message.c_str());
+}
 
+// exception calss: FormNotSignedException
+AForm::FormNotSignedException::FormNotSignedException(const std::string& message) : _message(message) {}
+
+const char* AForm::FormNotSignedException::what() const noexcept {
+	return (_message.c_str());
 }
 
 std::ostream& operator<<(std::ostream& output, const AForm& AForm) {
