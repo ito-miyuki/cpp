@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:55:51 by mito              #+#    #+#             */
-/*   Updated: 2024/11/07 10:28:38 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/08 13:11:52 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,15 @@ void Bureaucrat::signForm(AForm& form) {
 	}
 	catch (const std::exception& e) {
 		std::cout << this->_name << " couldn’t sign " << form.getName() << " because " << e.what() << std::endl;
+	}
+}
+
+void Bureaucrat::executeForm(AForm const & form) {
+	try {
+		form.execute(*this);
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
+	}
+	catch (const std::exception& e) {
+		std::cout << this->_name << " failed to execute " << form.getName() << ": " << e.what() << std::endl;
 	}
 }
