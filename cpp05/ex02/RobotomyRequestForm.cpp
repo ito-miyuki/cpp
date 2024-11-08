@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:46:57 by mito              #+#    #+#             */
-/*   Updated: 2024/11/07 12:46:14 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/08 10:11:26 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy Request Form", 72, 
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
 : AForm("Robotomy Request Form", 72, 45, target) {
-	std::cout << "RobotomyRequestForm constructor called with target\n";
+	std::cout << "RobotomyRequestForm constructor called with target name\n";
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)

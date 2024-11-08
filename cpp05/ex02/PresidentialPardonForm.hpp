@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 11:47:08 by mito              #+#    #+#             */
-/*   Updated: 2024/11/08 10:02:13 by mito             ###   ########.fr       */
+/*   Created: 2024/11/08 09:58:30 by mito              #+#    #+#             */
+/*   Updated: 2024/11/08 10:02:48 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+# define PRESIDENTIALPARDONFORM_HPP
 
-# include "AForm.hpp"
+#include "AForm.hpp"
 
-class RobotomyRequestForm : public AForm {
+class PresidentialPardonForm : public AForm {
 	public:
-		RobotomyRequestForm();
-		RobotomyRequestForm(const std::string& target);
-		RobotomyRequestForm(const RobotomyRequestForm& other);
-		~RobotomyRequestForm() override;
-		RobotomyRequestForm& operator=(const RobotomyRequestForm &other);
+		PresidentialPardonForm();
+		PresidentialPardonForm(const std::string& target);
+		PresidentialPardonForm(const PresidentialPardonForm& other);
+		~PresidentialPardonForm() override;
+		PresidentialPardonForm& operator=(const PresidentialPardonForm &other);
 
 		void execute(Bureaucrat const & executor) const override;
 };
