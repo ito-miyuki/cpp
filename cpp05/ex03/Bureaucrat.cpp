@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:55:51 by mito              #+#    #+#             */
-/*   Updated: 2024/11/08 13:11:52 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/12 12:46:30 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(oth
 }
 
 Bureaucrat::~Bureaucrat() {
-	std::cout << "Bureaucrat destructer called\n";
+	std::cout << "Bureaucrat destructor called\n";
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat &other) {

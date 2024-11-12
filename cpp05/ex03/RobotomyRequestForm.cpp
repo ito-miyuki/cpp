@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:46:57 by mito              #+#    #+#             */
-/*   Updated: 2024/11/08 10:11:26 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/12 12:46:30 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
 }
 
 RobotomyRequestForm::~RobotomyRequestForm() {
-	std::cout << "RobotomyRequestForm destructer called\n";
+	std::cout << "RobotomyRequestForm destructor called\n";
 }
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &other) {

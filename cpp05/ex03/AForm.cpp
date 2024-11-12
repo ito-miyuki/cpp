@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:56:22 by mito              #+#    #+#             */
-/*   Updated: 2024/11/07 11:04:26 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/12 12:46:30 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ _target(target)
 }
 
 AForm::~AForm() {
-	std::cout << "AForm destructer called\n";
+	std::cout << "AForm destructor called\n";
 }
 
 AForm::AForm(const AForm& other) : _name(other._name),

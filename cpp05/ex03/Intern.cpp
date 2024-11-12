@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:40:20 by mito              #+#    #+#             */
-/*   Updated: 2024/11/08 14:59:37 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/12 12:50:39 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,30 @@ Intern::Intern() {
 }
 
 Intern::~Intern() {
-	std::cout << "Intern destructer called\n";
+	std::cout << "Intern destructor called\n";
 }
 Intern::Intern(const Intern& other) {
+	(void)other;
 	std::cout << "Intern copy constructor called\n";
 }
 
-Intern& const Intern::operator=(const Intern& other) {
+Intern& Intern::operator=(const Intern& other) {
+	(void)other;
 	std::cout << "Intern copy assignment operator called\n";
 	return (*this);
 }
 
-std::unique_ptr<AForm> createShrubberyCreationForm(const std::string& target) {
+std::unique_ptr<AForm> Intern::createShrubberyCreationForm(const std::string& target) {
 	return std::make_unique<ShrubberyCreationForm>(target);
 }
 
-std::unique_ptr<AForm> createRobotomyRequestForm(const std::string& target) {
+std::unique_ptr<AForm> Intern::createRobotomyRequestForm(const std::string& target) {
 	return std::make_unique<RobotomyRequestForm>(target);
 }
 
-std::unique_ptr<AForm> createPresidentialPardonForm(const std::string& target) {
+std::unique_ptr<AForm> Intern::createPresidentialPardonForm(const std::string& target) {
 	return std::make_unique<PresidentialPardonForm>(target);
 }
-
 
 std::unique_ptr<AForm> Intern::makeForm(const std::string& formName, const std::string& target) {
 	std::string forms[] = {
@@ -62,11 +63,12 @@ std::unique_ptr<AForm> Intern::makeForm(const std::string& formName, const std::
 		i++;
 	}
 	if (i < 3) {
-		std::cout << "Intern creates " << formName << " form" << std::endl;
+		std::cout << "Intern creates " << formName << std::endl;
 		return (this->*formConstructors[i])(target);
 	}
-	else
-		std::cerr << formName << " is invalid\n";
+	else {
+		std::cerr << "Form name '" << formName << "' is invalid\n";
 		return nullptr;
+	}
 
 }

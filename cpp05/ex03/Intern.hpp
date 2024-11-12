@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:40:17 by mito              #+#    #+#             */
-/*   Updated: 2024/11/08 14:56:29 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/12 11:55:30 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ class Intern {
 		~Intern();
 		Intern(const Intern& other);
 
-		Intern& const operator=(const Intern& other);
+		Intern& operator=(const Intern& other);
 
 		std::unique_ptr<AForm> makeForm(const std::string& formName, const std::string& target);
-	
+
 	private:
 		std::unique_ptr<AForm> createShrubberyCreationForm(const std::string& target);
 		std::unique_ptr<AForm> createRobotomyRequestForm(const std::string& target);
