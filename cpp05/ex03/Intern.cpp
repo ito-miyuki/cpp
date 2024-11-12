@@ -29,7 +29,20 @@ Intern& const Intern::operator=(const Intern& other) {
 	return (*this);
 }
 
-std::unique_ptr<AForm> *makeForm(const std::string& formName, const std::string& target) {
+std::unique_ptr<AForm> createShrubberyCreationForm(const std::string& target) {
+	return std::make_unique<ShrubberyCreationForm>(target);
+}
+
+std::unique_ptr<AForm> createRobotomyRequestForm(const std::string& target) {
+	return std::make_unique<RobotomyRequestForm>(target);
+}
+
+std::unique_ptr<AForm> createPresidentialPardonForm(const std::string& target) {
+	return std::make_unique<PresidentialPardonForm>(target);
+}
+
+
+std::unique_ptr<AForm> Intern::makeForm(const std::string& formName, const std::string& target) {
 	std::string forms[] = {
 		"ShrubberyCreationForm",
 		"RobotomyRequestForm",
@@ -39,7 +52,7 @@ std::unique_ptr<AForm> *makeForm(const std::string& formName, const std::string&
 		&Intern::createShrubberyCreationForm,
 		&Intern::createRobotomyRequestForm,
 		&Intern::createPresidentialPardonForm
-	}
+	};
 
 	int i = 0;
 	while(i < 3)
@@ -48,7 +61,12 @@ std::unique_ptr<AForm> *makeForm(const std::string& formName, const std::string&
 			break;
 		i++;
 	}
-	if (i < 3)
-		return (this->*)
-	if ()
+	if (i < 3) {
+		std::cout << "Intern creates " << formName << " form" << std::endl;
+		return (this->*formConstructors[i])(target);
+	}
+	else
+		std::cerr << formName << " is invalid\n";
+		return nullptr;
+
 }
