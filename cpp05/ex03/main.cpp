@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 10:25:20 by mito              #+#    #+#             */
-/*   Updated: 2024/11/12 12:52:11 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/12 17:03:07 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void testShrubberyCreationForm() {
 	std::cout << "\033[33m\n***testShrubberyCreationForm()***\n\033[0m";
 	try {
 		Bureaucrat miyuki("Miyuki", 1);
-		ShrubberyCreationForm shForm;
+		ShrubberyCreationForm shForm("Shrubbery");
 
 		miyuki.signForm(shForm);
 		miyuki.executeForm(shForm);
@@ -104,7 +104,7 @@ void testIntern() {
 		Bureaucrat miyuki("Miyuki", 1);
 		Intern intern;
 
-		intern.makeForm("ShrubberyCreationForm", nullptr);
+		intern.makeForm("shrubbery request", "Miyuki");
 	}
 	catch (const std::exception& e) {
 		std::cerr << "Error: " << e.what() << std::endl;
@@ -116,7 +116,7 @@ void testIntern() {
 		Bureaucrat miyuki("Miyuki1", 1);
 		Intern intern;
 
-		intern.makeForm("RobotomyRequestForm", "Miyuki1");
+		intern.makeForm("robotomy request", "Miyuki1");
 
 	}
 	catch (const std::exception& e) {
@@ -129,7 +129,19 @@ void testIntern() {
 		Bureaucrat miyuki("Miyuki2", 70);
 		Intern intern;
 
-		intern.makeForm("PresidentialPardonFORM", "Miyuki2");
+		intern.makeForm("Presidential Pardon", "Miyuki2");
+	}
+	catch (const std::exception& e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
+
+	std::cout << std::endl;
+
+	try {
+		Bureaucrat miyuki("Miyuki3", 70);
+		Intern intern;
+
+		intern.makeForm("Presidential Pardonn", "Miyuki3"); // wrong request
 	}
 	catch (const std::exception& e) {
 		std::cerr << "Error: " << e.what() << std::endl;
