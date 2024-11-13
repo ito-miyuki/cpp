@@ -45,13 +45,13 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	std::ofstream outfile(this->getTarget() + "_Shrubbery");
 	if (!outfile)
 		throw std::runtime_error("Error in ShrubberyCreationForm::execute()"); // ios_base?
-	outfile << "       /\\ " << std::endl;
-	outfile << "      /\\/\\" << std::endl;
-	outfile << "     /\\/\\/\\ " << std::endl;
-	outfile << "    /*\\/\\*/\\" << std::endl;
-	outfile << "   /\\/\\/\\/\\/\\" << std::endl;
-	outfile << "       ||      " << std::endl;
-	outfile << "       ||      " << std::endl;
+	outfile << "             /\\ " << std::endl;
+	outfile << "            /\\/\\" << std::endl;
+	outfile << "           /\\/\\/\\ " << std::endl;
+	outfile << "   *      /*\\/\\*/\\" << std::endl;
+	outfile << "  ***    /\\/\\/\\/\\/\\" << std::endl;
+	outfile << " *****       ||      " << std::endl;
+	outfile << "   |         ||      " << std::endl;
 
 	outfile.close();
 }

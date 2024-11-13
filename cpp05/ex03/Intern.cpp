@@ -31,28 +31,14 @@ Intern& Intern::operator=(const Intern& other) {
 	return (*this);
 }
 
-std::unique_ptr<AForm> Intern::createShrubberyCreationForm(const std::string& target) {
-	return std::make_unique<ShrubberyCreationForm>(target);
-}
-
-std::unique_ptr<AForm> Intern::createRobotomyRequestForm(const std::string& target) {
-	return std::make_unique<RobotomyRequestForm>(target);
-}
-
-std::unique_ptr<AForm> Intern::createPresidentialPardonForm(const std::string& target) {
-	return std::make_unique<PresidentialPardonForm>(target);
-}
-
 std::unique_ptr<AForm> Intern::makeForm(const std::string& formName, const std::string& target) {
+
+	std::unique_ptr<AForm> form;
+
 	std::string forms[] = {
-		"ShrubberyCreationForm",
-		"RobotomyRequestForm",
-		"PresidentialPardonForm"
-	};
-	FormConstructor formConstructors[] = {
-		&Intern::createShrubberyCreationForm,
-		&Intern::createRobotomyRequestForm,
-		&Intern::createPresidentialPardonForm
+		"shrubbery creation",
+		"robotomy request",
+		"presidential pardon"
 	};
 
 	int i = 0;
@@ -62,13 +48,21 @@ std::unique_ptr<AForm> Intern::makeForm(const std::string& formName, const std::
 			break;
 		i++;
 	}
-	if (i < 3) {
-		std::cout << "Intern creates " << formName << std::endl;
-		return (this->*formConstructors[i])(target);
-	}
-	else {
-		std::cerr << "Form name '" << formName << "' is invalid\n";
-		return nullptr;
-	}
 
+	switch (i) {
+		case 0:
+			form = std::make_unique<ShrubberyCreationForm>(target);
+			break;
+		case 1:
+			form = std::make_unique<RobotomyRequestForm>(target);
+			break;
+		case 2:
+			form = std::make_unique<PresidentialPardonForm>(target);
+			break;
+		default:
+			std::cerr << "Form name '" << formName << "' is invalid\n";
+			return nullptr;
+	};
+	std::cout << "Intern creates " << form->getName() << std::endl;
+	return form;
 }

@@ -98,54 +98,76 @@ void testPresidentialPardonForm() {
 	}
 }
 
+// void testIntern() {
+// 	std::cout << "\033[33m\n***testIntern()***\n\033[0m";
+// 	try {
+// 		Bureaucrat miyuki("Miyuki", 1);
+// 		Intern intern;
+
+// 		intern.makeForm("shrubbery request", "Miyuki");
+// 	}
+// 	catch (const std::exception& e) {
+// 		std::cerr << "Error: " << e.what() << std::endl;
+// 	}
+
+// 	std::cout << std::endl;
+
+// 	try {
+// 		Bureaucrat miyuki("Miyuki1", 1);
+// 		Intern intern;
+
+// 		intern.makeForm("robotomy request", "Miyuki1");
+
+// 	}
+// 	catch (const std::exception& e) {
+// 		std::cerr << "Error: " << e.what() << std::endl;
+// 	}
+
+// 	std::cout << std::endl;
+
+// 	try {
+// 		Bureaucrat miyuki("Miyuki2", 70);
+// 		Intern intern;
+
+// 		intern.makeForm("Presidential Pardon", "Miyuki2");
+// 	}
+// 	catch (const std::exception& e) {
+// 		std::cerr << "Error: " << e.what() << std::endl;
+// 	}
+
+// 	std::cout << std::endl;
+
+// 	try {
+// 		Bureaucrat miyuki("Miyuki3", 70);
+// 		Intern intern;
+
+// 		intern.makeForm("Presidential Pardonn", "Miyuki3"); // wrong request
+// 	}
+// 	catch (const std::exception& e) {
+// 		std::cerr << "Error: " << e.what() << std::endl;
+// 	}
+// }
+
 void testIntern() {
 	std::cout << "\033[33m\n***testIntern()***\n\033[0m";
-	try {
-		Bureaucrat miyuki("Miyuki", 1);
-		Intern intern;
 
-		intern.makeForm("shrubbery request", "Miyuki");
-	}
-	catch (const std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
+	// from subject pdf
+	Intern someRandomIntern;
+
+	//Form* rrf;
+	std::unique_ptr<AForm> rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 
 	std::cout << std::endl;
 
-	try {
-		Bureaucrat miyuki("Miyuki1", 1);
-		Intern intern;
-
-		intern.makeForm("robotomy request", "Miyuki1");
-
-	}
-	catch (const std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
+	std::unique_ptr<AForm> ppf = someRandomIntern.makeForm("presidential pardon", "Miyuki");
 
 	std::cout << std::endl;
 
-	try {
-		Bureaucrat miyuki("Miyuki2", 70);
-		Intern intern;
-
-		intern.makeForm("Presidential Pardon", "Miyuki2");
-	}
-	catch (const std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
+	std::unique_ptr<AForm> scf = someRandomIntern.makeForm("shrubbery creation", "Mike");
 
 	std::cout << std::endl;
 
-	try {
-		Bureaucrat miyuki("Miyuki3", 70);
-		Intern intern;
-
-		intern.makeForm("Presidential Pardonn", "Miyuki3"); // wrong request
-	}
-	catch (const std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
+	someRandomIntern.makeForm("Presidential Pardonn", "Max"); // wrong request
 }
 
 

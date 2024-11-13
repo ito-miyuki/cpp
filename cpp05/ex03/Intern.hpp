@@ -29,12 +29,8 @@ class Intern {
 
 		Intern& operator=(const Intern& other);
 
+		// AForm* makeForm(const std::string& formName, const std::string& target);
 		std::unique_ptr<AForm> makeForm(const std::string& formName, const std::string& target);
-
-	private:
-		std::unique_ptr<AForm> createShrubberyCreationForm(const std::string& target);
-		std::unique_ptr<AForm> createRobotomyRequestForm(const std::string& target);
-		std::unique_ptr<AForm> createPresidentialPardonForm(const std::string& target);
 };
 
 typedef std::unique_ptr<AForm> (Intern::*FormConstructor)(const std::string& target);
