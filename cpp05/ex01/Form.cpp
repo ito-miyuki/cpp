@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:56:22 by mito              #+#    #+#             */
-/*   Updated: 2024/11/05 15:55:23 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 10:05:59 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Form::Form(const std::string name, int signGrade, int excuteGrade) : _name(name)
 }
 
 Form::~Form() {
-	std::cout << "Form destructer called\n";
+	std::cout << "Form destructor called\n";
 }
 
 Form::Form(const Form& other) : _name(other._name), _isSigned(other._isSigned), _signGrade(other._signGrade), _excuteGrade(other._excuteGrade) {

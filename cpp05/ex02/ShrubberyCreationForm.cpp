@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:13:28 by mito              #+#    #+#             */
-/*   Updated: 2024/11/08 12:55:55 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 10:05:59 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
-	std::cout << "ShrubberyCreationForm destructer called\n";
+	std::cout << "ShrubberyCreationForm destructor called\n";
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other) {
@@ -52,6 +52,6 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	outfile << "  ***    /\\/\\/\\/\\/\\" << std::endl;
 	outfile << " *****       ||      " << std::endl;
 	outfile << "   |         ||      " << std::endl;
-	
+
 	outfile.close();
 }

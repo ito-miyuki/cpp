@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:56:22 by mito              #+#    #+#             */
-/*   Updated: 2024/11/12 12:46:30 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 10:47:14 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ AForm::AForm() : _name("default"), _isSigned(false), _signGrade(1), _excuteGrade
 	std::cout << "default Form constructor called\n";
 }
 
-// should this be &const std::string name???
 AForm::AForm(const std::string name, int signGrade, int excuteGrade, const std::string target) : _name(name),
 _isSigned(false),
 _signGrade(signGrade),

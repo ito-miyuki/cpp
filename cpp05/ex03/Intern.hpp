@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:40:17 by mito              #+#    #+#             */
-/*   Updated: 2024/11/12 11:55:30 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 10:49:50 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ class Intern {
 
 		Intern& operator=(const Intern& other);
 
-		// AForm* makeForm(const std::string& formName, const std::string& target);
 		std::unique_ptr<AForm> makeForm(const std::string& formName, const std::string& target);
 };
-
-typedef std::unique_ptr<AForm> (Intern::*FormConstructor)(const std::string& target);
-
 
 #endif

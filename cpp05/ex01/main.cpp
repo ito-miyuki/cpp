@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:55:47 by mito              #+#    #+#             */
-/*   Updated: 2024/11/05 15:53:23 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 10:28:51 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void testGrade() {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 
+	std::cout << std::endl;
+
 	try {
         Bureaucrat bureau("Heino", 150);  // invalid
         std::cout << bureau;
@@ -30,6 +32,8 @@ void testGrade() {
     catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
+
+	std::cout << std::endl;
 
 	try {
         Bureaucrat bureau("Max", 1);
@@ -97,6 +101,8 @@ void testForm() {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 
+	std::cout << std::endl;
+
 	try {
 		Form test_form("test_form2",190, 3); // invalid grade
 		std::cout << test_form;
@@ -104,6 +110,8 @@ void testForm() {
     catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
+
+	std::cout << std::endl;
 
 	try {
 		Bureaucrat inka("Inka", 1);

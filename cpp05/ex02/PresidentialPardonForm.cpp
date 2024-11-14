@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 10:02:54 by mito              #+#    #+#             */
-/*   Updated: 2024/11/08 10:15:12 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 10:05:59 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& oth
 }
 
 PresidentialPardonForm::~PresidentialPardonForm() {
-	std::cout << "PresidentialPardonForm destructer called\n";
+	std::cout << "PresidentialPardonForm destructor called\n";
 }
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm &other) {

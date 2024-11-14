@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:56:30 by mito              #+#    #+#             */
-/*   Updated: 2024/11/05 15:44:25 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 10:46:26 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "Bureaucrat.hpp"
 # include <string>
-// # include <iostream>
 
 class Bureaucrat;
 

@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:55:57 by mito              #+#    #+#             */
-/*   Updated: 2024/11/08 10:17:09 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 10:46:47 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <string>
 # include <iostream>
-# include <exception> // do i need it?
+# include <exception>
 
 # include "AForm.hpp"
 
@@ -44,7 +44,7 @@ class Bureaucrat {
 
     public:
         Bureaucrat();
-        Bureaucrat(const std::string name, int grade); // const?
+        Bureaucrat(const std::string name, int grade);
         Bureaucrat(const Bureaucrat& other);
         ~Bureaucrat();
         Bureaucrat& operator=(const Bureaucrat &other);
