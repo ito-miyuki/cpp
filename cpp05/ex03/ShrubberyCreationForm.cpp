@@ -6,13 +6,13 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:13:28 by mito              #+#    #+#             */
-/*   Updated: 2024/11/12 17:12:23 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 16:20:29 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Shrubbery Creation Form", 145, 137, "target") {
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm() {
 	std::cout << "default ShrubberyCreationForm constructor called\n";
 }
 

@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:55:57 by mito              #+#    #+#             */
-/*   Updated: 2024/11/14 10:46:17 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 13:18:28 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class Bureaucrat {
 				std::string _errorMsg;
 			public:
 				GradeTooHighException(const std::string& message); // constructor
-				virtual const char* what() const noexcept override; // what() is from std::exception library
+				const char* what() const noexcept override; // what() is from std::exception library
 		};
 
 		class GradeTooLowException : public std::exception {
@@ -39,7 +39,7 @@ class Bureaucrat {
 				std::string _errorMsg;
 			public:
 				GradeTooLowException(const std::string& message); // constructor
-				virtual const char* what() const noexcept override; // what() is from std::exception library
+				const char* what() const noexcept override; // what() is from std::exception library
 		};
 
     public:

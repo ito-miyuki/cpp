@@ -6,14 +6,14 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:46:57 by mito              #+#    #+#             */
-/*   Updated: 2024/11/14 10:05:59 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 16:20:03 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 #include <ctime>
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy Request Form", 72, 45, "target") {
+RobotomyRequestForm::RobotomyRequestForm() : AForm() {
 	std::cout << "default RobotomyRequestForm constructor called\n";
 }
 

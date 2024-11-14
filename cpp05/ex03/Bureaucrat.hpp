@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:55:57 by mito              #+#    #+#             */
-/*   Updated: 2024/11/14 10:47:44 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 13:19:43 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class Bureaucrat {
 				std::string _errorMsg;
 			public:
 				GradeTooHighException(const std::string& message);
-				virtual const char* what() const noexcept override;
+				const char* what() const noexcept override;
 		};
 
 		class GradeTooLowException : public std::exception {
@@ -39,12 +39,12 @@ class Bureaucrat {
 				std::string _errorMsg;
 			public:
 				GradeTooLowException(const std::string& message);
-				virtual const char* what() const noexcept override;
+				const char* what() const noexcept override;
 		};
 
     public:
         Bureaucrat();
-        Bureaucrat(const std::string name, int grade); // const?
+        Bureaucrat(const std::string name, int grade);
         Bureaucrat(const Bureaucrat& other);
         ~Bureaucrat();
         Bureaucrat& operator=(const Bureaucrat &other);

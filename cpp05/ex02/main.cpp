@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 10:25:20 by mito              #+#    #+#             */
-/*   Updated: 2024/11/08 13:19:00 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 16:33:46 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void testRobotomyRequestForm() {
 
 	try {
 		Bureaucrat inka("Inka", 150);
-		RobotomyRequestForm rbForm("Alice"); // target is "Max"
+		RobotomyRequestForm rbForm("Alice");
 
 		inka.signForm(rbForm);
 		inka.executeForm(rbForm);
@@ -66,8 +66,6 @@ void testRobotomyRequestForm() {
 	catch (const std::exception& e) {
 		std::cerr << "Error: " << e.what() << std::endl;
 	}
-
-
 }
 
 void testPresidentialPardonForm() {

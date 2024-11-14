@@ -6,14 +6,14 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:55:47 by mito              #+#    #+#             */
-/*   Updated: 2024/11/04 18:05:16 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 16:30:39 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 void testCopy() {
-    std::cout << "\033[33m\n***testCopyConstructor()***\n\033[0m";
+    std::cout << "\033[33m\n***testCopy()***\n\033[0m";
 
     try {
         Bureaucrat original("Alice", 42);
@@ -45,6 +45,8 @@ void testGrade() {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 
+	std::cout << std::endl;
+
 	try {
         Bureaucrat bureau("Heino", 150);  // invalid
         std::cout << bureau;
@@ -52,6 +54,8 @@ void testGrade() {
     catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
+
+	std::cout << std::endl;
 
 	try {
         Bureaucrat bureau("Max", 1);
@@ -65,10 +69,10 @@ void testGrade() {
 void testIncrease() {
 
 	std::cout << "\033[33m\n***testIncrease()***\n\033[0m";
-	Bureaucrat miyuki("Miyuki", 3);
-	std::cout << miyuki;
 
 	try {
+		Bureaucrat miyuki("Miyuki", 3);
+		std::cout << miyuki;
 		miyuki.increaseGrade(); // become 2
 		std::cout << miyuki;
 
@@ -86,10 +90,10 @@ void testIncrease() {
 void testDecrease() {
 
 	std::cout << "\033[33m\n***testDecrease()***\n\033[0m";
-	Bureaucrat miyuki("Miyuki", 150);
-	std::cout << miyuki;
 
 	try {
+		Bureaucrat miyuki("Miyuki", 150);
+		std::cout << miyuki;
 		miyuki.decreaseGrade(); // become 151
 		std::cout << miyuki;
 

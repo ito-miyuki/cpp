@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:56:30 by mito              #+#    #+#             */
-/*   Updated: 2024/11/14 10:46:26 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 16:00:03 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class Form {
 				const std::string _message;
 			public:
 				GradeTooHighException(const std::string& message);
-				virtual const char* what() const noexcept override;
+				const char* what() const noexcept override;
 		};
 
 		class GradeTooLowException : public std::exception {
@@ -38,7 +38,7 @@ class Form {
 				const std::string _message;
 			public:
 				GradeTooLowException(const std::string& message);
-				virtual const char* what() const noexcept override;
+				const char* what() const noexcept override;
 		};
 
 	public:

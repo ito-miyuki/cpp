@@ -6,13 +6,13 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 10:02:54 by mito              #+#    #+#             */
-/*   Updated: 2024/11/14 10:05:59 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 16:19:44 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential Pardon Form", 25, 5, "target") {
+PresidentialPardonForm::PresidentialPardonForm() : AForm() {
 	std::cout << "default PresidentialPardonForm constructor called\n";
 }
 

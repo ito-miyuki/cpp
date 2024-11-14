@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:55:47 by mito              #+#    #+#             */
-/*   Updated: 2024/11/14 10:28:51 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/14 16:35:19 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void testGrade() {
 	std::cout << std::endl;
 
 	try {
-        Bureaucrat bureau("Heino", 150);  // invalid
+        Bureaucrat bureau("Heino", 150);
         std::cout << bureau;
     }
     catch (const std::exception& e) {
@@ -47,10 +47,10 @@ void testGrade() {
 void testIncrease() {
 
 	std::cout << "\033[33m\n***testIncrease()***\n\033[0m";
-	Bureaucrat miyuki("Miyuki", 3);
-	std::cout << miyuki;
 
 	try {
+		Bureaucrat miyuki("Miyuki", 3);
+		std::cout << miyuki;
 		miyuki.increaseGrade(); // become 2
 		std::cout << miyuki;
 
@@ -68,10 +68,10 @@ void testIncrease() {
 void testDecrease() {
 
 	std::cout << "\033[33m\n***testDecrease()***\n\033[0m";
-	Bureaucrat miyuki("Miyuki", 150);
-	std::cout << miyuki;
 
 	try {
+		Bureaucrat miyuki("Miyuki", 150);
+		std::cout << miyuki;
 		miyuki.decreaseGrade(); // become 151
 		std::cout << miyuki;
 
