@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:30:10 by mito              #+#    #+#             */
-/*   Updated: 2024/11/14 15:08:33 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/18 11:29:53 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,19 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
 	return (*this);
 }
 
-static void convert(std::string input) {
-	e_literals type;
+// static void convert(std::string input) {
+// 	e_literals type;
 
-	type = getType(input);
-	switch (type) {
-		case CHAR:
-			return CHAR;
-		case INT:
-			return INT;
-			break;
+// 	type = getType(input);
+// 	switch (type) {
+// 		case CHAR:
+// 			return CHAR;
+// 		case INT:
+// 			return INT;
+// 		case FLOAT:
 
-
-
-
-
-	FLOAT, // 2
-	DUBLE, // 3
-	NONE // 4
-	}
-}
+// 	FLOAT, // 2
+// 	DUBLE, // 3
+// 	NONE // 4
+// 	}
+// }

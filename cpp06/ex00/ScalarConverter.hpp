@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:30:16 by mito              #+#    #+#             */
-/*   Updated: 2024/11/15 16:26:15 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/18 11:59:32 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ enum e_literals {
 	CHAR, // 0
 	INT, // 1
 	FLOAT, // 2
-	DUBLE, // 3
+	DOUBLE, // 3
 	NONE // 4
 };
 
@@ -39,6 +39,7 @@ class ScalarConverter {
 
 };
 
-e_literals getType(std::string& input);
+// e_literals getType(std::string& input);
+e_literals getType(std::string input);
 
 #endif
