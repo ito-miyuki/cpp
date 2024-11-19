@@ -6,11 +6,26 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:30:10 by mito              #+#    #+#             */
-/*   Updated: 2024/11/18 11:29:53 by mito             ###   ########.fr       */
+/*   Updated: 2024/11/19 16:37:58 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <iomanip>
+#include <iostream>
+#include <exception>
+
+/*
++123 or +12.3f are valid.
+.23f , .312, 1.ab, 1.fab, -0f,  -0.fare invalid.
+
+What about -nan, +nan (this don't exist)
+
++inff -> should I print +inff?
+
+hadn't handle overflow
+
+*/
 
 ScalarConverter::ScalarConverter(void) {}
 
@@ -25,19 +40,184 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
 	return (*this);
 }
 
-// static void convert(std::string input) {
-// 	e_literals type;
+bool is_int(std::string input) {
+	int i = 0;
+	if (input[0] == '-')
+		i++;
+	while (input[i]) {
+		if (!isdigit(input[i]))
+			return false;
+		i++;
+	}
+	return true;
+}
 
-// 	type = getType(input);
-// 	switch (type) {
-// 		case CHAR:
-// 			return CHAR;
-// 		case INT:
-// 			return INT;
-// 		case FLOAT:
+bool is_float(std::string input) {
+	if ((input == "-inff") || (input == "+inff") || (input == "inff")|| (input == "nanf"))
+		return true;
+	if (input[input.length() - 1] == 'f') {
+		for (int i = 0; input[i] ; i++) {
+			if (input[i] == '.')
+				return true;
+		}
+	}
+	return false;
+}
 
-// 	FLOAT, // 2
-// 	DUBLE, // 3
-// 	NONE // 4
-// 	}
-// }
+bool is_double(std::string input) {
+	if ((input == "-inf") || (input == "+inf") || (input == "inf") || (input == "nan"))
+		return true;
+	for (int i = 0; input[i]; i++) {
+		if (input[i] == '.') {
+			if (input[input.length()] == 'f')
+				return false;
+			else
+				return true;
+		}
+	}
+	return false;
+}
+
+void to_char(std::string input) {
+	char c = static_cast<char>(input[0]);
+
+	std::cout << "char: '" << c << "'" << std::endl;
+	std::cout << "int: " << static_cast<int>(c) << std::endl;
+	std::cout << std::fixed << std::setprecision(1);  // to show fixed number 小数点以下1桁を表示
+	std::cout << "float: " << static_cast<float>(c) << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(c) << std::endl;
+}
+
+void to_int(std::string input) {
+	int number = std::stoi(input);
+
+	if (number >= 0 && number <= 255) {
+		char charNum = static_cast<char>(number);
+		if (isprint(charNum))
+			std::cout << "char: '" << charNum << "'" << std::endl;
+		else
+			std::cout << "char: Non displayable" << std::endl;
+	}
+	else {
+		std::cout << "char: impossible" << std::endl;
+	}
+	std::cout << "int: " << number << std::endl;
+	std::cout << std::fixed << std::setprecision(1);
+	std::cout << "float: " << static_cast<float>(number) << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(number) << std::endl;
+}
+
+void to_float(std::string input) {
+
+	float number = 0.0f;
+	try {
+		number = std::stof(input);
+	} catch (const std::exception& e) {
+		std::cout << "Failed to convert\n";
+		return ;
+	}
+
+	if ((input == "-inff") || (input == "+inff") || (input == "inff") || (input == "nanf"))
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: " << "impossible" << std::endl;
+		std::cout << "float: " << input << std::endl;
+		std::cout << "double: " << static_cast<double>(number) << std::endl;
+		return ;
+	}
+
+	if (number >= 0 && number <= 255) {
+		char charNum = static_cast<char>(number);
+		if (isprint(charNum))
+			std::cout << "char: '" << charNum << "'" << std::endl;
+		else
+			std::cout << "char: Non displayable" << std::endl;
+	}
+	else {
+		std::cout << "char: impossible" << std::endl;
+	}
+	std::cout << "int: " << static_cast<int>(number) << std::endl;
+	std::cout << std::fixed << std::setprecision(1);
+	std::cout << "float: " << number << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(number) << std::endl;
+}
+
+void to_double(std::string input) {
+
+	if ((input == "-inf") || (input == "+inf") || (input == "inf") || (input == "nan"))
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: " << "impossible" << std::endl;
+		std::cout << "float: " << input << "f" << std::endl;
+		std::cout << "double: " << input << std::endl;
+		return ;
+	}
+
+	double number = 0.0;
+	try {
+		number = std::stod(input);
+	} catch (const std::exception& e) {
+		std::cout << "Failed to convert\n";
+		return ;
+	}
+
+	if (number >= 0 && number <= 255) {
+		char charNum = static_cast<char>(number);
+		if (isprint(charNum))
+			std::cout << "char: '" << charNum << "'" << std::endl;
+		else
+			std::cout << "char: Non displayable" << std::endl;
+	}
+	else {
+		std::cout << "char: impossible" << std::endl;
+	}
+	std::cout << "int: " << static_cast<int>(number) << std::endl;
+	std::cout << std::fixed << std::setprecision(1);
+	std::cout << "float: " << static_cast<float>(number) << "f" << std::endl;
+	std::cout << "double: " << number << std::endl;
+}
+
+void print_impossible(void) {
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: impossible" << std::endl;
+	std::cout << "double: impossible" << std::endl;
+}
+
+e_literals getType(const std::string& input) {
+	// if (input == nullptr)
+	if (input.length() == 0)
+		return NONE;
+	if (input.length() == 1 && !std::isdigit(input[0]))
+		return CHAR;
+	else if (is_float(input))
+		return FLOAT;
+	else if (is_double(input))
+		return DOUBLE;
+	else if (is_int(input))
+		return INT;
+	return NONE;
+}
+
+void ScalarConverter::convert(const std::string& input) {
+	e_literals type;
+
+	type = getType(input);
+	switch (type) {
+		case 0:
+			to_char(input);
+			break;
+		case 1:
+			to_int(input);
+			break;
+		case 2:
+			to_float(input);
+			break;
+		case 3:
+			to_double(input);
+			break;
+		default:
+			print_impossible();
+			break;
+	}
+}

@@ -3,7 +3,7 @@ NAME = scalaronverter
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++11
 
-SRC = main.cpp ScalarConverter.cpp utils.cpp
+SRC = main.cpp ScalarConverter.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
