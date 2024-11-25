@@ -19,7 +19,7 @@
 +123 or +12.3f are valid.
 .23f , .312, 1.ab, 1.fab, -0f,  -0.fare invalid.
 
-What about -nan, +nan (this don't exist)
+What about -nan, +nan -> invalid, this don't exist)
 
 +inff -> should I print +inff?
 
@@ -52,28 +52,46 @@ bool is_int(std::string input) {
 	return true;
 }
 
-bool is_float(std::string input) {
-	if ((input == "-inff") || (input == "+inff") || (input == "inff")|| (input == "nanf"))
+bool is_double(std::string input) {
+	if (input == "-inf" || input == "+inf" || input == "inf" || input == "nan")
+        return true;
+
+    size_t i = 0;
+    int dotCount = 0;
+
+    // 最初の文字が符号ならスキップ
+    if (input[i] == '-')
+        i++;
+    // 残りの文字をチェック
+    for (; i < input.length(); i++) {
+        if (input[i] == '.')
+            dotCount++;
+        else if (!isdigit(input[i]))
+			return false;      
+    }
+	if (dotCount == 1)
 		return true;
-	if (input[input.length() - 1] == 'f') {
-		for (int i = 0; input[i] ; i++) {
-			if (input[i] == '.')
-				return true;
-		}
-	}
-	return false;
+    return false;
 }
 
-bool is_double(std::string input) {
-	if ((input == "-inf") || (input == "+inf") || (input == "inf") || (input == "nan"))
+// bool is_float(std::string input) {
+// 	if ((input == "-inff") || (input == "+inff") || (input == "inff")|| (input == "nanf"))
+// 		return true;
+// 	if (input[input.length() - 1] == 'f') {
+// 		for (int i = 0; input[i] ; i++) {
+// 			if (input[i] == '.')
+// 				return true;
+// 		}
+// 	}
+// 	return false;
+// }
+
+bool is_float(std::string input) {
+	if ((input == "-inff") || (input == "+inff") || (input == "inff") || (input == "nan"))
 		return true;
-	for (int i = 0; input[i]; i++) {
-		if (input[i] == '.') {
-			if (input[input.length()] == 'f')
-				return false;
-			else
-				return true;
-		}
+	if (is_double(input)) {
+		if (input[input.length() - 1] == 'f')
+			return true;
 	}
 	return false;
 }
@@ -190,10 +208,10 @@ e_literals getType(const std::string& input) {
 		return NONE;
 	if (input.length() == 1 && !std::isdigit(input[0]))
 		return CHAR;
-	else if (is_float(input))
-		return FLOAT;
 	else if (is_double(input))
 		return DOUBLE;
+	else if (is_float(input))
+		return FLOAT;
 	else if (is_int(input))
 		return INT;
 	return NONE;
