@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 14:27:38 by mito              #+#    #+#             */
-/*   Updated: 2024/12/13 14:41:17 by mito             ###   ########.fr       */
+/*   Created: 2024/12/13 13:44:27 by mito              #+#    #+#             */
+/*   Updated: 2024/12/13 15:26:31 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef SERIALIZER_HPP
+# define  SERIALIZER_HPP
 
-int main(int argc, char* argv[]) {
-	if (argc != 2) {
-		std::cout << "Wrong argument number. Input should be: ./scalarconverter <value>" << std::endl;
-		return (1);
-	}
-	ScalarConverter::convert(argv[1]);
-	return (0);
-}
+#include <cstdint>
+
+struct Data {
+	int x;
+};
+
+class Serializer {
+	private:
+		Serializer();
+		~Serializer();
+		Serializer(const Serializer& other);
+		Serializer& operator=(const Serializer& other);
+
+	public:
+		static uintptr_t serialize(Data* ptr);
+		static Data* deserialize(uintptr_t raw);
+};
+
+#endif
