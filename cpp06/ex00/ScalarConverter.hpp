@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:30:16 by mito              #+#    #+#             */
-/*   Updated: 2024/11/19 13:37:12 by mito             ###   ########.fr       */
+/*   Updated: 2024/12/13 13:25:24 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 # include <cctype>
 # include <stdexcept>
 
-//# include "utils.cpp"
+#include <limits>
+#include <iostream>
+#include <iomanip>
+#include <exception>
 
 enum e_literals {
 	CHAR, // 0
@@ -41,6 +44,16 @@ class ScalarConverter {
 
 };
 
+bool isInt(std::string input);
+bool isDouble(std::string input);
+bool isFloat(std::string input);
+void convertChar(std::string input, char& c, int& i, float& f, double&d);
+bool convertInt(std::string input, char& c, int& i, float& f, double& d);
+bool convertFloat(std::string input, char& c, int& i, float& f, double& d);
+bool convertDouble(std::string input, char& c, int& i, float& f, double& d);
 e_literals getType(const std::string& input);
+void printChar(char c, int i);
+void printInt(int i, double d);
+void printResult(char& c, int& i, float& f, double& d);
 
 #endif

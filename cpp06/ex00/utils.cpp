@@ -6,13 +6,13 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:57:45 by mito              #+#    #+#             */
-/*   Updated: 2024/11/18 11:44:23 by mito             ###   ########.fr       */
+/*   Updated: 2024/12/13 13:24:40 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-bool is_int(std::string input) {
+bool isInt(std::string input) {
 	int i = 0;
 	if (input[0] == '-')
 		i++;
@@ -24,40 +24,152 @@ bool is_int(std::string input) {
 	return true;
 }
 
-bool is_float(std::string input) {
-	if (input[input.length() - 1] == 'f') {
-		for (int i = 0; input[i] ; i++) {
-			if (input[i] == '.')
-				return true;
-		}
-	}
-	return false;
-}
+bool isDouble(std::string input) {
+	if (input == "-inf" || input == "+inf" || input == "inf" || input == "nan")
+        return true;
 
-bool is_double(std::string input) {
-	for (int i = 0; input[i]; i++) {
-		if (input[i] == '.') {
-			if (input[input.length()] == 'f')
-				return false;
+    size_t i = 0;
+    int dotCount = 0;
+
+    if (input[i] == '-')
+        i++;
+    for (; i < input.length(); i++) {
+        if (input[i] == '.') {
+			if (input[i + 1])
+			    dotCount++;
 			else
-				return true;
+				return false;
 		}
-	}
+        else if (!isdigit(input[i]))
+			return false;
+    }
+	if (dotCount == 1)
+		return true;
+    return false;
+}
+
+bool isFloat(std::string input) {
+	if ((input == "-inff") || (input == "+inff") || (input == "inff") || (input == "nan"))
+		return true;
+
+	size_t i = 0;
+    int dotCount = 0;
+
+    if (input[i] == '-')
+        i++;
+    for (; i < input.length() - 1; i++) {
+        if (input[i] == '.') {
+			if (input[i + 1])
+			    dotCount++;
+			else
+				return false;
+		}
+        else if (!isdigit(input[i]))
+			return false;
+    }
+	if (dotCount == 1 && input[input.length() - 1] == 'f')
+			return true;
 	return false;
 }
 
-e_literals getType(const std::string input) {
-	// if (input == nullptr)
-	if (input.length() == 0)
+void convertChar(std::string input, char& c, int& i, float& f, double&d) {
+	c = input[0];
+	i = static_cast<int>(c);
+	f = static_cast<float>(c);
+	d = static_cast<double>(c);
+}
+
+bool convertInt(std::string input, char& c, int& i, float& f, double& d)
+{
+	try
+	{
+		i = std::stoi(input);
+		c = static_cast<char>(i);
+		f = static_cast<float>(i);
+		d = static_cast<double>(i);
+	}
+	catch (std::exception& e)
+	{
+		std::cout << "Invalid Int" << std::endl;
+		return false;
+	}
+	return true;
+}
+
+bool convertFloat(std::string input, char& c, int& i, float& f, double& d)
+{
+	try
+	{
+		f = std::stof(input);
+		c = static_cast<char>(f);
+		i = static_cast<int>(f);
+		d = static_cast<double>(f);
+	}
+	catch (std::exception& e)
+	{
+		std::cout << "Invalid Float" << std::endl;
+		return false;
+	}
+	return true;
+}
+
+bool convertDouble(std::string input, char& c, int& i, float& f, double& d)
+{
+	try
+	{
+		d = std::stod(input);
+		c = static_cast<char>(d);
+		f = static_cast<float>(d);
+		i = static_cast<int>(d);
+	}
+	catch (std::exception& e)
+	{
+		std::cout << "Invalid Double" << std::endl;
+		return false;
+	}
+	return true;
+}
+
+e_literals getType(const std::string& input) {
+
+	int len = input.length();
+
+	if (len == 0)
 		return NONE;
-	if (input.length() == 1 && !std::isdigit(input[0]))
+	if (len == 1 && !std::isdigit(input[0]))
 		return CHAR;
-	else if (is_int(input))
+	else if (isInt(input))
 		return INT;
-	else if (is_float(input))
+	else if (isFloat(input))
 		return FLOAT;
-	else if (is_double(input))
+	else if (isDouble(input))
 		return DOUBLE;
 	return NONE;
 }
 
+void printChar(char c, int i)
+{
+	if (i >= 0 && i <= 255 && isprint(c))
+		std::cout << "char: '" << c << "'" << std::endl;
+	else if (i >= 0 && i <= 255)
+		std::cout << "char: " << "Non displayable" << std::endl;
+	else
+		std::cout << "char: impossible" << std::endl;
+}
+
+void printInt(int i, double d) {
+	if (d >= std::numeric_limits<int>::min() && d <= std::numeric_limits<int>::max())
+        std::cout << "int: " << i << std::endl;
+	else
+		std::cout << "int: impossible" << std::endl;
+}
+
+void printResult(char& c, int& i, float& f, double& d) {
+
+	if (d == i)
+		std::cout << std::fixed << std::setprecision(1);
+	printChar(c, i);
+	printInt(i, d);
+	std::cout << "float: " << f << "f" << std::endl;
+	std::cout << "double: " << d << std::endl;
+}
