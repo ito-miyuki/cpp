@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:57:45 by mito              #+#    #+#             */
-/*   Updated: 2024/12/13 13:24:40 by mito             ###   ########.fr       */
+/*   Updated: 2024/12/16 16:44:10 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ bool isDouble(std::string input) {
 }
 
 bool isFloat(std::string input) {
-	if ((input == "-inff") || (input == "+inff") || (input == "inff") || (input == "nan"))
+	if ((input == "-inff") || (input == "+inff") || (input == "inff") || (input == "nanf"))
 		return true;
 
 	size_t i = 0;
