@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   A.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/13 16:04:28 by mito              #+#    #+#             */
-/*   Updated: 2024/12/16 13:52:07 by mito             ###   ########.fr       */
+/*   Created: 2024/12/16 10:09:33 by mito              #+#    #+#             */
+/*   Updated: 2024/12/16 10:11:07 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_HPP
-# define BASE_HPP
+#ifndef A_H
+# define A_H
+# include "Base.hpp"
 
-class Base {
-	public:
-		virtual ~Base();
-};
-
-Base * generate(void);
-void identify(Base* p);
-void identify(Base& p);
+class A : public Base {};
 
 #endif

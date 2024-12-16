@@ -6,16 +6,16 @@
 #    By: mito <mito@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 16:03:56 by mito              #+#    #+#              #
-#    Updated: 2024/12/13 16:04:11 by mito             ###   ########.fr        #
+#    Updated: 2024/12/16 14:05:20 by mito             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = base
+NAME = identifier
 
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++11
 
-SRC = main.cpp Serializer.cpp
+SRC = main.cpp Base.cpp A.cpp B.cpp C.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
