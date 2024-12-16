@@ -1,9 +1,9 @@
-NAME = identifier
+NAME = whatever
 
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++11
 
-SRC = main.cpp Base.cpp A.cpp B.cpp C.cpp
+SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
