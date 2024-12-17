@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:30:16 by mito              #+#    #+#             */
-/*   Updated: 2024/12/13 13:25:24 by mito             ###   ########.fr       */
+/*   Updated: 2024/12/17 10:26:01 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 
 # include <string>
 # include <cctype>
-# include <stdexcept>
-
+# include <exception>
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <exception>
 
 enum e_literals {
 	CHAR, // 0

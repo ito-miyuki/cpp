@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 16:04:28 by mito              #+#    #+#             */
-/*   Updated: 2024/12/16 13:52:07 by mito             ###   ########.fr       */
+/*   Updated: 2024/12/17 10:31:51 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,5 @@ class Base {
 	public:
 		virtual ~Base();
 };
-
-Base * generate(void);
-void identify(Base* p);
-void identify(Base& p);
 
 #endif
