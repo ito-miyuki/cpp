@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 14:55:48 by mito              #+#    #+#             */
-/*   Updated: 2024/12/16 15:10:31 by mito             ###   ########.fr       */
+/*   Created: 2024/12/16 15:17:57 by mito              #+#    #+#             */
+/*   Updated: 2024/12/17 12:30:24 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-# define WHATEVER_HPP
+#ifndef ITER_HPP
+# define ITER_HPP
+
+# include <cstdlib> // for size_t
+# include <iostream>
 
 template <typename T>
-void swap(T& a, T&b) {
-	T temp;
-	temp = a;
-	a = b;
-	b = temp;
+void printArr(T& arg) {
+	std::cout << arg << std::endl;
 }
 
 template <typename T>
-T min(T& a, T& b) {
-	if (a >= b)
-		return b;
-	else
-		return a;
+void incrementArr(T& arg) {
+	arg++;
 }
-// wecan write like this: return a < b ? a : b
 
 template <typename T>
-T max(T& a, T& b) {
-	if (a >= b)
-		return a;
-	else
-		return b;
+void iter(T* arr, int arrLen, void (*f)(T&)) {
+	for (int i = 0; i < arrLen; i++)
+		(*f)(arr[i]);
 }
 
 #endif
