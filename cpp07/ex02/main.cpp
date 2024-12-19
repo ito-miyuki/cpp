@@ -3,8 +3,39 @@
 
 #define MAX_VAL 750
 
+
+void testForCreateArray() {
+
+	std::cout << "---testForCreateArray()---\n";
+	std::cout << "-Double Array\n";
+	Array<double> doubleArray(4);
+	doubleArray[0] = 1.12;
+	doubleArray[1] = 2.23;
+	doubleArray[2] = 3.34;
+	doubleArray[3] = 4.45;
+
+	for (unsigned int i = 0; i < doubleArray.size(); i++) {
+		std::cout << doubleArray[i] << std::endl;
+	}
+
+	std::cout << std::endl;
+
+	std::cout << "-String Array\n";
+	Array<std::string> stringArray(3);
+	stringArray[0] = "Hello";
+	stringArray[1] = "Can you";
+	stringArray[2] = "hear me?";
+
+	for (unsigned int i = 0; i < stringArray.size(); i++) {
+		std::cout << stringArray[i] << std::endl;
+	}
+
+}
+
 int main(int, char**)
 {
+
+	std::cout << "---test from subject---\n";
     Array<int> numbers(MAX_VAL); // create an Array<int> with 750 elements
 
     int* mirror = new int[MAX_VAL]; // create an int array with 750 elements
@@ -54,5 +85,8 @@ int main(int, char**)
         numbers[i] = rand();
     }
     delete [] mirror;
+
+	testForCreateArray();
+	
     return 0;
 }

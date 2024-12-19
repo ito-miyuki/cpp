@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:19:22 by mito              #+#    #+#             */
-/*   Updated: 2024/12/18 13:14:00 by mito             ###   ########.fr       */
+/*   Updated: 2024/12/19 11:00:03 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class Array {
 		Array(const Array& other);
 		Array<T>& operator=(const Array<T>& other);
 		T& operator[](unsigned int i);
-		unsigned int size();
+		unsigned int size() const;
 };
 
 template<typename T>
@@ -81,7 +81,7 @@ T& Array<T>::operator[](unsigned int i) {
 }
 
 template<typename T>
-unsigned int Array<T>::size(void) {
+unsigned int Array<T>::size(void) const {
 	return this->_arrSize;
 }
 
