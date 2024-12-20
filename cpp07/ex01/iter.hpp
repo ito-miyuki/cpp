@@ -6,14 +6,13 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 15:17:57 by mito              #+#    #+#             */
-/*   Updated: 2024/12/17 12:30:24 by mito             ###   ########.fr       */
+/*   Updated: 2024/12/20 12:56:44 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ITER_HPP
 # define ITER_HPP
 
-# include <cstdlib> // for size_t
 # include <iostream>
 
 template <typename T>
