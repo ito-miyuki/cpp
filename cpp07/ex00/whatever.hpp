@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:55:48 by mito              #+#    #+#             */
-/*   Updated: 2024/12/16 15:10:31 by mito             ###   ########.fr       */
+/*   Updated: 2024/12/20 12:30:05 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,16 @@ void swap(T& a, T&b) {
 }
 
 template <typename T>
-T min(T& a, T& b) {
+T min(T a, T b) {
 	if (a >= b)
 		return b;
 	else
 		return a;
 }
-// wecan write like this: return a < b ? a : b
 
 template <typename T>
-T max(T& a, T& b) {
-	if (a >= b)
+T max(T a, T b) {
+	if (a > b)
 		return a;
 	else
 		return b;
