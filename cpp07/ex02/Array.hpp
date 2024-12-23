@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:19:22 by mito              #+#    #+#             */
-/*   Updated: 2024/12/20 14:29:09 by mito             ###   ########.fr       */
+/*   Updated: 2024/12/23 12:12:23 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ class Array {
 };
 
 template<typename T>
-Array<T>::Array(){
-	_arr = new T[0];
-	_arrSize = 0;
-}
+Array<T>::Array() : _arr(nullptr), _arrSize(0) {}
 
 template<typename T>
 Array<T>::Array(unsigned int n){
@@ -66,7 +63,7 @@ Array<T>& Array<T>::operator=(const Array<T>& other){
 
 		this->_arrSize = other._arrSize;
 		this->_arr = new T[this->_arrSize];
-		for (int i = 0; i < other._arrSize; i++) {
+		for (unsigned int i = 0; i < other._arrSize; i++) {
 			this->_arr[i] = other._arr[i];
 		}
 	}
