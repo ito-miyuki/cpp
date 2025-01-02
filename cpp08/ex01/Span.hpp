@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 11:15:15 by mito              #+#    #+#             */
-/*   Updated: 2024/12/30 16:25:46 by mito             ###   ########.fr       */
+/*   Updated: 2025/01/02 16:18:22 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class Span {
 
 		void addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 
-
+		const std::vector<int>& getVector() const; // for testing
 
 
 };

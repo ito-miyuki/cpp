@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 11:12:56 by mito              #+#    #+#             */
-/*   Updated: 2024/12/30 18:10:25 by mito             ###   ########.fr       */
+/*   Updated: 2025/01/02 16:18:10 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,18 @@ void testAddNumbers(){
 
 		sp.addNumbers(vec3.begin(), vec3.end());
 
-		// for (int n : sp._vector) {
-		// 	std::cout << n << " " << std::endl;
-		// }
+		for (int n : sp.getVector()) {
+            std::cout << n << " ";
+        }
+        std::cout << std::endl;
+		
+
 	} catch (std::exception &e) {
 		std::cerr << "Error: " << e.what() << std::endl;
 	}
-
 }
 
 void smallVector(){
-	try {
-		Span sp = Span(2);
-		sp.addNumber(6);
-		sp.addNumber(3);
-		sp.addNumber(1);
-	} catch (std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
 
 	try {
 		Span sp = Span(1);
@@ -65,14 +59,6 @@ void smallVector(){
 	} catch (std::exception& e) {
 		std::cerr << "Error: " << e.what() << std::endl;
 	}
-
-	try {
-		Span sp = Span(0);
-
-		std::cout << sp.longestSpan() << std::endl;
-	} catch (std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
 }
 
 void exceedSize() {
@@ -81,6 +67,15 @@ void exceedSize() {
 		sp.addNumber(6);
 		sp.addNumber(3);
 		sp.addNumber(17);
+		sp.addNumber(1);
+	} catch (std::exception& e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
+
+	try {
+		Span sp = Span(2);
+		sp.addNumber(6);
+		sp.addNumber(3);
 		sp.addNumber(1);
 	} catch (std::exception& e) {
 		std::cerr << "Error: " << e.what() << std::endl;

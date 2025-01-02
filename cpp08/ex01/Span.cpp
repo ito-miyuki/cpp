@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 11:24:50 by mito              #+#    #+#             */
-/*   Updated: 2024/12/30 16:34:43 by mito             ###   ########.fr       */
+/*   Updated: 2025/01/02 16:17:33 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,8 @@ void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterat
 	}
 
 	_vector.insert(_vector.end(), begin, end); // this can insert multiple elements at the same time
+}
+
+const std::vector<int>& Span::getVector() const {
+	return _vector;
 }
