@@ -6,13 +6,32 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 11:12:56 by mito              #+#    #+#             */
-/*   Updated: 2025/01/02 16:18:10 by mito             ###   ########.fr       */
+/*   Updated: 2025/01/07 13:46:19 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 #include <iostream>
 #include <stdexcept>
+#include <numeric>
+
+void testLeargeNumbers(){
+	try {
+		unsigned int testSize = 100000;
+		std::vector<int> num(testSize);
+		std::iota(num.begin(), num.end(), 1);
+
+		Span sp(testSize);
+		sp.addNumbers(num.begin(), num.end());
+
+		std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+
+	} catch (std::exception& e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
+}
+
 
 void testAddNumbers(){
 
@@ -33,7 +52,7 @@ void testAddNumbers(){
             std::cout << n << " ";
         }
         std::cout << std::endl;
-		
+
 
 	} catch (std::exception &e) {
 		std::cerr << "Error: " << e.what() << std::endl;
@@ -91,8 +110,8 @@ int main()
 	sp.addNumber(17);
 	sp.addNumber(9);
 	sp.addNumber(11);
-	std::cout << sp.shortestSpan() << std::endl;
-	std::cout << sp.longestSpan() << std::endl;
+	std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+	std::cout << "Longest span: " << sp.longestSpan() << std::endl;
 
 	std::cout << "\033[35mexceedSize()\033[0m" << std::endl;
 	exceedSize();
@@ -102,6 +121,9 @@ int main()
 
 	std::cout << "\033[35mtestAddNumbers()\033[0m" << std::endl;
 	testAddNumbers();
+
+	std::cout << "\033[35mtestLeargeNumbers\033[0m" << std::endl;
+	testLeargeNumbers();
 
 	return 0;
 
