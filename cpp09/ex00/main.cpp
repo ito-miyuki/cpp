@@ -7,7 +7,11 @@ int main(int argc, char** argv) {
 		return 1;
 	}
 
-	BitcoinExchange btc;
-	btc.exchanger(argv[1]);
+	BitcoinExchange btc(argv[1]);
+	if (!btc.getFileOpened()) {
+		std::cout << "Error: could not open file" << std::endl; // can we use cerr?
+		return 1;
+	}
+	
 	return 0;
 }
