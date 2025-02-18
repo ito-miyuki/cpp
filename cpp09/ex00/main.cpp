@@ -12,6 +12,8 @@ int main(int argc, char** argv) {
 		std::cout << "Error: could not open file" << std::endl; // can we use cerr?
 		return 1;
 	}
+
+	
 	
 	return 0;
 }

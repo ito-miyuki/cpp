@@ -5,7 +5,7 @@
 
 class BitcoinExchange {
 	private:
-		std::map<std::string, double> data;
+		std::map<std::string, double> btcPrices;
 		std::string _fileName;
 		bool _fileOpened;
 
@@ -15,7 +15,7 @@ class BitcoinExchange {
 		~BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange& other);
 		BitcoinExchange& operator=(const BitcoinExchange& other);
+		void processFileData(std::ifstream& file);
 
-		// void exchanger(std::string fileName);
 		bool getFileOpened();
 };
