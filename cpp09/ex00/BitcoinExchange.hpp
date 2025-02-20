@@ -15,7 +15,7 @@ class BitcoinExchange {
 		~BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange& other);
 		BitcoinExchange& operator=(const BitcoinExchange& other);
-		void processFileData(std::ifstream& file);
+		void processData(std::ifstream& file);
 
 		bool getFileOpened();
 };

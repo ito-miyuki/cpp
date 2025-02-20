@@ -2,18 +2,30 @@
 #include <iostream> // temp
 
 BitcoinExchange::BitcoinExchange(std::string filename){
-	std::ifstream file(filename);
-	if (!file.is_open()) {
+	const std::string priceDatabase = "data.csv";
+	_fileOpened = true; // default
+
+
+	std::ifstream dataBase(priceDatabase);
+	if (!dataBase.is_open()) {
 		_fileOpened = false;
+		std::cerr << "Error: could not open data base file" << std::endl; // can we use cerr? should this be cout?
 		return ;
 	}
 
-	_fileOpened = true;
+	processData(dataBase);
+
+	std::ifstream inputFile(filename);
+	if (!inputFile.is_open()) {
+		_fileOpened = false;
+		std::cerr << "Error: could not open the provided file" << std::endl; // can we use cerr? should this be cout?
+		return ;
+	}
+
 	_fileName = filename;
-	processFileData(file);
 }
 
-void BitcoinExchange::processFileData(std::ifstream& file) {
+void BitcoinExchange::processData(std::ifstream& file) {
 	std::string line;
 
 	while (std::getline(file, line)) {

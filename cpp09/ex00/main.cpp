@@ -9,7 +9,6 @@ int main(int argc, char** argv) {
 
 	BitcoinExchange btc(argv[1]);
 	if (!btc.getFileOpened()) {
-		std::cout << "Error: could not open file" << std::endl; // can we use cerr?
 		return 1;
 	}
 
