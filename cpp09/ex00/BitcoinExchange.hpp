@@ -10,7 +10,7 @@ class BitcoinExchange {
 		bool _fileOpened;
 
 	public:
-		BitcoinExchange(std::string filename);
+		BitcoinExchange(std::string fileName);
 		// BitcoinExchange(); // without params?
 		~BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange& other);
@@ -18,4 +18,7 @@ class BitcoinExchange {
 		void processData(std::ifstream& file);
 
 		bool getFileOpened();
+
+		// void calculateExchange();
+		void readInput();
 };
