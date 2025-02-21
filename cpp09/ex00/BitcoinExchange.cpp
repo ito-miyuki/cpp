@@ -35,14 +35,64 @@ void BitcoinExchange::processData(std::ifstream& file) {
 			price = stod(priceStr);
 			btcPrices[date] = price;
 		} catch (const std::exception& e) {
-			std::cerr << "Error: invalid data format in file" << e.what() << std::endl;
+			std::cerr << "Error: invalid data format in file: " << e.what() << std::endl;
 		}
 	}
 	// delete them below
-	std::map<std::string, double>::iterator it;
-	for (it = btcPrices.begin(); it != btcPrices.end(); ++it) {
-			std::cout << "Date: " << it->first << ", Price: " << it->second << std::endl;
+	// std::map<std::string, double>::iterator it;
+	// for (it = btcPrices.begin(); it != btcPrices.end(); ++it) {
+	// 		std::cout << "Date: " << it->first << ", Price: " << it->second << std::endl;
+	// }
+}
+
+bool BitcoinExchange::isValidFormat(std::string& line) {
+	int countPipe = 0;
+	int countDash = 0;
+	for (size_t i = 0; i < line.length(); i++) {
+		if (line[i] == '|') {
+			countPipe++;
+		} else if (line[i] == '-') {
+			countDash++;
+		}
 	}
+	if (countPipe != 1 || countDash != 2) {
+		return false;
+	}
+	// yyyy-mm-dd | value
+	if (line.length() < 13 || line[4] != '-' || line[7] != '-' 
+		|| line[11] != '|' || line[10] != ' ' || line[12] != ' ') {
+		return false;
+	}
+	return true;
+}
+
+// does this have to belong to Class??
+bool isValidData(std::string year, std::string month, std::string date, std::string price) {
+	for (size_t i = 0; i < year.length(); i++) {
+		if (!isdigit(year[i])) {
+			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
+			return false;
+		}
+	}
+	for (size_t i = 0; i < month.length(); i++) {
+		if (!isdigit(month[i])) {
+			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
+			return false;
+		}
+	}
+	for (size_t i = 0; i < date.length(); i++) {
+		if (!isdigit(date[i])) {
+			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
+			return false;
+		}
+	}
+	for (size_t i = 0; i < price.length(); i++) {
+		if (!isdigit(price[i]) && price[i] != '.') {
+			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
+			return false;
+		}
+	}
+	return true;
 }
 
 void BitcoinExchange::readInput() {
@@ -56,45 +106,54 @@ void BitcoinExchange::readInput() {
 	}
 
 	while (std::getline(inputFile, line)) {
-		size_t pipePos = line.find('|');
-
-		std::string year = "";
-		std::string month = "";
-		std::string date = "";
-		std::string priceStr = "";
-		double price = 0;
-
-		if (pipePos == std::string::npos) {
+		if (!isValidFormat(line)) {
 			std::cerr << "Invalid formart in provided file" << std::endl;
 		} else {
-			size_t dashPos = line.find('-');
-			if (dashPos != std::string::npos) {
-				// "yyyy-mm-dd |"
-				year = line.substr(0,4); //yyyy
-				month = line.substr(dashPos + 1, 2); // "-mm-dd |"
-				date = line.substr(dashPos + 4, 2); // "-mm-dd |"
-				priceStr = line.substr(pipePos + 2); // "| value"
 
+			std::string yearStr = "";
+			std::string monthStr = "";
+			std::string dateStr = "";
+			std::string priceStr = "";
+			int year = 0;
+			int month = 0;
+			int date = 0;
+			double price = 0;
+			// yyyy-mm-dd | value
+			yearStr = line.substr(0,4); //yyyy
+			monthStr = line.substr(5, 2); // "-mm-dd |"
+			dateStr = line.substr(8, 2); // "-mm-dd |"
+			priceStr = line.substr(13); // "| value"
+
+			if (isValidData(yearStr, monthStr, dateStr, priceStr)) {
 				try {
-					price = stod(priceStr);
-					if (price < 0 || price > 1000) {
-						price = 0;
-						std::cerr << "Provided value must be between 0 - 1000" << std::endl;
-					}
-				} catch (const std::exception& e) {
-					std::cerr << "Error: " << e.what() << std::endl;
+				year = stoi(yearStr);
+				month = stoi(monthStr);
+				date = stoi(dateStr);
+				price = stod(priceStr);
+				if ((month < 1 || month > 12) || (date < 1 || date > 31) || (price < 0 || price > 1000)) {
+					std::cerr << "Error: bad input " << yearStr << "-" << monthStr << "-" << dateStr << std::endl;
+					continue ;
+				} else if () {
+					
 				}
+				} catch (const std::exception& e) {
+				std::cerr << "Error: " << e.what() << std::endl;
+				}
+				calculateExchange(line);
+				// for testing. //delete it
+				std::cout << yearStr << "-" << monthStr << "-" << dateStr << " => " << price << " = calculatedPrice here" << std::endl;
 			}
-			//delete it
-			std::cout << year << "-" << month << "-" << date << " => " << price << " = calculatedPrice here" << std::endl;
 		}
 	}
 }
 
 
-// void BitcoinExchange::calculateExchange() {
+void BitcoinExchange::calculateExchange(std::string line) {
+	std::string inputData = line.substr(0, 10); // yyyy-mm-dd
+	std::map<std::string, double> it = ......
+	// (value in input file) * (value in database)
 
-// }
+}
 
 // BitcoinExchange::BitcoinExchange(){} // without params?
 BitcoinExchange::~BitcoinExchange(){}

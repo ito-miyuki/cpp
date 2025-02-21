@@ -19,6 +19,7 @@ class BitcoinExchange {
 
 		bool getFileOpened();
 
-		// void calculateExchange();
+		void calculateExchange(std::string line);
 		void readInput();
+		bool isValidFormat(std::string& line);
 };
