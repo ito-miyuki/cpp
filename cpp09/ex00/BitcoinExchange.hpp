@@ -23,4 +23,5 @@ class BitcoinExchange {
 		double calculateExchange(std::string line, double value);
 		void readInput();
 		bool isValidFormat(std::string& line);
+		std::string findClosestDate(std::string date);
 };

@@ -151,20 +151,35 @@ void BitcoinExchange::readInput() {
 	}
 }
 
+std::string BitcoinExchange::findClosestDate(std::string date) {
+	auto it = btcPrices.lower_bound(date);
+
+	if (it == btcPrices.end()) {
+		it--;
+	} else if(it->first > date) {
+		if (it == btcPrices.begin()) {
+			std::cerr << "There is no smaller date than you provided" << std::endl; // delet it
+			return "";
+		}
+		it--; 
+	}
+	return it->first;
+}
 
 double BitcoinExchange::calculateExchange(std::string line, double value) {
-	std::string inputData = line.substr(0, 10); // yyyy-mm-dd
-	std::cout << "input data is: " << inputData << std::endl;
-	if (btcPrices.find(inputData) != btcPrices.end()) {
-		double btcPrice = btcPrices[inputData];
-		std::cout << "btcPrice is: " << btcPrice << std::endl; // delete it
-		std::cout << "result will be : $" << btcPrice * value << "." << std::endl; // delete it
-		return btcPrice * value;
-	} else {
+	std::string inputDate = line.substr(0, 10); // yyyy-mm-dd
+	std::cout << "input date is: " << inputDate << std::endl;
+
+	std::string closestDate = findClosestDate(inputDate);
+	std::cout << "closest date is: " << closestDate << std::endl;
+	if (closestDate.empty()) {
 		std::cout << "Matching data is not found." << std::endl; // delete it 
 	}
-	return -1;
-	// (value in input file) * (value in database)
+
+	double btcPrice = btcPrices[closestDate];
+	std::cout << "btcPrice is: $" << btcPrice << std::endl; // delete it
+	std::cout << "value is: $" << value << std::endl; // delete it
+	return btcPrice * value;	
 }
 
 // BitcoinExchange::BitcoinExchange(){} // without params?
