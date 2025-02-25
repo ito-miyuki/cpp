@@ -24,4 +24,5 @@ class BitcoinExchange {
 		void readInput();
 		bool isValidFormat(std::string& line);
 		std::string findClosestDate(std::string date);
+		bool isLeapYear(int year);
 };

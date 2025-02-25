@@ -95,6 +95,17 @@ bool isValidData(std::string year, std::string month, std::string date, std::str
 	return true;
 }
 
+bool BitcoinExchange::isLeapYear(int year) {
+	/*
+	400で割り切れるなら、うるう年
+	次に、100で割り切れるなら、うるう年ではない
+	最後に、4で割り切れるなら、うるう年
+	どれにも当てはまらなければ、通常の年（うるう年ではない）
+	*/
+
+	if (year % 400 == 0 && year % 100 != 0 && year )
+}
+// do leap year check!!
 void BitcoinExchange::readInput() {
 	std::string line;
 
