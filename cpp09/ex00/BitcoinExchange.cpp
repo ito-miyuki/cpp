@@ -130,29 +130,41 @@ void BitcoinExchange::readInput() {
 				month = stoi(monthStr);
 				date = stoi(dateStr);
 				price = stod(priceStr);
-				if ((month < 1 || month > 12) || (date < 1 || date > 31) || (price < 0 || price > 1000)) {
+
+				// add correct error handlings
+				if ((month < 1 || month > 12) || (date < 1 || date > 31)) {
 					std::cerr << "Error: bad input " << yearStr << "-" << monthStr << "-" << dateStr << std::endl;
 					continue ;
-				} else if () {
-					
+				} else if ((price < 0 || price > 1000)) {
+					std::cerr << "Error: too large a number. " << std::endl;
+					continue ;
 				}
 				} catch (const std::exception& e) {
 				std::cerr << "Error: " << e.what() << std::endl;
 				}
-				calculateExchange(line);
+				double result = calculateExchange(line, price);
 				// for testing. //delete it
-				std::cout << yearStr << "-" << monthStr << "-" << dateStr << " => " << price << " = calculatedPrice here" << std::endl;
+				std::cout << "for testing: " << year << std::endl;
+				std::cout << yearStr << "-" << monthStr << "-" << dateStr << " => " << price << " = " << result << std::endl;
 			}
 		}
 	}
 }
 
 
-void BitcoinExchange::calculateExchange(std::string line) {
+double BitcoinExchange::calculateExchange(std::string line, double value) {
 	std::string inputData = line.substr(0, 10); // yyyy-mm-dd
-	std::map<std::string, double> it = ......
+	std::cout << "input data is: " << inputData << std::endl;
+	if (btcPrices.find(inputData) != btcPrices.end()) {
+		double btcPrice = btcPrices[inputData];
+		std::cout << "btcPrice is: " << btcPrice << std::endl; // delete it
+		std::cout << "result will be : $" << btcPrice * value << "." << std::endl; // delete it
+		return btcPrice * value;
+	} else {
+		std::cout << "Matching data is not found." << std::endl; // delete it 
+	}
+	return -1;
 	// (value in input file) * (value in database)
-
 }
 
 // BitcoinExchange::BitcoinExchange(){} // without params?

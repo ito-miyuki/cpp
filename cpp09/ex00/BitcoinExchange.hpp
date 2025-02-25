@@ -2,6 +2,7 @@
 #include <map>
 #include <string>
 #include <fstream>
+#include <algorithm> // are we allowed to use?
 
 class BitcoinExchange {
 	private:
@@ -19,7 +20,7 @@ class BitcoinExchange {
 
 		bool getFileOpened();
 
-		void calculateExchange(std::string line);
+		double calculateExchange(std::string line, double value);
 		void readInput();
 		bool isValidFormat(std::string& line);
 };
