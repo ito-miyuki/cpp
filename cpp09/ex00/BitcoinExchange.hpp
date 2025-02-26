@@ -4,6 +4,7 @@
 #include <fstream>
 #include <algorithm> // are we allowed to use?
 #include <regex>
+#include <filesystem>
 
 class BitcoinExchange {
 	private:

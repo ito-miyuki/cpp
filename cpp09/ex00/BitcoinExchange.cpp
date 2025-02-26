@@ -91,12 +91,17 @@ void BitcoinExchange::readInput() {
 		std::cerr << "Error: could not open the provided file" << std::endl; // can we use cerr? should this be cout?
 		return ;
 	}
+	if (std::filesystem::is_empty(_fileName)){
+		std::cerr << "Error: file is empty" << std::endl; // can we use cerr? should this be cout?
+		return ;
+	}
 
 	std::getline(inputFile, line); // skip the first line "date | value"
 
 	while (std::getline(inputFile, line)) {
 		if (!isValidFormat(line)) {
-			std::cerr << "Invalid formart in provided file" << std::endl;
+			std::cerr << "Error: bad input => " << line << std::endl;
+			continue ;
 		} else {
 
 			std::string yearStr = "";
@@ -120,7 +125,8 @@ void BitcoinExchange::readInput() {
 				price = stod(priceStr);
 
 				if ((month < 1 || month > 12) || !isValidDate(year, month, date)) {
-					std::cerr << "Error: bad input => " << yearStr << "-" << monthStr << "-" << dateStr << std::endl;
+					// std::cerr << "Error: bad input => " << yearStr << "-" << monthStr << "-" << dateStr << std::endl;
+					std::cerr << "Error: bad input => " << line << std::endl;
 					continue ;
 				} else if (price > 1000) {
 					std::cerr << "Error: too large a number. " << std::endl;
