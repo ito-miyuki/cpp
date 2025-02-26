@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <algorithm> // are we allowed to use?
+#include <regex>
 
 class BitcoinExchange {
 	private:
@@ -22,7 +23,6 @@ class BitcoinExchange {
 
 		double calculateExchange(std::string line, double value);
 		void readInput();
-		bool isValidFormat(std::string& line);
+		bool isValidFormat(std::string line);
 		std::string findClosestDate(std::string date);
-		bool isLeapYear(int year);
 };

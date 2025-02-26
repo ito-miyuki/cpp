@@ -20,6 +20,8 @@ BitcoinExchange::BitcoinExchange(std::string fileName){
 void BitcoinExchange::processData(std::ifstream& file) {
 	std::string line;
 
+	std::getline(file, line); // skip the first line
+
 	while (std::getline(file, line)) {
 		size_t commaPos = line.find(',');
 
@@ -38,74 +40,48 @@ void BitcoinExchange::processData(std::ifstream& file) {
 			std::cerr << "Error: invalid data format in file: " << e.what() << std::endl;
 		}
 	}
-	// delete them below
-	// std::map<std::string, double>::iterator it;
-	// for (it = btcPrices.begin(); it != btcPrices.end(); ++it) {
-	// 		std::cout << "Date: " << it->first << ", Price: " << it->second << std::endl;
-	// }
 }
 
-bool BitcoinExchange::isValidFormat(std::string& line) {
-	int countPipe = 0;
-	int countDash = 0;
-	for (size_t i = 0; i < line.length(); i++) {
-		if (line[i] == '|') {
-			countPipe++;
-		} else if (line[i] == '-') {
-			countDash++;
-		}
-	}
-	if (countPipe != 1 || countDash != 2) {
-		return false;
-	}
-	// yyyy-mm-dd | value
-	if (line.length() < 13 || line[4] != '-' || line[7] != '-' 
-		|| line[11] != '|' || line[10] != ' ' || line[12] != ' ') {
-		return false;
-	}
-	return true;
-}
+bool BitcoinExchange::isValidFormat(std::string line) {
+	std::regex pattern(R"(^\d{4}-\d{2}-\d{2} \| (-?\d+(\.\d+)?)$)");
+	return regex_match(line, pattern);
 
-// does this have to belong to Class??
-bool isValidData(std::string year, std::string month, std::string date, std::string price) {
-	for (size_t i = 0; i < year.length(); i++) {
-		if (!isdigit(year[i])) {
-			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
-			return false;
-		}
-	}
-	for (size_t i = 0; i < month.length(); i++) {
-		if (!isdigit(month[i])) {
-			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
-			return false;
-		}
-	}
-	for (size_t i = 0; i < date.length(); i++) {
-		if (!isdigit(date[i])) {
-			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
-			return false;
-		}
-	}
-	for (size_t i = 0; i < price.length(); i++) {
-		if (!isdigit(price[i]) && price[i] != '.') {
-			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
-			return false;
-		}
-	}
-	return true;
-}
-
-bool BitcoinExchange::isLeapYear(int year) {
 	/*
-	400で割り切れるなら、うるう年
-	次に、100で割り切れるなら、うるう年ではない
-	最後に、4で割り切れるなら、うるう年
-	どれにも当てはまらなければ、通常の年（うるう年ではない）
+	R"() = syntax
+	\d{n} n digits
+	\| = pipe(|) symbol. do not parse as OR operator
+	-? = allow negative(-) but not required
+	\d+ = at least one digit
+	(\.\d+)? = optional decimal part (.123)
+	$ = Ensures the match extends to the end of the string
 	*/
-
-	if (year % 400 == 0 && year % 100 != 0 && year )
 }
-// do leap year check!!
+
+bool isLeapYear(int year) {
+	if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+		return true;
+	}
+	return false;
+}
+
+// should I add this to the class function???
+bool isValidDate(int year, int month, int date) {
+	if (month == 2) {
+		if ((!isLeapYear(year) && date > 28) || (isLeapYear(year) && date > 29)) {
+			return false;
+		}
+	} else if (month == 4 || month == 6 || month == 9 || month == 11) {
+		if (date > 30) {
+			return false;
+		}
+	} else {
+		if (date > 31) {
+			return false;
+		}
+	}
+	return true;
+}
+
 void BitcoinExchange::readInput() {
 	std::string line;
 
@@ -115,6 +91,8 @@ void BitcoinExchange::readInput() {
 		std::cerr << "Error: could not open the provided file" << std::endl; // can we use cerr? should this be cout?
 		return ;
 	}
+
+	std::getline(inputFile, line); // skip the first line "date | value"
 
 	while (std::getline(inputFile, line)) {
 		if (!isValidFormat(line)) {
@@ -135,29 +113,33 @@ void BitcoinExchange::readInput() {
 			dateStr = line.substr(8, 2); // "-mm-dd |"
 			priceStr = line.substr(13); // "| value"
 
-			if (isValidData(yearStr, monthStr, dateStr, priceStr)) {
-				try {
+			try {
 				year = stoi(yearStr);
 				month = stoi(monthStr);
 				date = stoi(dateStr);
 				price = stod(priceStr);
 
-				// add correct error handlings
-				if ((month < 1 || month > 12) || (date < 1 || date > 31)) {
-					std::cerr << "Error: bad input " << yearStr << "-" << monthStr << "-" << dateStr << std::endl;
+				if ((month < 1 || month > 12) || !isValidDate(year, month, date)) {
+					std::cerr << "Error: bad input => " << yearStr << "-" << monthStr << "-" << dateStr << std::endl;
 					continue ;
-				} else if ((price < 0 || price > 1000)) {
+				} else if (price > 1000) {
 					std::cerr << "Error: too large a number. " << std::endl;
 					continue ;
+				} else if (price < 0) {
+					std::cerr << "Error: not a positive number." << std::endl;
+					continue ;
 				}
-				} catch (const std::exception& e) {
+			} catch (const std::exception& e) {
 				std::cerr << "Error: " << e.what() << std::endl;
-				}
-				double result = calculateExchange(line, price);
-				// for testing. //delete it
-				std::cout << "for testing: " << year << std::endl;
-				std::cout << yearStr << "-" << monthStr << "-" << dateStr << " => " << price << " = " << result << std::endl;
 			}
+
+			double result = calculateExchange(line, price);
+
+			if (result == -1) {
+				std::cout << "Matching data is not found." << std::endl; // delete it
+				continue;
+			}
+			std::cout << yearStr << "-" << monthStr << "-" << dateStr << " => " << price << " = " << result << std::endl;
 		}
 	}
 }
@@ -169,28 +151,24 @@ std::string BitcoinExchange::findClosestDate(std::string date) {
 		it--;
 	} else if(it->first > date) {
 		if (it == btcPrices.begin()) {
-			std::cerr << "There is no smaller date than you provided" << std::endl; // delet it
+			// std::cerr << "There is no smaller date than you provided" << std::endl; // for debugging
 			return "";
 		}
-		it--; 
+		it--;
 	}
 	return it->first;
 }
 
 double BitcoinExchange::calculateExchange(std::string line, double value) {
 	std::string inputDate = line.substr(0, 10); // yyyy-mm-dd
-	std::cout << "input date is: " << inputDate << std::endl;
 
 	std::string closestDate = findClosestDate(inputDate);
-	std::cout << "closest date is: " << closestDate << std::endl;
 	if (closestDate.empty()) {
-		std::cout << "Matching data is not found." << std::endl; // delete it 
+		return -1;
 	}
 
 	double btcPrice = btcPrices[closestDate];
-	std::cout << "btcPrice is: $" << btcPrice << std::endl; // delete it
-	std::cout << "value is: $" << value << std::endl; // delete it
-	return btcPrice * value;	
+	return btcPrice * value;
 }
 
 // BitcoinExchange::BitcoinExchange(){} // without params?
@@ -208,3 +186,54 @@ bool BitcoinExchange::getFileOpened() {
 	return _fileOpened;
 }
 
+
+
+// old implementation
+// bool BitcoinExchange::isValidFormat(std::string line) {
+// 	int countPipe = 0;
+// 	int countDash = 0;
+// 	for (size_t i = 0; i < line.length(); i++) {
+// 		if (line[i] == '|') {
+// 			countPipe++;
+// 		} else if (line[i] == '-') {
+// 			countDash++;
+// 		}
+// 	}
+// 	if (countPipe != 1 || countDash != 2) {
+// 		return false;
+// 	}
+// 	// yyyy-mm-dd | value
+// 	if (line.length() < 13 || line[4] != '-' || line[7] != '-'
+// 		|| line[11] != '|' || line[10] != ' ' || line[12] != ' ') {
+// 		return false;
+// 	}
+// 	return true;
+// }
+
+// bool hasOnlyDigit(std::string year, std::string month, std::string date, std::string price) {
+// 	for (size_t i = 0; i < year.length(); i++) {
+// 		if (!isdigit(year[i])) {
+// 			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
+// 			return false;
+// 		}
+// 	}
+// 	for (size_t i = 0; i < month.length(); i++) {
+// 		if (!isdigit(month[i])) {
+// 			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
+// 			return false;
+// 		}
+// 	}
+// 	for (size_t i = 0; i < date.length(); i++) {
+// 		if (!isdigit(date[i])) {
+// 			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
+// 			return false;
+// 		}
+// 	}
+// 	for (size_t i = 0; i < price.length(); i++) {
+// 		if (!isdigit(price[i]) && price[i] != '.') {
+// 			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
+// 			return false;
+// 		}
+// 	}
+// 	return true;
+// }
