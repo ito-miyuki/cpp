@@ -1,5 +1,4 @@
 #include "BitcoinExchange.hpp"
-#include <iostream> // temp
 
 BitcoinExchange::BitcoinExchange(std::string fileName){
 	const std::string priceDatabase = "data.csv";
@@ -12,9 +11,7 @@ BitcoinExchange::BitcoinExchange(std::string fileName){
 		std::cerr << "Error: could not open data base file" << std::endl; // can we use cerr? should this be cout?
 		return ;
 	}
-
 	processData(dataBase);
-
 }
 
 void BitcoinExchange::processData(std::ifstream& file) {
@@ -57,15 +54,14 @@ bool BitcoinExchange::isValidFormat(std::string line) {
 	*/
 }
 
-bool isLeapYear(int year) {
+bool BitcoinExchange::isLeapYear(int year) {
 	if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
 		return true;
 	}
 	return false;
 }
 
-// should I add this to the class function???
-bool isValidDate(int year, int month, int date) {
+bool BitcoinExchange::isValidDate(int year, int month, int date) {
 	if (month == 2) {
 		if ((!isLeapYear(year) && date > 28) || (isLeapYear(year) && date > 29)) {
 			return false;
@@ -177,8 +173,8 @@ double BitcoinExchange::calculateExchange(std::string line, double value) {
 	return btcPrice * value;
 }
 
-// BitcoinExchange::BitcoinExchange(){} // without params?
 BitcoinExchange::~BitcoinExchange(){}
+
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {
 	if (this != &other) {} // change it
 }

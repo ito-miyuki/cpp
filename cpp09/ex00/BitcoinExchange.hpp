@@ -5,6 +5,7 @@
 #include <algorithm> // are we allowed to use?
 #include <regex>
 #include <filesystem>
+#include <iostream>
 
 class BitcoinExchange {
 	private:
@@ -14,16 +15,17 @@ class BitcoinExchange {
 
 	public:
 		BitcoinExchange(std::string fileName);
-		// BitcoinExchange(); // without params?
 		~BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange& other);
 		BitcoinExchange& operator=(const BitcoinExchange& other);
+
 		void processData(std::ifstream& file);
-
 		bool getFileOpened();
-
 		double calculateExchange(std::string line, double value);
 		void readInput();
+
 		bool isValidFormat(std::string line);
 		std::string findClosestDate(std::string date);
+		bool isLeapYear(int year);
+		bool isValidDate(int year, int month, int date);
 };
