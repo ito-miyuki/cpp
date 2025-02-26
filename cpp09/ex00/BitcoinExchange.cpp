@@ -11,10 +11,10 @@ BitcoinExchange::BitcoinExchange(std::string fileName){
 		std::cerr << "Error: could not open data base file" << std::endl; // can we use cerr? should this be cout?
 		return ;
 	}
-	processData(dataBase);
+	parseCSVData(dataBase);
 }
 
-void BitcoinExchange::processData(std::ifstream& file) {
+void BitcoinExchange::parseCSVData(std::ifstream& file) {
 	std::string line;
 
 	std::getline(file, line); // skip the first line
@@ -32,7 +32,7 @@ void BitcoinExchange::processData(std::ifstream& file) {
 		double price = 0;
 		try {
 			price = stod(priceStr);
-			btcPrices[date] = price;
+			exchangeRates[date] = price;
 		} catch (const std::exception& e) {
 			std::cerr << "Error: invalid data format in file: " << e.what() << std::endl;
 		}
@@ -78,7 +78,7 @@ bool BitcoinExchange::isValidDate(int year, int month, int date) {
 	return true;
 }
 
-void BitcoinExchange::readInput() {
+void BitcoinExchange::processUserInputFile() {
 	std::string line;
 
 	std::ifstream inputFile(_fileName);
@@ -147,12 +147,12 @@ void BitcoinExchange::readInput() {
 }
 
 std::string BitcoinExchange::findClosestDate(std::string date) {
-	auto it = btcPrices.lower_bound(date);
+	auto it = exchangeRates.lower_bound(date);
 
-	if (it == btcPrices.end()) {
+	if (it == exchangeRates.end()) {
 		it--;
 	} else if(it->first > date) {
-		if (it == btcPrices.begin()) {
+		if (it == exchangeRates.begin()) {
 			// std::cerr << "There is no smaller date than you provided" << std::endl; // for debugging
 			return "";
 		}
@@ -169,7 +169,7 @@ double BitcoinExchange::calculateExchange(std::string line, double value) {
 		return -1;
 	}
 
-	double btcPrice = btcPrices[closestDate];
+	double btcPrice = exchangeRates[closestDate];
 	return btcPrice * value;
 }
 

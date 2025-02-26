@@ -9,7 +9,7 @@
 
 class BitcoinExchange {
 	private:
-		std::map<std::string, double> btcPrices;
+		std::map<std::string, double> exchangeRates;
 		std::string _fileName;
 		bool _fileOpened;
 
@@ -19,10 +19,10 @@ class BitcoinExchange {
 		BitcoinExchange(const BitcoinExchange& other);
 		BitcoinExchange& operator=(const BitcoinExchange& other);
 
-		void processData(std::ifstream& file);
+		void parseCSVData(std::ifstream& file);
 		bool getFileOpened();
 		double calculateExchange(std::string line, double value);
-		void readInput();
+		void processUserInputFile();
 
 		bool isValidFormat(std::string line);
 		std::string findClosestDate(std::string date);
