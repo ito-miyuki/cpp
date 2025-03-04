@@ -37,6 +37,6 @@ int main(int argc, char **argv) {
 		std::cerr << "Usage example: ./RPN \"7 7 * 7 -\"" << std::endl;
 		return 1;
 	}
-	(void)argv;
+	argv[1]
 	return 0;
 }
