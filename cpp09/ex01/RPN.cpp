@@ -21,6 +21,7 @@ bool isValidInput(const std::string& str) {
 	}
 	return true;
 }
+
 void RPN::calculator(const std::string& str) {
 	std::cout << "You are in Calculator(). str is " << str << std::endl;
 	// check if everything is digit or the symbols
@@ -28,5 +29,40 @@ void RPN::calculator(const std::string& str) {
 		std::cerr << "Error: it contains invalid charactor" << std::endl;
 		return ;
 	}
-	std::cout << "Input doesn't contain any invalid chars" << std::endl; // delete it
+
+	std::stack<int> stack;
+	int result = 0;
+	for (size_t i = 0; i < str.length(); i++) {
+		if (isdigit(str[i])){
+			int n = str[i] - '0';
+			stack.push(n);
+		} else if (str[i] == ' ') {
+			continue;
+		} else {
+			int n1 = stack.top(); // take out the top one
+			stack.pop(); // delete it
+			int n2 = stack.top();
+			stack.pop();
+
+			switch (str[i]) {
+				case '+':
+					result = n2 + n1;
+					break;
+				case '-':
+					result = n2 - n1;
+					break;
+				case '*':
+					result = n2 * n1;
+					break;
+				case '/':
+					result = n2 / n1;
+					break;
+				default:
+					std::cerr << "Invalid char detected" << std::endl;
+					break;
+			}
+			stack.push(result);
+		}
+	}
+	std::cout << "Final result is: " << result << std::endl;
 }
