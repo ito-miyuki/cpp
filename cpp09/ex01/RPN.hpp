@@ -10,4 +10,6 @@ class RPN {
 		~RPN();
 		RPN(const RPN& other);
 		RPN& operator=(const RPN& other);
+
+		static void calculator(const std::string& str);
 };
