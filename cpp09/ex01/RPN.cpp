@@ -14,10 +14,28 @@ RPN& RPN::operator=(const RPN& other){
 }
 
 bool isValidInput(const std::string& str) {
+	// for(size_t i = 0; i < str.length(); i++) {
+	// 	if (!isdigit(str[i]) && str[i] != ' ' && str[i] != '+' && str[i] != '-' && str[i] != '*' && str[i] != '/') {
+	// 		return false;
+	// 	}
+	// }
+	int numberCount = 0;
+	int operatorCount = 0;
+
 	for(size_t i = 0; i < str.length(); i++) {
-		if (!isdigit(str[i]) && str[i] != ' ' && str[i] != '+' && str[i] != '-' && str[i] != '*' && str[i] != '/') {
-			return false;
+		if (isdigit(str[i])) {
+			numberCount++;
+		} else if (str[i] != '+' && str[i] != '-' && str[i] != '*' && str[i] != '/') {
+			operatorCount++;
+			if (numberCount < 2) { // operator needs at least 2 numbers
+				return false;
+			}
+		} else if (str[i] != ' ') {
+			continue;
 		}
+	}
+	if (numberCount == 1 && operatorCount == numberCount - 1) {
+		return false;
 	}
 	return true;
 }
