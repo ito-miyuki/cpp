@@ -13,38 +13,52 @@ RPN& RPN::operator=(const RPN& other){
 	return *this;
 }
 
+
+/*
+	演算子が一つ以上あるか
+	長さが０
+	入力が一文字だけで数字じゃない
+	入力が２文字以上で演算子がない
+*/
+
 bool isValidInput(const std::string& str) {
-	// for(size_t i = 0; i < str.length(); i++) {
-	// 	if (!isdigit(str[i]) && str[i] != ' ' && str[i] != '+' && str[i] != '-' && str[i] != '*' && str[i] != '/') {
-	// 		return false;
-	// 	}
-	// }
 	int numberCount = 0;
 	int operatorCount = 0;
+	int stackCount = 0;
 
 	for(size_t i = 0; i < str.length(); i++) {
 		if (isdigit(str[i])) {
 			numberCount++;
-		} else if (str[i] != '+' && str[i] != '-' && str[i] != '*' && str[i] != '/') {
+			stackCount++;
+		} else if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/') {
 			operatorCount++;
-			if (numberCount < 2) { // operator needs at least 2 numbers
+			if (stackCount < 2) { // operator needs at least 2 numbers
+				std::cerr << "Error: invalid format. Not enough numbers before operator." << std::endl; // for debugging, delete it
 				return false;
 			}
-		} else if (str[i] != ' ') {
+			stackCount--;
+		} else if (str[i] == ' ') {
 			continue;
+		} else {
+			std::cerr << "Error: it contains invalid charactor" << std::endl; // delete it
+			return false; 
 		}
 	}
-	if (numberCount == 1 && operatorCount == numberCount - 1) {
+	
+	std::cout << "stack count is " << stackCount << std::endl; // delete it
+	std::cout << "numberCount is " << numberCount << std::endl; // delete it
+	std::cout << "operatorCount is " << operatorCount << std::endl; //delete it
+
+	if (stackCount != 1 || operatorCount != numberCount - 1) {
+		std::cerr << "Error: invalid format. Too many numbers or operators." << std::endl; // for debugging, delete it
 		return false;
 	}
 	return true;
 }
 
 void RPN::calculator(const std::string& str) {
-	std::cout << "You are in Calculator(). str is " << str << std::endl;
-	// check if everything is digit or the symbols
 	if (!isValidInput(str)) {
-		std::cerr << "Error: it contains invalid charactor" << std::endl;
+		std::cerr << "Error" << std::endl;
 		return ;
 	}
 
@@ -62,6 +76,11 @@ void RPN::calculator(const std::string& str) {
 			int n2 = stack.top();
 			stack.pop();
 
+			if (str[i] == '/' && n1 == 0) {
+				std::cerr << "Error: division by zero is not allowed." << std::endl;
+    			return;
+			}
+			
 			switch (str[i]) {
 				case '+':
 					result = n2 + n1;
@@ -76,7 +95,7 @@ void RPN::calculator(const std::string& str) {
 					result = n2 / n1;
 					break;
 				default:
-					std::cerr << "Invalid char detected" << std::endl;
+					std::cerr << "Invalid char detected" << std::endl; // it might not be needed
 					break;
 			}
 			stack.push(result);
