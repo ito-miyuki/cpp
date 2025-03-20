@@ -7,13 +7,16 @@
 class PmergeMe {
 
     private:
-        std::vector<int> _vector; // you might want to change it
-        std::deque<int> _deque; // you might want to change it
+        std::vector<int> _intVector; // you might want to change it
+        std::deque<int> _intDeque; // you might want to change it
     public:
         PmergeMe();
         ~PmergeMe();
         PmergeMe(const PmergeMe& other);
         PmergeMe& operator=(const PmergeMe& other);
-        static void sortingVector(std::string strNum);
-        static void sortingDeque(std::string strNum);
+        void parseAndValidateInput(int argc, char **argv);
+        void sortingVector();
+        void sortingDeque();
+
+        const std::vector<int>& getVector() const; // you might not need it
 };
