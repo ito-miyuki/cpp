@@ -15,8 +15,8 @@ class PmergeMe {
         PmergeMe(const PmergeMe& other);
         PmergeMe& operator=(const PmergeMe& other);
         void parseAndValidateInput(int argc, char **argv);
-        void sortingVector();
-        void sortingDeque();
+        void sortVector(std::vector<int>& vector);
+        void sortDeque();
 
-        const std::vector<int>& getVector() const; // you might not need it
+        std::vector<int>& getVector(); // you might not need it
 };

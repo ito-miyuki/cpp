@@ -13,16 +13,21 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other){
 	return *this;   
 }
 
-void PmergeMe::sortingVector(){
+void PmergeMe::sortVector(std::vector<int>& vector){
     std::cout << "You are in sortingVector()" << std::endl;
+
+    if (vector.size() == 1) {
+        return ;
+    }
+
     std::vector<int> bigList; // store the bigger value
     std::vector<int> smallList; // store the smaller value
 
-    size_t vectorSize = _intVector.size();
+    size_t vectorSize = vector.size();
 
     for (size_t i = 0; i + 1 < vectorSize; i += 2) {
-        int a = _intVector[i];
-        int b = _intVector[i + 1];
+        int a = vector[i];
+        int b = vector[i + 1];
 
         if (a < b) {
             bigList.push_back(b);
@@ -44,14 +49,16 @@ void PmergeMe::sortingVector(){
     for (size_t k = 0; k < smallList.size(); k++) {
         std::cout << "index[" << k << "] in  smallList is " << smallList[k] << std::endl;
     }
+
+    sortVector(bigList);
 }
 
-void PmergeMe::sortingDeque(){
+void PmergeMe::sortDeque(){
     std::cout << "You are in sortingDeque()" << std::endl;
 }
 
 // you might need to delete it if you are not using it
-const std::vector<int>& PmergeMe::getVector() const {
+std::vector<int>& PmergeMe::getVector() {
     return _intVector;
 }
 

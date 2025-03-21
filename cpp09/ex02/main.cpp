@@ -25,8 +25,8 @@ int main(int argc, char **argv) {
         }
     }
 
-    pmm.sortingVector();
-    pmm.sortingDeque();
+    pmm.sortVector(pmm.getVector());
+    pmm.sortDeque();
 
     return 0;
 }
