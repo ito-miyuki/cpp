@@ -26,7 +26,16 @@ int main(int argc, char **argv) {
     }
 
     pmm.sortVector(pmm.getVector());
-    pmm.sortDeque();
+    // pmm.sorDeque();
+    std::cout << "After: ";
+    for (size_t i = 0; i < pmm.getVector().size(); ++i) {
+        std::cout << pmm.getVector()[i];
+        if (i < pmm.getVector().size() - 1) {
+            std::cout << " ";
+        } else {
+            std::cout << std::endl;
+        }
+    }
 
     return 0;
 }

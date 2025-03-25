@@ -13,8 +13,43 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other){
 	return *this;   
 }
 
+std::vector<size_t> PmergeMe::indexByJacobsthal(size_t listSize) {
+    
+    std::vector<size_t> indexList;
+    std::vector<size_t> used;
+
+    std::vector<int> jacobVector;
+    jacobVector.push_back(0);
+    if (listSize > 1) {
+        jacobVector.push_back(1);
+    }
+
+    size_t j = 2;
+    while (true) {
+        size_t next = jacobVector[j - 1] + 2 * jacobVector[j - 2];
+        if (next >= listSize) {
+            break;
+        }
+        jacobVector.push_back(next);
+        ++j;
+    }
+
+    for (size_t i = jacobVector.size(); i > 0; --i) {
+        if (jacobVector[i - 1] < listSize && used.insert(jacobVector[i - 1].second)) {
+            indexList.push_back(jacobVector[i - 1]);
+        }
+    }
+
+    for (size_t i = 0; i < listSize; ++i) {
+        if (used.insert(i).sedond) {
+            indexList.push_back(i);
+        }
+    }
+    return indexList;
+}
+
 void PmergeMe::sortVector(std::vector<int>& vector){
-    std::cout << "You are in sortingVector()" << std::endl;
+    // std::cout << "You are in sortingVector()" << std::endl;
 
     if (vector.size() == 1) {
         return ;
@@ -39,25 +74,34 @@ void PmergeMe::sortVector(std::vector<int>& vector){
     }
 
     if (vectorSize % 2 != 0) {
-        smallList.push_back(_intVector[vectorSize - 1]); // or you can use _intVector.back()
+        smallList.push_back(vector[vectorSize - 1]); // or you can use _intVector.back()
     }
 
     //for debuging
-    for (size_t j = 0; j < bigList.size(); j++) {
-        std::cout << "index[" << j << "] in  bigList is " << bigList[j] << std::endl;
-    }
-    for (size_t k = 0; k < smallList.size(); k++) {
-        std::cout << "index[" << k << "] in  smallList is " << smallList[k] << std::endl;
-    }
+    // for (size_t n = 0; n < bigList.size(); n++) {
+    //     std::cout << "index[" << n << "] in  bigList is " << bigList[n] << std::endl;
+    // }
+    // for (size_t k = 0; k < smallList.size(); k++) {
+    //     std::cout << "index[" << k << "] in  smallList is " << smallList[k] << std::endl;
+    // }
 
     sortVector(bigList);
+
+    std::vector<size_t> insertOrder = indexByJacobsthal(smallList.size());
+
+    for (size_t index : insertOrder) {
+        if (index < smallList.size()) {
+            std::vector<int>::iterator indexToInsert = std::lower_bound(bigList.begin(), bigList.end(), smallList[j]);
+            bigList.insert(indexToInsert, smallList[index]);
+        }
+    }
+    vector = bigList;
 }
 
 void PmergeMe::sortDeque(){
     std::cout << "You are in sortingDeque()" << std::endl;
 }
 
-// you might need to delete it if you are not using it
 std::vector<int>& PmergeMe::getVector() {
     return _intVector;
 }

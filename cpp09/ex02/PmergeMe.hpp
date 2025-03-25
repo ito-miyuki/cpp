@@ -3,6 +3,7 @@
 #include <vector>
 #include <deque>
 #include <sstream> // are we allowed to use it?
+#include <algorithm> // std::lower_bound
 
 class PmergeMe {
 
@@ -17,6 +18,7 @@ class PmergeMe {
         void parseAndValidateInput(int argc, char **argv);
         void sortVector(std::vector<int>& vector);
         void sortDeque();
+        std::vector<size_t> indexByJacobsthal(size_t n);
 
         std::vector<int>& getVector(); // you might not need it
 };
