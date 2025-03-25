@@ -18,14 +18,14 @@ std::vector<size_t> PmergeMe::indexByJacobsthal(size_t listSize) {
     std::vector<size_t> indexList;
     std::vector<size_t> used;
 
-    std::vector<int> jacobVector;
+    std::vector<size_t> jacobVector;
     jacobVector.push_back(0);
-    if (listSize > 1) {
+    if (listSize >= 2) {
         jacobVector.push_back(1);
     }
 
     size_t j = 2;
-    while (true) {
+    while (j < jacobVector.size()) {
         size_t next = jacobVector[j - 1] + 2 * jacobVector[j - 2];
         if (next >= listSize) {
             break;
@@ -34,15 +34,20 @@ std::vector<size_t> PmergeMe::indexByJacobsthal(size_t listSize) {
         ++j;
     }
 
-    for (size_t i = jacobVector.size(); i > 0; --i) {
-        if (jacobVector[i - 1] < listSize && used.insert(jacobVector[i - 1].second)) {
-            indexList.push_back(jacobVector[i - 1]);
+    if (!jacobVector.empty()) {
+        for (size_t i = jacobVector.size(); i > 0; --i) {
+            size_t index = jacobVector[i - 1];
+            if (std::find(used.begin(), used.end(), index) == used.end()) {
+                indexList.push_back(index);
+                used.push_back(index);
+            }
         }
     }
 
     for (size_t i = 0; i < listSize; ++i) {
-        if (used.insert(i).sedond) {
+        if (std::find(used.begin(), used.end(), i) == used.end()) {
             indexList.push_back(i);
+            used.push_back(i);
         }
     }
     return indexList;
@@ -91,7 +96,7 @@ void PmergeMe::sortVector(std::vector<int>& vector){
 
     for (size_t index : insertOrder) {
         if (index < smallList.size()) {
-            std::vector<int>::iterator indexToInsert = std::lower_bound(bigList.begin(), bigList.end(), smallList[j]);
+            std::vector<int>::iterator indexToInsert = std::lower_bound(bigList.begin(), bigList.end(), smallList[index]);
             bigList.insert(indexToInsert, smallList[index]);
         }
     }
