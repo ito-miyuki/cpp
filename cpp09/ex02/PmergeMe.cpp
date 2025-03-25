@@ -1,6 +1,5 @@
 #include "PmergeMe.hpp"
 
-
 PmergeMe::PmergeMe(){}
 
 PmergeMe::~PmergeMe(){}
@@ -53,8 +52,16 @@ std::vector<size_t> PmergeMe::indexByJacobsthal(size_t listSize) {
     return indexList;
 }
 
-void PmergeMe::sortVector(std::vector<int>& vector){
-    // std::cout << "You are in sortingVector()" << std::endl;
+void PmergeMe::sortVector(std::vector<int>& vector) {
+
+    std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
+    sortVectorAlgorithm(vector);
+    std::chrono::time_point<std::chrono::high_resolution_clock> end = std::chrono::high_resolution_clock::now();
+
+    _timeVector = std::chrono::duration_cast<std::chrono::duration<double, std::micro>>(end - start);
+}
+
+void PmergeMe::sortVectorAlgorithm(std::vector<int>& vector){
 
     if (vector.size() == 1) {
         return ;
@@ -103,13 +110,46 @@ void PmergeMe::sortVector(std::vector<int>& vector){
     vector = bigList;
 }
 
-void PmergeMe::sortDeque(){
-    std::cout << "You are in sortingDeque()" << std::endl;
+void PmergeMe::sortDeque(std::deque<int>& deque){
+
+    std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
+    sortDequeAlgorithm(deque);
+    std::chrono::time_point<std::chrono::high_resolution_clock> end = std::chrono::high_resolution_clock::now();
+
+    _timeDeque = std::chrono::duration_cast<std::chrono::duration<double, std::micro>>(end - start);
+
+}
+
+void PmergeMe::sortDequeAlgorithm(std::deque<int>& deque){
+    (void)deque; // delete it
+
 }
 
 std::vector<int>& PmergeMe::getVector() {
     return _intVector;
 }
+
+std::deque<int>& PmergeMe::getDeque() {
+    return _intDeque;
+}
+
+
+// size_t PmergeMe::getVectorSize() {
+//     return _vectorSize;
+// }
+
+// size_t PmergeMe::getVectorDeque(){
+//     return _dequeSize;
+// }
+
+std::chrono::duration<double, std::micro> PmergeMe::getTimeVector() {
+    return _timeVector;
+}
+
+std::chrono::duration<double, std::micro> PmergeMe::getTimeDeque() {
+    return _timeDeque;
+}
+
 
 
 void PmergeMe::parseAndValidateInput(int argc, char **argv) {
@@ -128,6 +168,7 @@ void PmergeMe::parseAndValidateInput(int argc, char **argv) {
 
             if (num < 0) {
                 std::cerr << "negative number are not allowed" << std::endl;
+                return ;
             }
 
             _intVector.push_back(num);

@@ -25,8 +25,9 @@ int main(int argc, char **argv) {
         }
     }
 
-    pmm.sortVector(pmm.getVector());
-    // pmm.sorDeque();
+    pmm.sortVector(pmm.getVector());    
+    pmm.sortDeque(pmm.getDeque());
+
     std::cout << "After: ";
     for (size_t i = 0; i < pmm.getVector().size(); ++i) {
         std::cout << pmm.getVector()[i];
@@ -36,6 +37,13 @@ int main(int argc, char **argv) {
             std::cout << std::endl;
         }
     }
+
+    std::cout << "Time to process a range of " << pmm.getVector().size() << " elements with std::vector : "
+     << pmm.getTimeVector().count() / 1000 << " us" << std::endl;
+
+    std::cout << "Time to process a range of " << pmm.getVector().size() << " elements with std::deque : "
+     << pmm.getTimeDeque().count() / 1000 << " us" << std::endl;
+
 
     return 0;
 }
