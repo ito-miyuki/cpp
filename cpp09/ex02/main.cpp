@@ -12,7 +12,10 @@ int main(int argc, char **argv) {
     }
 
     PmergeMe pmm; // better name?
-    pmm.parseAndValidateInput(argc, argv);
+    if (!pmm.parseAndValidateInput(argc, argv)){
+        std::cerr << "Error" << std::endl; // modify it
+        return 1;
+    }
 
     // this can be one function to print vefire resuly
     std::cout << "Before: ";
@@ -24,6 +27,17 @@ int main(int argc, char **argv) {
             std::cout << std::endl;
         }
     }
+
+    // for testing, delete t
+    // std::cout << "Before(deque): ";
+    // for (size_t i = 0; i < pmm.getDeque().size(); ++i) {
+    //     std::cout << pmm.getDeque()[i];
+    //     if (i < pmm.getDeque().size() - 1) {
+    //         std::cout << " ";
+    //     } else {
+    //         std::cout << std::endl;
+    //     }
+    // }
 
     pmm.sortVector(pmm.getVector());    
     pmm.sortDeque(pmm.getDeque());
@@ -37,6 +51,17 @@ int main(int argc, char **argv) {
             std::cout << std::endl;
         }
     }
+
+    // for testing, delete it
+    // std::cout << "After(deque): ";
+    // for (size_t i = 0; i < pmm.getDeque().size(); ++i) {
+    //     std::cout << pmm.getDeque()[i];
+    //     if (i < pmm.getDeque().size() - 1) {
+    //         std::cout << " ";
+    //     } else {
+    //         std::cout << std::endl;
+    //     }
+    // }
 
     std::cout << "Time to process a range of " << pmm.getVector().size() << " elements with std::vector : "
      << pmm.getTimeVector().count() / 1000 << " us" << std::endl;

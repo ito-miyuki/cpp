@@ -21,7 +21,7 @@ class PmergeMe {
         ~PmergeMe();
         PmergeMe(const PmergeMe& other);
         PmergeMe& operator=(const PmergeMe& other);
-        void parseAndValidateInput(int argc, char **argv);
+        bool parseAndValidateInput(int argc, char **argv);
 
         void sortVector(std::vector<int>& vector);
         void sortVectorAlgorithm(std::vector<int>& vector);

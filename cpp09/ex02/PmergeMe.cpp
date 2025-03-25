@@ -121,8 +121,43 @@ void PmergeMe::sortDeque(std::deque<int>& deque){
 }
 
 void PmergeMe::sortDequeAlgorithm(std::deque<int>& deque){
-    (void)deque; // delete it
+    if (deque.size() == 1) {
+        return ;
+    }
 
+    std::deque<int> bigList; // store the bigger value
+    std::deque<int> smallList; // store the smaller value
+
+    size_t dequeSize = deque.size();
+
+    for (size_t i = 0; i + 1 < dequeSize; i += 2) {
+        int a = deque[i];
+        int b = deque[i + 1];
+
+        if (a < b) {
+            bigList.push_back(b);
+            smallList.push_back(a);
+        } else {
+            bigList.push_back(a);
+            smallList.push_back(b);
+        }
+    }
+
+    if (dequeSize % 2 != 0) {
+        smallList.push_back(deque[dequeSize - 1]); // or you can use _intdeque.back()
+    }
+
+    sortDeque(bigList);
+
+    std::vector<size_t> insertOrder = indexByJacobsthal(smallList.size());
+
+    for (size_t index : insertOrder) {
+        if (index < smallList.size()) {
+            std::deque<int>::iterator indexToInsert = std::lower_bound(bigList.begin(), bigList.end(), smallList[index]);
+            bigList.insert(indexToInsert, smallList[index]);
+        }
+    }
+    deque = bigList;
 }
 
 std::vector<int>& PmergeMe::getVector() {
@@ -133,15 +168,6 @@ std::deque<int>& PmergeMe::getDeque() {
     return _intDeque;
 }
 
-
-// size_t PmergeMe::getVectorSize() {
-//     return _vectorSize;
-// }
-
-// size_t PmergeMe::getVectorDeque(){
-//     return _dequeSize;
-// }
-
 std::chrono::duration<double, std::micro> PmergeMe::getTimeVector() {
     return _timeVector;
 }
@@ -150,9 +176,8 @@ std::chrono::duration<double, std::micro> PmergeMe::getTimeDeque() {
     return _timeDeque;
 }
 
-
-
-void PmergeMe::parseAndValidateInput(int argc, char **argv) {
+// should this be bool func?
+bool PmergeMe::parseAndValidateInput(int argc, char **argv) {
 
     for (int i = 1; i < argc; i++) {
         std::string token = argv[i];
@@ -161,6 +186,7 @@ void PmergeMe::parseAndValidateInput(int argc, char **argv) {
         for (size_t j = 0; j < token.length(); j++) {
             if (!isdigit(token[j])) {
                 std::cerr << "It contains non-digit char" << std::endl; // delete it
+                return false;
             }
         }
         try {
@@ -168,13 +194,15 @@ void PmergeMe::parseAndValidateInput(int argc, char **argv) {
 
             if (num < 0) {
                 std::cerr << "negative number are not allowed" << std::endl;
-                return ;
+                return false;
             }
 
             _intVector.push_back(num);
             _intDeque.push_back(num);
         } catch (const std::exception& e) {
             std::cerr << "Error: Invalid input. " << e.what() << std::endl;
+            return false;
         }
     }
+    return true;
 }
