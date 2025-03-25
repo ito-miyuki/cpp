@@ -3,12 +3,21 @@
 PmergeMe::PmergeMe(){}
 
 PmergeMe::~PmergeMe(){}
+
 PmergeMe::PmergeMe(const PmergeMe& other){
-    *this = other;
+    _intVector = other._intVector;
+    _intDeque = other._intDeque;
+    _timeVector = other._timeVector;
+    _timeDeque = other._timeDeque;
 }
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& other){
-    (void)other;
+    if (this != &other) {
+        _intVector = other._intVector;
+        _intDeque = other._intDeque;
+        _timeVector = other._timeVector;
+        _timeDeque = other._timeDeque;
+    }
 	return *this;   
 }
 
@@ -86,7 +95,7 @@ void PmergeMe::sortVectorAlgorithm(std::vector<int>& vector){
     }
 
     if (vectorSize % 2 != 0) {
-        smallList.push_back(vector[vectorSize - 1]); // or you can use _intVector.back()
+        smallList.push_back(vector[vectorSize - 1]);
     }
 
     //for debuging
@@ -144,7 +153,7 @@ void PmergeMe::sortDequeAlgorithm(std::deque<int>& deque){
     }
 
     if (dequeSize % 2 != 0) {
-        smallList.push_back(deque[dequeSize - 1]); // or you can use _intdeque.back()
+        smallList.push_back(deque[dequeSize - 1]);
     }
 
     sortDeque(bigList);
@@ -176,7 +185,6 @@ std::chrono::duration<double, std::micro> PmergeMe::getTimeDeque() {
     return _timeDeque;
 }
 
-// should this be bool func?
 bool PmergeMe::parseAndValidateInput(int argc, char **argv) {
 
     for (int i = 1; i < argc; i++) {
@@ -185,7 +193,7 @@ bool PmergeMe::parseAndValidateInput(int argc, char **argv) {
         // check chars one by one because stoi accepts something like 56as or 67f2
         for (size_t j = 0; j < token.length(); j++) {
             if (!isdigit(token[j])) {
-                std::cerr << "It contains non-digit char" << std::endl; // delete it
+                // std::cerr << "It contains non-digit char" << std::endl; // delete it
                 return false;
             }
         }
@@ -193,7 +201,7 @@ bool PmergeMe::parseAndValidateInput(int argc, char **argv) {
             int num = std::stoi(token);
 
             if (num < 0) {
-                std::cerr << "negative number are not allowed" << std::endl;
+                std::cerr << "Error: negative number are not allowed" << std::endl;
                 return false;
             }
 

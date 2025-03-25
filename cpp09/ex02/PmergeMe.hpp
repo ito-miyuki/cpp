@@ -2,19 +2,18 @@
 #include <iostream>
 #include <vector>
 #include <deque>
-#include <sstream> // are we allowed to use it?
+#include <sstream>
 #include <algorithm> // std::lower_bound
 #include <chrono> // for time stamp
 
 class PmergeMe {
 
     private:
-        std::vector<int> _intVector; // you might want to change it
-        std::deque<int> _intDeque; // you might want to change it
+        std::vector<int> _intVector;
+        std::deque<int> _intDeque;
 
         std::chrono::duration<double, std::micro> _timeVector;
         std::chrono::duration<double, std::micro> _timeDeque;
-
 
     public:
         PmergeMe();

@@ -2,16 +2,33 @@
 
 BitcoinExchange::BitcoinExchange(std::string fileName){
 	const std::string priceDatabase = "data.csv";
-	_fileOpened = true; // default
+	_fileOpened = true;
 	_fileName = fileName;
 
-	std::ifstream dataBase(priceDatabase);
+	std::ifstream dataBase(priceDatabase); // open the data file
 	if (!dataBase.is_open()) {
 		_fileOpened = false;
-		std::cerr << "Error: could not open data base file" << std::endl; // can we use cerr? should this be cout?
+		std::cerr << "Error: could not open data base file" << std::endl;
 		return ;
 	}
 	parseCSVData(dataBase);
+}
+
+BitcoinExchange::~BitcoinExchange(){}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {
+	exchangeRates = other.exchangeRates;
+	_fileName = other._fileName;
+	_fileOpened = other._fileOpened;
+}
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
+	if (this != &other) {
+		exchangeRates = other.exchangeRates;
+		_fileName = other._fileName;
+		_fileOpened = other._fileOpened;
+	}
+	return *this;
 }
 
 void BitcoinExchange::parseCSVData(std::ifstream& file) {
@@ -84,11 +101,11 @@ void BitcoinExchange::processUserInputFile() {
 	std::ifstream inputFile(_fileName);
 	if (!inputFile.is_open()) {
 		_fileOpened = false;
-		std::cerr << "Error: could not open the provided file" << std::endl; // can we use cerr? should this be cout?
+		std::cerr << "Error: could not open the provided file" << std::endl;
 		return ;
 	}
 	if (std::filesystem::is_empty(_fileName)){
-		std::cerr << "Error: file is empty" << std::endl; // can we use cerr? should this be cout?
+		std::cerr << "Error: file is empty" << std::endl;
 		return ;
 	}
 
@@ -125,7 +142,7 @@ void BitcoinExchange::processUserInputFile() {
 					std::cerr << "Error: bad input => " << line << std::endl;
 					continue ;
 				} else if (price > 1000) {
-					std::cerr << "Error: too large a number. " << std::endl;
+					std::cerr << "Error: too large a number." << std::endl;
 					continue ;
 				} else if (price < 0) {
 					std::cerr << "Error: not a positive number." << std::endl;
@@ -147,13 +164,12 @@ void BitcoinExchange::processUserInputFile() {
 }
 
 std::string BitcoinExchange::findClosestDate(std::string date) {
-	auto it = exchangeRates.lower_bound(date);
+	std::map<std::string, double>::iterator it = exchangeRates.lower_bound(date);
 
 	if (it == exchangeRates.end()) {
 		it--;
 	} else if(it->first > date) {
 		if (it == exchangeRates.begin()) {
-			// std::cerr << "There is no smaller date than you provided" << std::endl; // for debugging
 			return "";
 		}
 		it--;
@@ -173,69 +189,6 @@ double BitcoinExchange::calculateExchange(std::string line, double value) {
 	return btcPrice * value;
 }
 
-BitcoinExchange::~BitcoinExchange(){}
-
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {
-	if (this != &other) {} // change it
-}
-
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
-	if (this != &other) {} // change it
-	return *this;
-}
-
 bool BitcoinExchange::getFileOpened() {
 	return _fileOpened;
 }
-
-
-
-// old implementation
-// bool BitcoinExchange::isValidFormat(std::string line) {
-// 	int countPipe = 0;
-// 	int countDash = 0;
-// 	for (size_t i = 0; i < line.length(); i++) {
-// 		if (line[i] == '|') {
-// 			countPipe++;
-// 		} else if (line[i] == '-') {
-// 			countDash++;
-// 		}
-// 	}
-// 	if (countPipe != 1 || countDash != 2) {
-// 		return false;
-// 	}
-// 	// yyyy-mm-dd | value
-// 	if (line.length() < 13 || line[4] != '-' || line[7] != '-'
-// 		|| line[11] != '|' || line[10] != ' ' || line[12] != ' ') {
-// 		return false;
-// 	}
-// 	return true;
-// }
-
-// bool hasOnlyDigit(std::string year, std::string month, std::string date, std::string price) {
-// 	for (size_t i = 0; i < year.length(); i++) {
-// 		if (!isdigit(year[i])) {
-// 			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
-// 			return false;
-// 		}
-// 	}
-// 	for (size_t i = 0; i < month.length(); i++) {
-// 		if (!isdigit(month[i])) {
-// 			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
-// 			return false;
-// 		}
-// 	}
-// 	for (size_t i = 0; i < date.length(); i++) {
-// 		if (!isdigit(date[i])) {
-// 			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
-// 			return false;
-// 		}
-// 	}
-// 	for (size_t i = 0; i < price.length(); i++) {
-// 		if (!isdigit(price[i]) && price[i] != '.') {
-// 			std::cerr << "Data contains non digit char" << std::endl; // for testing, delete it
-// 			return false;
-// 		}
-// 	}
-// 	return true;
-// }

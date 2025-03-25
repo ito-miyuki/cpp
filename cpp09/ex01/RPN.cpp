@@ -5,21 +5,15 @@ RPN::RPN(){}
 RPN::~RPN(){}
 
 RPN::RPN(const RPN& other){
-	*this = other;
+	_stack = other._stack;
 }
 
 RPN& RPN::operator=(const RPN& other){
-	(void)other;
+	if (this != &other) {
+		_stack = other._stack;
+	}
 	return *this;
 }
-
-
-/*
-	演算子が一つ以上あるか
-	長さが０
-	入力が一文字だけで数字じゃない
-	入力が２文字以上で演算子がない
-*/
 
 bool isValidInput(const std::string& str) {
 	int numberCount = 0;
@@ -33,24 +27,20 @@ bool isValidInput(const std::string& str) {
 		} else if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/') {
 			operatorCount++;
 			if (stackCount < 2) { // operator needs at least 2 numbers
-				std::cerr << "Error: invalid format. Not enough numbers before operator." << std::endl; // for debugging, delete it
+				std::cerr << "Error: invalid format. Not enough numbers before operator." << std::endl; // for debugging
 				return false;
 			}
 			stackCount--;
 		} else if (str[i] == ' ') {
 			continue;
 		} else {
-			std::cerr << "Error: it contains invalid charactor" << std::endl; // delete it
+			std::cerr << "Error: it contains invalid charactor" << std::endl; // for debugging
 			return false; 
 		}
 	}
-	
-	std::cout << "stack count is " << stackCount << std::endl; // delete it
-	std::cout << "numberCount is " << numberCount << std::endl; // delete it
-	std::cout << "operatorCount is " << operatorCount << std::endl; //delete it
 
 	if (stackCount != 1 || operatorCount != numberCount - 1) {
-		std::cerr << "Error: invalid format. Too many numbers or operators." << std::endl; // for debugging, delete it
+		std::cerr << "Error: invalid format. Too many numbers or operators." << std::endl; // for debugging
 		return false;
 	}
 	return true;
@@ -72,7 +62,7 @@ void RPN::calculator(const std::string& str) {
 			continue;
 		} else {
 			int n1 = stack.top(); // take out the top one
-			stack.pop(); // delete it
+			stack.pop();
 			int n2 = stack.top();
 			stack.pop();
 
@@ -101,5 +91,5 @@ void RPN::calculator(const std::string& str) {
 			stack.push(result);
 		}
 	}
-	std::cout << "Final result is: " << result << std::endl;
+	std::cout << result << std::endl;
 }
