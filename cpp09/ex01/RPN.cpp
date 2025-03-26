@@ -52,19 +52,18 @@ void RPN::calculator(const std::string& str) {
 		return ;
 	}
 
-	std::stack<int> stack;
-	int result = 0;
+	long long result = 0;
 	for (size_t i = 0; i < str.length(); i++) {
 		if (isdigit(str[i])){
-			int n = str[i] - '0';
-			stack.push(n);
+			long long n = str[i] - '0';
+			_stack.push(n);
 		} else if (str[i] == ' ') {
 			continue;
 		} else {
-			int n1 = stack.top(); // take out the top one
-			stack.pop();
-			int n2 = stack.top();
-			stack.pop();
+			long long n1 = _stack.top(); // take out the top one
+			_stack.pop();
+			long long n2 = _stack.top();
+			_stack.pop();
 
 			if (str[i] == '/' && n1 == 0) {
 				std::cerr << "Error: division by zero is not allowed." << std::endl;
@@ -88,7 +87,7 @@ void RPN::calculator(const std::string& str) {
 					std::cerr << "Invalid char detected" << std::endl; // it might not be needed
 					break;
 			}
-			stack.push(result);
+			_stack.push(result);
 		}
 	}
 	std::cout << result << std::endl;

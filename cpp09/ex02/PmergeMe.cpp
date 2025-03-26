@@ -42,6 +42,9 @@ std::vector<size_t> PmergeMe::indexByJacobsthal(size_t listSize) {
         ++j;
     }
 
+    // print out jacobVector for debugging
+
+
     if (!jacobVector.empty()) {
         for (size_t i = jacobVector.size(); i > 0; --i) {
             size_t index = jacobVector[i - 1];
@@ -193,7 +196,7 @@ bool PmergeMe::parseAndValidateInput(int argc, char **argv) {
         // check chars one by one because stoi accepts something like 56as or 67f2
         for (size_t j = 0; j < token.length(); j++) {
             if (!isdigit(token[j])) {
-                // std::cerr << "It contains non-digit char" << std::endl; // delete it
+                std::cerr << "It contains non-digit char" << std::endl; // for debugging
                 return false;
             }
         }
@@ -201,14 +204,14 @@ bool PmergeMe::parseAndValidateInput(int argc, char **argv) {
             int num = std::stoi(token);
 
             if (num < 0) {
-                std::cerr << "Error: negative number are not allowed" << std::endl;
+                std::cerr << "Error: negative number are not allowed" << std::endl; // for debugging
                 return false;
             }
 
             _intVector.push_back(num);
             _intDeque.push_back(num);
         } catch (const std::exception& e) {
-            std::cerr << "Error: Invalid input. " << e.what() << std::endl;
+            std::cerr << "Error: Invalid input. " << e.what() << std::endl; // for debugging
             return false;
         }
     }

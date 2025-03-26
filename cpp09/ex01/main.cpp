@@ -6,6 +6,7 @@ int main(int argc, char **argv) {
 		std::cerr << "Usage example: ./RPN \"7 7 * 7 -\"" << std::endl;
 		return 1;
 	}
-	RPN::calculator(argv[1]);
+	RPN rpm;
+	rpm.calculator(argv[1]);
 	return 0;
 }

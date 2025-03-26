@@ -155,7 +155,7 @@ void BitcoinExchange::processUserInputFile() {
 			double result = calculateExchange(line, price);
 
 			if (result == -1) {
-				std::cout << "Matching data is not found." << std::endl; // delete it
+				std::cout << "Matching data is not found." << std::endl; // for debugging
 				continue;
 			}
 			std::cout << yearStr << "-" << monthStr << "-" << dateStr << " => " << price << " = " << result << std::endl;

@@ -4,12 +4,12 @@
 
 class RPN {
 	private:
-		std::stack<int> _stack;
+		std::stack<long long> _stack;
 	public:
 		RPN();
 		~RPN();
 		RPN(const RPN& other);
 		RPN& operator=(const RPN& other);
 
-		static void calculator(const std::string& str);
+		void calculator(const std::string& str);
 };
