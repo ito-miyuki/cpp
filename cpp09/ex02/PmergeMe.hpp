@@ -2,7 +2,6 @@
 #include <iostream>
 #include <vector>
 #include <deque>
-#include <sstream>
 #include <algorithm> // std::lower_bound
 #include <chrono> // for time stamp
 
@@ -28,7 +27,7 @@ class PmergeMe {
         void sortDeque(std::deque<int>& deque);
         void sortDequeAlgorithm(std::deque<int>& deque);
 
-        std::vector<size_t> indexByJacobsthal(size_t n);
+        std::vector<size_t> getJacobsthalInsertionOrder(size_t n);
 
         std::vector<int>& getVector();
         std::deque<int>& getDeque();

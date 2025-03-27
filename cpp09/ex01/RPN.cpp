@@ -20,27 +20,32 @@ bool isValidInput(const std::string& str) {
 	int operatorCount = 0;
 	int stackCount = 0;
 
-	for(size_t i = 0; i < str.length(); i++) {
-		if (isdigit(str[i])) {
+	std::stringstream ss(str);
+	std::string token;
+
+	while (ss >> token) {
+		if (std::all_of(token.begin(), token.end(), ::isdigit)) {
 			numberCount++;
 			stackCount++;
-		} else if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/') {
+			if (token.length() != 1) {
+				std::cerr << "Error: invalid input." << std::endl;
+				return false;
+			}
+		} else if (token == "+" || token == "-" || token == "*" || token == "/") {
 			operatorCount++;
 			if (stackCount < 2) { // operator needs at least 2 numbers
-				std::cerr << "Error: invalid format. Not enough numbers before operator." << std::endl; // for debugging
+				std::cerr << "Error: invalid input." << std::endl;
 				return false;
 			}
 			stackCount--;
-		} else if (str[i] == ' ') {
-			continue;
 		} else {
-			std::cerr << "Error: it contains invalid charactor" << std::endl; // for debugging
+			std::cerr << "Error: invalid input." << std::endl;
 			return false; 
 		}
 	}
 
 	if (stackCount != 1 || operatorCount != numberCount - 1) {
-		std::cerr << "Error: invalid format. Too many numbers or operators." << std::endl; // for debugging
+		std::cerr << "Error: invalid input. Too many numbers or operators." << std::endl; // for debugging
 		return false;
 	}
 	return true;
@@ -48,7 +53,6 @@ bool isValidInput(const std::string& str) {
 
 void RPN::calculator(const std::string& str) {
 	if (!isValidInput(str)) {
-		std::cerr << "Error" << std::endl;
 		return ;
 	}
 
@@ -69,7 +73,7 @@ void RPN::calculator(const std::string& str) {
 				std::cerr << "Error: division by zero is not allowed." << std::endl;
     			return;
 			}
-			
+
 			switch (str[i]) {
 				case '+':
 					result = n2 + n1;
@@ -84,8 +88,13 @@ void RPN::calculator(const std::string& str) {
 					result = n2 / n1;
 					break;
 				default:
-					std::cerr << "Invalid char detected" << std::endl; // it might not be needed
+					std::cerr << "Invalid char detected" << std::endl;
 					break;
+			}
+
+			if (result > std::numeric_limits<int>::max() || result < std::numeric_limits<int>::min()) {
+				std::cerr << "Error: result overflows int range." << std::endl;
+				return ;
 			}
 			_stack.push(result);
 		}

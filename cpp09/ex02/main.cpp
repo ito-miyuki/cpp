@@ -64,11 +64,12 @@ int main(int argc, char **argv) {
     //     }
     // }
 
+    // display in us(microsecond)
     std::cout << "Time to process a range of " << pmm.getVector().size() << " elements with std::vector : "
-     << pmm.getTimeVector().count() / 1000 << " us" << std::endl;
+     << pmm.getTimeVector().count() << " us" << std::endl;
 
     std::cout << "Time to process a range of " << pmm.getVector().size() << " elements with std::deque : "
-     << pmm.getTimeDeque().count() / 1000 << " us" << std::endl;
+     << pmm.getTimeDeque().count() << " us" << std::endl;
 
     return 0;
 }

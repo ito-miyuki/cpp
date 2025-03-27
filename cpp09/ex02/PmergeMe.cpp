@@ -21,7 +21,7 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other){
 	return *this;   
 }
 
-std::vector<size_t> PmergeMe::indexByJacobsthal(size_t listSize) {
+std::vector<size_t> PmergeMe::getJacobsthalInsertionOrder(size_t listSize) {
     
     std::vector<size_t> indexList;
     std::vector<size_t> used;
@@ -42,9 +42,7 @@ std::vector<size_t> PmergeMe::indexByJacobsthal(size_t listSize) {
         ++j;
     }
 
-    // print out jacobVector for debugging
-
-
+    // reverse the index list because(that is a part of this algrorithm)
     if (!jacobVector.empty()) {
         for (size_t i = jacobVector.size(); i > 0; --i) {
             size_t index = jacobVector[i - 1];
@@ -55,6 +53,7 @@ std::vector<size_t> PmergeMe::indexByJacobsthal(size_t listSize) {
         }
     }
 
+    // adding unused index at the end. [0,1,3], list size was 5 => add 2, 4 => [0,1,3,4,5]
     for (size_t i = 0; i < listSize; ++i) {
         if (std::find(used.begin(), used.end(), i) == used.end()) {
             indexList.push_back(i);
@@ -101,17 +100,9 @@ void PmergeMe::sortVectorAlgorithm(std::vector<int>& vector){
         smallList.push_back(vector[vectorSize - 1]);
     }
 
-    //for debuging
-    // for (size_t n = 0; n < bigList.size(); n++) {
-    //     std::cout << "index[" << n << "] in  bigList is " << bigList[n] << std::endl;
-    // }
-    // for (size_t k = 0; k < smallList.size(); k++) {
-    //     std::cout << "index[" << k << "] in  smallList is " << smallList[k] << std::endl;
-    // }
+    sortVectorAlgorithm(bigList);
 
-    sortVector(bigList);
-
-    std::vector<size_t> insertOrder = indexByJacobsthal(smallList.size());
+    std::vector<size_t> insertOrder = getJacobsthalInsertionOrder(smallList.size());
 
     for (size_t index : insertOrder) {
         if (index < smallList.size()) {
@@ -159,9 +150,9 @@ void PmergeMe::sortDequeAlgorithm(std::deque<int>& deque){
         smallList.push_back(deque[dequeSize - 1]);
     }
 
-    sortDeque(bigList);
+    sortDequeAlgorithm(bigList);
 
-    std::vector<size_t> insertOrder = indexByJacobsthal(smallList.size());
+    std::vector<size_t> insertOrder = getJacobsthalInsertionOrder(smallList.size());
 
     for (size_t index : insertOrder) {
         if (index < smallList.size()) {
