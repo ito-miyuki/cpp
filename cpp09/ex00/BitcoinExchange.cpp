@@ -138,7 +138,6 @@ void BitcoinExchange::processUserInputFile() {
 				price = stod(priceStr);
 
 				if ((month < 1 || month > 12) || !isValidDate(year, month, date)) {
-					// std::cerr << "Error: bad input => " << yearStr << "-" << monthStr << "-" << dateStr << std::endl;
 					std::cerr << "Error: bad input => " << line << std::endl;
 					continue ;
 				} else if (price > 1000) {
@@ -155,7 +154,7 @@ void BitcoinExchange::processUserInputFile() {
 			double result = calculateExchange(line, price);
 
 			if (result == -1) {
-				std::cout << "Matching data is not found." << std::endl; // for debugging
+				std::cout << "Matching data is not found." << std::endl;
 				continue;
 			}
 			std::cout << yearStr << "-" << monthStr << "-" << dateStr << " => " << price << " = " << result << std::endl;
