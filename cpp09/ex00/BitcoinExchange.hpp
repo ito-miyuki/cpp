@@ -28,4 +28,6 @@ class BitcoinExchange {
 		std::string findClosestDate(std::string date);
 		bool isLeapYear(int year);
 		bool isValidDate(int year, int month, int date);
+
+		bool isFutureDate(const std::string& date);
 };

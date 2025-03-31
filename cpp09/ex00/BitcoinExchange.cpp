@@ -95,6 +95,31 @@ bool BitcoinExchange::isValidDate(int year, int month, int date) {
 	return true;
 }
 
+bool BitcoinExchange::isFutureDate(const std::string& date) {
+
+	// tm is a struct. init with {}: inputDate.tm_year → 0, month and date
+	std::tm inputDate = {};
+
+	// parse the dates to tm, e, year = (2025 - 1900）= 125
+	std::istringstream ss(date);
+	ss >> std::get_time(&inputDate, "%Y-%m-%d");
+	if (ss.fail()){
+		return false; // when it's an invalid date such as 2025-03-99
+	}
+
+	// get current time with std::time(nullptr)
+	std::time_t currentTime = std::time(nullptr);
+
+	// convert it from tm format to time_t to be able to easily compare
+	std::time_t inputTime = std::mktime(&inputDate);
+
+	if (inputTime > currentTime) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 void BitcoinExchange::processUserInputFile() {
 	std::string line;
 
@@ -136,6 +161,11 @@ void BitcoinExchange::processUserInputFile() {
 				month = stoi(monthStr);
 				date = stoi(dateStr);
 				price = stod(priceStr);
+
+				if (isFutureDate(line)) {
+					std::cerr << "Error: bad input => " << line << std::endl;
+					continue ;
+				}
 
 				if ((month < 1 || month > 12) || !isValidDate(year, month, date)) {
 					std::cerr << "Error: bad input => " << line << std::endl;
