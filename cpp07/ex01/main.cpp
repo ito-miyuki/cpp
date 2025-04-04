@@ -13,34 +13,65 @@
 #include "iter.hpp"
 #include <string>
 
-int main() {
+// int main() {
 
+// 	int intArr[] = {1, 2, 3, 4, 5};
+// 	std::string stringArr[] = {"Hello", "world", "from", "Hive Helsinki"};
+// 	char charArr[] = {'a', 'b', 'c'};
+
+// 	iter(intArr, 5, printArr); // print out intArr
+
+// 	std::cout << "---" << std::endl;
+
+// 	iter(stringArr, 4, printArr); // print out stringArr
+
+// 	std::cout << "---" << std::endl;
+
+// 	iter(intArr, 5, incrementArr); // increment int and output
+// 	iter(intArr, 5, printArr);
+
+// 	std::cout << "---" << std::endl;
+
+// 	iter(intArr, 5, incrementArr); // increment int again and output
+// 	iter(intArr, 5, printArr);
+
+// 	std::cout << "---" << std::endl;
+
+// 	iter(charArr, 3, printArr); // print out charArr
+// 	iter(charArr, 3, incrementArr); // in crement char
+// 	std::cout << "increment char array" << std::endl;
+// 	iter(charArr, 3, printArr); // print out result
+
+// 	return 0;
+// }
+
+int main() {
 	int intArr[] = {1, 2, 3, 4, 5};
 	std::string stringArr[] = {"Hello", "world", "from", "Hive Helsinki"};
 	char charArr[] = {'a', 'b', 'c'};
 
-	iter(intArr, 5, printArr); // print out intArr
+	iter(intArr, 5, [](int& x) { printArr(x); });
 
 	std::cout << "---" << std::endl;
 
-	iter(stringArr, 4, printArr); // print out stringArr
+	iter(stringArr, 4, [](std::string& x) { printArr(x); });
 
 	std::cout << "---" << std::endl;
 
-	iter(intArr, 5, incrementArr); // increment int and output
-	iter(intArr, 5, printArr);
+	iter(intArr, 5, [](int& x) { incrementArr(x); });
+	iter(intArr, 5, [](int& x) { printArr(x); });
 
 	std::cout << "---" << std::endl;
 
-	iter(intArr, 5, incrementArr); // increment int again and output
-	iter(intArr, 5, printArr);
+	iter(intArr, 5, [](int& x) { incrementArr(x); });
+	iter(intArr, 5, [](int& x) { printArr(x); });
 
 	std::cout << "---" << std::endl;
 
-	iter(charArr, 3, printArr); // print out charArr
-	iter(charArr, 3, incrementArr); // in crement char
+	iter(charArr, 3, [](char& x) { printArr(x); });
+	iter(charArr, 3, [](char& x) { incrementArr(x); });
 	std::cout << "increment char array" << std::endl;
-	iter(charArr, 3, printArr); // print out result
+	iter(charArr, 3, [](char& x) { printArr(x); });
 
 	return 0;
 }

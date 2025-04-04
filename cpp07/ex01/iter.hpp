@@ -25,10 +25,17 @@ void incrementArr(T& arg) {
 	arg++;
 }
 
-template <typename T>
-void iter(T* arr, int arrLen, void (*f)(T&)) {
+// template <typename T>
+// void iter(T* arr, int arrLen, void (*f)(T&)) {
+// 	for (int i = 0; i < arrLen; i++)
+// 		(*f)(arr[i]);
+// }
+
+template <typename T, typename Func>
+void iter(T* arr, int arrLen, Func f) {
 	for (int i = 0; i < arrLen; i++)
-		(*f)(arr[i]);
+		f(arr[i]);
 }
+
 
 #endif
